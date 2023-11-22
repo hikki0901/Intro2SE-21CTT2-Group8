@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../image/Logo.png"
+import {Link} from 'react-router-dom'
 
 function Heading(){
 
@@ -48,11 +49,12 @@ function Heading(){
         <img src = {logo}  style={logoStyle}/>
         <p style={appNameStyle}>DIETARIUM</p>
         <div style={headingLine}>
-            <p style={headingTag}>VIDEO</p>
-            <p style={headingTag}>ABOUT</p>
-            <p style={headingTag}>CONTACT</p>
-            <p style={headingTag}>LOGIN</p>
-            <p style={headingTag}>SIGNUP</p>
+            <Link to ='/'><p style={headingTag}>HOME</p></Link>
+            <Link to ='/video'><p style={headingTag}>VIDEO</p></Link>
+            <Link to ='/about'><p style={headingTag}>ABOUT</p></Link>
+            <Link to ='/contact'><p style={headingTag}>CONTACT</p></Link>
+            <Link to ='/login'><p style={headingTag}>LOGIN</p></Link>
+            <Link to ='/signup'><p style={headingTag}>SIGNUP</p></Link>
         </div>
     </div>
 }
