@@ -49,7 +49,7 @@ function Heading(){
         <img src = {logo}  style={logoStyle}/>
         <p style={appNameStyle}>DIETARIUM</p>
         <div style={headingLine}>
-            <Link to ='/'><p style={headingTag}>HOME</p></Link>
+            <Link to ='/home'><p style={headingTag}>HOME</p></Link>
             <Link to ='/video'><p style={headingTag}>VIDEO</p></Link>
             <Link to ='/about'><p style={headingTag}>ABOUT</p></Link>
             <Link to ='/contact'><p style={headingTag}>CONTACT</p></Link>

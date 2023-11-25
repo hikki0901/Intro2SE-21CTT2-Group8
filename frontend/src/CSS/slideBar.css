@@ -1,0 +1,17 @@
+.side{
+    background-color: #FFF9F2;
+    height: 100vh;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: var(--bs-nav-pills-link-active-color);
+  background-color: #F79D25;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}

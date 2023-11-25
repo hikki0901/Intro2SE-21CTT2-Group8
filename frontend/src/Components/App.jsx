@@ -7,7 +7,7 @@ import Video from "./Video";
 import Contact from "./Contact";
 import Login from "./Login";
 import Signup from "./Signup";
-
+import Home from "./Home";
 
 const appStyle = {
     margin: "0",
@@ -23,6 +23,7 @@ function App(){
                 <Heading/>
                 <Footer />
                 <Routes>
+                    <Route path="/home" element={<Home />} />
                     <Route path="/video" element={<Video />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />

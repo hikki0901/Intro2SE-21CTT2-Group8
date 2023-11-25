@@ -1,0 +1,13 @@
+.mealCard{
+    width: 500px;
+    height: 180px;
+    margin-left: 30px;
+    border-radius: 20px;
+    background: linear-gradient(
+    to top,
+    #F79D25 0%,
+    #F79D25 75%,
+    #11B3CF 75%,
+    #11B3CF 100%
+  );
+}

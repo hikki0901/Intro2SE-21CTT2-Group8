@@ -1,0 +1,81 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.greeting{
+    font-size: 24px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.plan{
+    font-size: 32px;
+    margin-top: 20px;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+.progress-bar{
+    margin-left: 30px;
+    margin-top: 20px;
+    height: 63px;
+    width: 500px;
+    border-radius: 20px;
+    background-color: #9B67C6;
+}
+
+.nutrition-track{
+    width: 180px;
+    height: 180px;
+    margin-left: 30px;
+    margin-top: 138px;
+    border-radius: 20px;
+    background: linear-gradient(
+    to top,
+    #9B67C6 0%,
+    #9B67C6 75%,
+    #11B3CF 75%,
+    #11B3CF 100%)
+}
+
+.schedule{
+    width:408px;
+    height: 250px;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-left: 30px;
+    background: linear-gradient(
+    to top,
+    #F79D25 0%,
+    #F79D25 75%,
+    #F1E6DB 75%,
+    #F1E6DB 100%)
+}
+
+.schedule{
+    width:408px;
+    height: 250px;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-left: 30px;
+    background: linear-gradient(
+    to top,
+    #F79D25 0%,
+    #F79D25 75%,
+    #F1E6DB 75%,
+    #F1E6DB 100%)
+}
+
+.quotes{
+    width:408px;
+    height: 147px;
+    margin-top: 20px;
+    border-radius: 20px;
+    margin-left: 30px;
+    background: linear-gradient(
+    to top,
+    #F79D25 0%,
+    #F79D25 75%,
+    #F1E6DB 75%,
+    #F1E6DB 100%)
+}
