@@ -9,66 +9,79 @@ import Reserve from "../image/Reserve.png"
 import salesPerformance from "../image/Sales Performance.png"
 import '../CSS/slideBar.css';
 
+function PremiumCard(){
+  return(<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Premium Pakage</h5>
+    <p class="card-text">Set sails to a new and better app for your daily use</p>
+    <a href="#" class="btn btn-primary">Upgrade now</a>
+  </div>
+</div>);
+}
+
 function SlideBar(){
-    return(
-    <div class="d-flex flex-column flex-shrink-0 p-3 side" >
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <img src={logo} alt="App logo"/>
-      <span class="fs-4 bold">DIETARIUM</span>
-    </a>
-    <hr/>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <p class="bold">
-          GENERAL
-        </p>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-        <img class="bi pe-none me-2" src={homePage} alt="App logo" width="16" height="16"/>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
-          Meal plans
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={Journal} alt="App logo" width="16" height="16"/>
-          Diet diary
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={barChart} alt="App logo" width="16" height="16"/>
-          Analytics
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
-          My chat
-        </a>
-      </li>
+  const isPremium = true;
+
+  return(
+  <div class="d-flex flex-column flex-shrink-0 p-3 side" >
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+    <img src={logo} alt="App logo"/>
+    <span class="fs-4 bold">DIETARIUM</span>
+  </a>
+  <hr/>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
       <p class="bold">
-          FEATURES
+        GENERAL
       </p>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
-          Support
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-        <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
-          Membership
-        </a>
-      </li>
-    </ul>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link active" aria-current="page">
+      <img class="bi pe-none me-2" src={homePage} alt="App logo" width="16" height="16"/>
+        Dashboard
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
+        Meal plans
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={Journal} alt="App logo" width="16" height="16"/>
+        Diet diary
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={barChart} alt="App logo" width="16" height="16"/>
+        Analytics
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
+        My chat
+      </a>
+    </li>
+    <p class="bold">
+        FEATURES
+    </p>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
+        Support
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-body-emphasis">
+      <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
+        Membership
+      </a>
+    </li>
+  </ul>
+  {isPremium && <PremiumCard/>}
   </div>
   );
 }

@@ -1,6 +1,6 @@
 .side{
     background-color: #FFF9F2;
-    height: 100vh;
+    height: 100%;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
@@ -10,8 +10,31 @@
 
 .bold{
   font-weight: bold;
+  color: black;
 }
 
 * {
   font-family: 'Poppins', sans-serif;
+}
+
+.card{
+  background-color: #11B3CF;
+  width: 180px;
+  height: 199px;
+  border-radius: 20px;
+}
+
+.card-title{
+  color: #ffff;
+  font-weight: 600;
+}
+
+.card-text{
+  color: #ffff;
+  font-weight: 400;
+}
+
+.btn{
+  background-color: #FFF9F2;
+  color: #11B3CF;
 }

@@ -5,9 +5,19 @@
     border-radius: 20px;
     background: linear-gradient(
     to top,
-    #F79D25 0%,
-    #F79D25 75%,
+    #11B3CF 0%,
     #11B3CF 75%,
-    #11B3CF 100%
+    #F79D25 75%,
+    #F79D25 100%
   );
+}
+
+ul > li{
+  font-size: 20px;
+  color: #FFFFFF;
+}
+
+.meal-name{
+  font-size: 24px;
+  margin-left: 20px;
 }
