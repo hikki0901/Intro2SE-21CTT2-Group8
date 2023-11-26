@@ -12,7 +12,7 @@ import Home from "./Home";
 const appStyle = {
     margin: "0",
     padding: "0",
-    height: "100vh",
+    minHeight: "100vh",
     backgroundColor: "#FFF9F2"
 }
 

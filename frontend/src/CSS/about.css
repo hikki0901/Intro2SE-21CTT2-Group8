@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+.about-us {
+    padding: 6em 6em 6em 6em;
+}
+
+.about-us__container h2 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.about-us__container p {
+    color: #000;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.about-us__heading h1 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.about-us__heading div {
+    width: 218px;
+    height: 5px;
+    background: #000;
+}
+
+.about-us__content {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about-us__content span {
+    color: #F79D25;
+}
+
+.about-us__content li {
+    color: #000;
+    font-family: Poppins;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.about-us__section-content {
+    margin-top: 2em;
+    width: 50%;
+    align-items: center;
+}
+
+.about-us__image {
+    margin-top: 2em;
+    width: 50%;
+}
+
+#second-list, #serve {
+    margin-top: 7.5em;
+}
+
+.our-team__container {
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.our-team__heading h1 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.our-team__heading div {
+    width: 193px;
+    height: 5px;
+    background: #000;
+}
+
+.our-team__content {
+    margin: 5em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.our-team__content Profile{
+    flex: 0;
+}
