@@ -12,7 +12,10 @@ app.use(cors());
 app.use("/auth",userRouter);
 
 const DB_URL = "mongodb+srv://admin:cRj8cvgq6XfL9lZz@cluster0.mfnrknp.mongodb.net/Dietarium?retryWrites=true&w=majority";
-mongoose.connect(DB_URL)
+mongoose.connect(DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then((result) => {
   console.log('database connected, server is working');
 })

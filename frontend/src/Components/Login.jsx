@@ -7,7 +7,7 @@ import "../CSS/Login.css"
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [successMessage, setSuccessMessage] = useState("");
     const [_, setCookies] = useCookies(["access_token"]);
 
     const navigate = useNavigate();
@@ -15,16 +15,26 @@ function Login() {
     const onSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post("localhost:4000/auth/login", {
+            const response = await axios.post("http://localhost:4000/auth/login", {
                 email,
                 password,
             });
 
-            setCookies("access_token", response.data.token);
-            window.localStorage.setItem("userID", response.data.userID);
-            navigate("/");
+            if (response.data.success) {
+                // Show success message
+                setSuccessMessage(response.data.message);
+                console.log(response.data.message);
+                
+                // Continue with other actions (setting cookies, navigating, etc.)
+                setCookies("access_token", response.data.token);
+                window.localStorage.setItem("userID", response.data.userID);
+                navigate("/");
+            } else {
+                // Show error message
+                console.error(response.data.message);
+            }
         } catch (err) {
-            console.error(err);
+            console.error("Error during login request:", err);
         }
     };
 
@@ -62,6 +72,10 @@ function Login() {
                         <hr></hr>
 
                         <button type="submit">Register</button>
+
+                        <div className="success-message">
+                        {successMessage && <p>{successMessage}</p>}
+                </div>
                     </div>
                 </div>
             </main>
