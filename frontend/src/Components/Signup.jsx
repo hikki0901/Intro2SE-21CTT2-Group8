@@ -7,6 +7,7 @@ function Signup() {
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
   const [DOB, setDOB] = useState("");
+  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -71,6 +72,17 @@ function Signup() {
                   />
                   <label for="birthDay">Birth Day</label>
                 </div>
+                <div class="form-floating mb-3">
+                  <input 
+                  type="text" 
+                  class="form-control rounded-3" 
+                  id="phone" 
+                  placeholder="phone"
+                  onChange={(event) => setPhone(event.target.value)}
+                  />
+                  <label for="phone">Phone number</label>
+                </div>
+
                 <div class="form-floating mb-3">
                   <input 
                   type="email" 
