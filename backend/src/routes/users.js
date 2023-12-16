@@ -9,15 +9,23 @@ router.post("/register", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, confirmPassword } = req.body;
     const user = await userModel.findOne({ email });
 
+    if (password !== confirmPassword) {
+        return res.status(400).json({ message: "Password and confirmPassword do not match" });
+    }
+
     if (user) {
         return res.json({ message: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new userModel({firstName, lastName, DOB, phone, email, password:hashedPassword});
-    await newUser.save();
-
-    res.json({message: "User registered successfully"});
+    try {
+        await newUser.save();
+        res.json({ message: "User registered successfully" });
+    } catch (error) {
+        console.error("Error saving user:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
 });
 
 router.post("/login", async (req, res) => {
@@ -31,7 +39,7 @@ router.post("/login", async (req, res) => {
         return res.status(401).json({ message: "User or password is invalid" });
     }
     const token = jwt.sign({ id: user._id}, "token");
-    return res.status(200).json({ success: true, message: "Login successful", token, userID: user._id });
+    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id });
 });
 
 export { router as userRouter };
