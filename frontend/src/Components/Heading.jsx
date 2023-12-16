@@ -22,7 +22,7 @@ function Heading(){
 
       <div class="col-md-2 text-end row">
         <Link to ='/login' type="button" class="btn me-2 col-5">LOGIN</Link>
-        <Link type="button" class="btn col-5 btn-primary">SIGN UP</Link>
+        <Link to ='/signup' type="button" class="btn col-5 btn-primary">SIGN UP</Link>
       </div>
     </header>
   </div>

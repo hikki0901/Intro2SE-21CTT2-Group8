@@ -1,0 +1,31 @@
+h1{
+    font-weight: 600;
+}
+
+b1{
+    font-size: 32px;
+    font-weight: 550;
+}
+
+.btn{
+    background-color: #11B3CF;
+
+}
+
+.sign-up-form{
+    width: 505px;
+    height: 725px;
+    border-style: solid;
+    border-width: 1px;
+    margin-left: 204px;
+    border-radius: 10px;
+}
+
+hr{
+    height: 2px;
+    background-color: black;
+}
+
+.button{
+    background-color: #11B3CF;
+}
