@@ -20,6 +20,7 @@ function Signup() {
           firstName,
           lastName,
           DOB,
+          phone,
           email,
           password,
           confirmPassword,

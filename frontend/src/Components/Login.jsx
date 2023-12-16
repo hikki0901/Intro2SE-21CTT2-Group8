@@ -24,17 +24,19 @@ function Login() {
                 // Show success message
                 setSuccessMessage(response.data.message);
                 console.log(response.data.message);
-                
+                alert("Login successful");
                 // Continue with other actions (setting cookies, navigating, etc.)
                 setCookies("access_token", response.data.token);
                 window.localStorage.setItem("userID", response.data.userID);
                 navigate("/");
             } else {
                 // Show error message
+                alert("Email or password is invalid")
                 console.error(response.data.message);
             }
         } catch (err) {
             console.error("Error during login request:", err);
+            alert("Error")
         }
     };
 
