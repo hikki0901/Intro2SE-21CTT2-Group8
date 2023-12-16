@@ -21,7 +21,6 @@ function App(){
         <Router>
             <div style={appStyle}>
                 <Heading/>
-                <Footer />
                 <Routes>
                     <Route path="/home" element={<Home />} />
                     <Route path="/video" element={<Video />} />
@@ -30,6 +29,7 @@ function App(){
                     <Route path="/login" element={<Login />} />
                     <Route path="/signup" element={<Signup />} />
                 </Routes>
+                <Footer />
             </div>
         </Router>   
     );

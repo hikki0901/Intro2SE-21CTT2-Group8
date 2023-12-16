@@ -3,65 +3,30 @@ import logo from "../image/Logo.png"
 import facebook from "../image/Facebook.png"
 import youtube from "../image/YouTube.png"
 import github from "../image/GitHub.png"
+import "../CSS/Footer.css"
 
 function Footer(){
-
-    const footerStyle = {
-        position: "absolute",
-        backgroundColor: "#D1C6BA",
-        height: "220px",
-        top: "100%",
-        width: "100%"
-    }
-
-    const footerLine = {
-        display: "flex",
-        justifyContent: "center",
-        gap: "10px"
-    }
-
-    const logoStyle = {
-        position: "absolute",
-        top: "20px",
-        right: "790px",
-        width: "22px",
-        height: "30.15px"
-    }
-
-    const appNameStyle = {
-        fontSize: "20px",
-        height: "48px",
-        top: "0px",
-        fontFamily: "'Poppins', sans-serif",
-        fontWeight: "bold"
-    }
-
-    const footerTag = {
-        fontSize: "20px",
-        height: "30px",
-        top: "50%",
-        fontFamily: "'Poppins', sans-serif",
-    }
-
-    return <div style={footerStyle}>
-        <div style = {footerLine}>
-            <div>
-                <img src={logo} alt="AppLogo" style = {logoStyle}/> 
-                <p style={appNameStyle}>DIETARIUM</p>
-            </div>
-            
+    return (<div class="footer">
+    <footer class="py-3 my-4">
+        <div class="col-md-12 d-flex align-items-center justify-content-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <img src = {logo} alt = "app's logo"/>
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary app-name">Dietarium</span>
         </div>
-        <div style = {footerLine}>
-            <p style={footerTag}>VIDEO</p>
-            <p style={footerTag}>ABOUT</p>
-            <p style={footerTag}>CONTACT</p>
-        </div>
-        <div style = {footerLine}>
-            <img src={facebook} alt="facebookLogo"/> 
-            <img src={youtube} alt="youtubeLogo"/> 
-            <img src={github} alt="githubLogo"/> 
-        </div>
-    </div>
+        <ul class="nav justify-content-center pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">VIDEOS</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">ABOUT</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">CONTACT</a></li>
+        </ul>
+        <ul class="nav col-md-12 justify-content-center list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src={facebook}/></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src={youtube}/></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src={github}/></a></li>
+        </ul>
+
+    </footer>
+  </div>);
 }
 
 export default Footer
