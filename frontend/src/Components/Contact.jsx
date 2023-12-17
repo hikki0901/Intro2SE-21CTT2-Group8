@@ -1,8 +1,10 @@
 import React from 'react';
+import Footer from "./Footer";
 import '../CSS/Contact.css';
 
 function Contact() {
     return(
+      <div>
       <div class="container">
         <main>
           <div class="contact-box">
@@ -33,6 +35,8 @@ function Contact() {
             </div>
           </div>
         </main>
+      </div>
+      <Footer />
       </div>
     );
 }

@@ -3,7 +3,7 @@ import logo from "../image/Logo.png"
 import {Link} from 'react-router-dom'
 import "../CSS/Heading.css"
 
-function Heading(){
+function Heading(props){
     return (
         <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -15,6 +15,7 @@ function Heading(){
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        {props.isLogIn === true && (<li><Link to ='/home' class="nav-link px-2">HOME</Link></li>)}
         <li><Link to ='/video' class="nav-link px-2">VIDEOS</Link></li>
         <li><Link to ='/about' class="nav-link px-2">ABOUT</Link></li>
         <li><Link to ='/contact' class="nav-link px-2">CONTACT</Link></li>

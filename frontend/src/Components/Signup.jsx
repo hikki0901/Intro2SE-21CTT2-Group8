@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import signUpImg from "../image/SignUp.png"
+import Footer from "./Footer";
 import "../CSS/Signup.css"
 
 function Signup() {
@@ -32,6 +33,7 @@ function Signup() {
   };
 
   return(
+    <div>
       <div class="d-flex justify-content-center">
           <div class="col-md-4 text-center">
             <h1>Sign up</h1>
@@ -122,7 +124,8 @@ function Signup() {
             </div>
           </div>
       </div>
-        
+      <Footer/>
+      </div>
   );
 }
 

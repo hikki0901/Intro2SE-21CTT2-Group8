@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import {useCookies} from 'react-cookie';
 import {useNavigate} from 'react-router-dom';
+import Footer from "./Footer";
 import "../CSS/Login.css"
 
 function Login() {
@@ -41,6 +42,7 @@ function Login() {
     };
 
     return(
+        <div>
         <div class="container">
             <main>
                 <div class="login-box">
@@ -81,6 +83,8 @@ function Login() {
                     </div>
                 </div>
             </main>
+        </div>
+        <Footer/>
         </div>
     );
 }

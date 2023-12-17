@@ -7,6 +7,7 @@ import Journal from "../image/Journal.png"
 import onlineSupport from "../image/Online Support.png"
 import Reserve from "../image/Reserve.png"
 import salesPerformance from "../image/Sales Performance.png"
+import {NavLink} from 'react-router-dom'
 import '../CSS/slideBar.css';
 
 function PremiumCard(){
@@ -19,16 +20,14 @@ function PremiumCard(){
 </div>);
 }
 
-function SlideBar(){
+
+function SlideBar(props){
   const isPremium = true;
+  
+  
 
   return(
   <div class="d-flex flex-column flex-shrink-0 p-3 side" >
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-    <img src={logo} alt="App logo"/>
-    <span class="fs-4 bold">DIETARIUM</span>
-  </a>
-  <hr/>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
       <p class="bold">
@@ -36,49 +35,49 @@ function SlideBar(){
       </p>
     </li>
     <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
+      <NavLink to='/home' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={homePage} alt="App logo" width="16" height="16"/>
         Dashboard
-      </a>
+      </NavLink>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/meal-plan' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
         Meal plans
-      </a>
+      </NavLink>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/diet-diary' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={Journal} alt="App logo" width="16" height="16"/>
         Diet diary
-      </a>
+      </NavLink>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/analytics' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={barChart} alt="App logo" width="16" height="16"/>
         Analytics
-      </a>
+      </NavLink>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/my-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
         My chat
-      </a>
+      </NavLink>
     </li>
     <p class="bold">
         FEATURES
     </p>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
         Support
-      </a>
+      </NavLink>
     </li>
     <li>
-      <a href="#" class="nav-link link-body-emphasis">
+    <NavLink to='/membership' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
       <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
         Membership
-      </a>
+      </NavLink>
     </li>
   </ul>
   {isPremium && <PremiumCard/>}
