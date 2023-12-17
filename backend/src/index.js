@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 
 import {userRouter} from './routes/users.js';
+import {feedbackRouter} from './routes/feedbacks.js';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth",userRouter);
+app.use("/feedback",feedbackRouter);
 
 const DB_URL = "mongodb+srv://admin:cRj8cvgq6XfL9lZz@cluster0.mfnrknp.mongodb.net/Dietarium?retryWrites=true&w=majority";
 mongoose.connect(DB_URL, {

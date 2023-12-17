@@ -1,6 +1,4 @@
 import express from "express";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import { feedbackModel } from "../models/feedbacksModel.js";
 
 const router = express.Router();
