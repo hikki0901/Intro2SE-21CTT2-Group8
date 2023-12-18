@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+.video {
+    padding: 1em;
+}
+
+.heading {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.video-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin: 2em;
+}
+
+.video-content button {
+    background-color: #F79D25;
+    border-radius: 50%;
+    border: none;
+    padding: 10px;
+    width: 115px;
+    height: 115px;
+    font-size: 40px;
+}
+
+/* .video-content button {
+    width: 672px;
+    height: 378px;
+} */
+
+.title {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
