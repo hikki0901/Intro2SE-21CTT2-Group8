@@ -29,7 +29,7 @@ function Login() {
                 // Continue with other actions (setting cookies, navigating, etc.)
                 setCookies("access_token", response.data.token);
                 window.localStorage.setItem("userID", response.data.userID);
-                navigate("/");
+                navigate("/home");
             } else {
                 // Show error message
                 alert("Email or password is invalid")
@@ -76,10 +76,6 @@ function Login() {
                         <hr></hr>
 
                         <button type="submit">Register</button>
-
-                        <div className="success-message">
-                        {successMessage && <p>{successMessage}</p>}
-                </div>
                     </div>
                 </div>
             </main>

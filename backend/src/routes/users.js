@@ -7,14 +7,14 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, confirmPassword } = req.body;
-    const user = await userModel.findOne({ email });
 
     if (password !== confirmPassword) {
-        return res.status(400).json({ message: "Password and confirmPassword do not match" });
+        return res.status(401).json({ message: "Password and confirm password do not match" });
     }
+    const user = await userModel.findOne({ email });
 
     if (user) {
-        return res.json({ message: "User already exists" });
+        return res.status(401).json({ message: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
