@@ -11,19 +11,17 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth",userRouter);
-app.use("/feedback",feedbackRouter);
+app.use(feedbackRouter);
 
 const DB_URL = "mongodb+srv://admin:cRj8cvgq6XfL9lZz@cluster0.mfnrknp.mongodb.net/Dietarium?retryWrites=true&w=majority";
-mongoose.connect(DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(DB_URL)
 .then((result) => {
   console.log('database connected, server is working');
+  app.listen(4000)
 })
 .catch((err) => console.log(err));
 
-app.listen(4000, () => console.log("server is working"))
+
 
 // app.get('/', (req, res) => {
 //     res.send("abcd");

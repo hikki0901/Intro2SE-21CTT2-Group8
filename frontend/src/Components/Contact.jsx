@@ -12,17 +12,17 @@ function Contact() {
     const onSubmit = async (event) => {
         event.preventDefault();
           try {
-            await axios.post("http://localhost:4000/feedback", {
+            const respone = await axios.post("http://localhost:4000/feedback", {
               name,
               email,
               subject,
               message,
             });
-            alert ("message sent");
           } catch (err) {
             console.error("Error during feedback request:", err);
           }
     };
+
     return(
       <div>
       <div class="container">
