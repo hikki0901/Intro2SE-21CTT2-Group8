@@ -1,0 +1,33 @@
+.button-color{
+    background-color: #9B67C6;
+    border-radius: 20px;
+    color: white;
+    margin: 5px;
+}
+
+.edit-half{
+    margin-top: 76px;
+}
+
+.edit-half > *{
+    text-align: center;
+}
+
+
+.edit-half > .nav-pills .nav-link{
+    background-color: #F1E6DB;
+}
+
+.edit-half > ul > li{
+    width: 300px;
+    height: 60px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #F79D25;
+  }
