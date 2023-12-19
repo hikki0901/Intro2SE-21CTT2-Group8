@@ -21,3 +21,26 @@
     font-size: 20px;
     line-height: 30px;
 }
+
+.verticalLine {
+    border-left: 3px solid #000000;
+}
+
+.notification{
+    width: 32px;
+    height: 32px;
+}
+
+.user-image{
+    width: 35px;
+    height: 35px;
+}
+
+.username{
+    font-size: 20px;
+}
+
+.expand{
+    width: 5px;
+    height: 25px;
+}

@@ -21,15 +21,18 @@ const appStyle = {
     backgroundColor: "#FFF9F2"
 }
 
-var userLoggedIn = true;
 
 function App(){
+
+    var userLoggedIn = true;
+    var user_name = "Jessica";
+
     return(
         <Router>
             <div style={appStyle}>
-                <Heading isLogIn = {userLoggedIn}/>
+                <Heading isLogIn = {userLoggedIn} userName = {user_name}/>
                 <Routes>
-                    <Route path="/home" element={<Home/>} />
+                    <Route path="/home" element={<Home userName = {user_name}/>} />
                     <Route path="/video" element={<Video />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />

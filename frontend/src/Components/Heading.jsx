@@ -1,5 +1,8 @@
 import React from "react";
 import logo from "../image/Logo.png"
+import notification from "../image/Notification.png"
+import userImage from "../image/user_image.png"
+import expandArrow from "../image/Expand Arrow.png"
 import {Link} from 'react-router-dom'
 import "../CSS/Heading.css"
 
@@ -21,15 +24,21 @@ function Heading(props){
         <li><Link to ='/contact' class="nav-link px-2">CONTACT</Link></li>
       </ul>
 
-      <div class="col-md-2 text-end row">
+      {props.isLogIn === false && (<div class="col-md-2 text-end row">
         <Link to ='/login' type="button" class="btn me-2 col-5">LOGIN</Link>
         <Link to ='/signup' type="button" class="btn col-5 btn-primary">SIGN UP</Link>
-      </div>
+      </div>)}
+
+      {props.isLogIn === true && (<div class="verticalLine col-md-3 row">
+        <input class="col notification" type="image" src={notification} />
+        <input class="col user-image" type="image" src={userImage}></input>
+        <p class="col username">{props.userName}</p>
+        <input class="col expand" type="image" src={expandArrow}></input>
+      </div>)}
     </header>
   </div>
     );
 }
-
 
 
 export default Heading

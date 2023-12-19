@@ -16,8 +16,9 @@ function createMealCard(mealItem){
     );
 }
 
-function Home(){
-    const username = "Jessica";
+function Home(props){
+
+    const progress = '75%';
 
     return(
     <div class="home-style row">
@@ -25,15 +26,15 @@ function Home(){
             <SlideBar class="col-3" />
         </div>
         <div class="col-5">
-            <p class="greeting">Hello {username}!</p>
+            <p class="greeting">Hello {props.userName}!</p>
             <p class="plan">Today's plan</p>
             {Meals.map(createMealCard)}
             <div class="progress-bar-div d-flex align-items-center justify-content-center">
                 <p class="progress-word">progress</p>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style={{width: '66%'}} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style={{width: progress}} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="progress-word" >66%</p>
+                <p class="progress-word" >{progress}</p>
             </div>
         </div>
         <div class="col-5">
