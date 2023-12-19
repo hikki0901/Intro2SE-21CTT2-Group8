@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+.settings {
+    padding: 2em 8em;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.avatar img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+}
+
+#add {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    padding: 0em;
+    position: absolute;
+    top: 45px;
+    left: 160px
+}
+
+.avatar input {
+    display: none;
+}
+
+#fileUpload {
+    display: none;
+}
+
+.heading {
+    text-align: left;
+}
+
+.heading h1 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: 0.8em;
+    margin-left: 1.3em;
+}
+
+.control {
+    margin-top: -1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.control label {
+    color: #000;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 1em 1em 0em 0em;
+}
+
+.control input, select {
+    color: #000;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;    
+    padding: 1em;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background: #FFF; 
+}
+
+.control select { 
+    padding: 0.5em;
+}
+
+.name {
+    width: 243px;
+}
+
+.body {
+    width: 170px;
+}
+
+.additional {
+    width: 512px;
+}
+
+.pass {
+    width: 365px;
+}
+
+.choice {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+    gap: 1em;
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;  
+    padding: 1em;  
+    width: 95%;
+}
+
+.choice input, button {
+    width: 108px;
+    height: 32px;
+    border-radius: 20px;
+}
+
+.choice input {
+    background: #9B67C6;
+    color: #FFF;
+    border: none;
+}
+
+.choice button {
+    border: 2px solid #9B67C6;
+    color: #000;
+    background: transparent;
+    box-shadow: none;
+}

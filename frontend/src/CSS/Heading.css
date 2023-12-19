@@ -40,7 +40,49 @@
     font-size: 20px;
 }
 
-.expand{
-    width: 5px;
+.dropdown-toggle {
+    width: 25px;
     height: 25px;
+}
+
+.expand {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F1E6DB;
+  border-radius: 20px 0px 20px 20px;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: block;
+  padding: 0.7em;
+  border-radius: 20px 0px 20px 20px;
+}
+
+.dropdown-content a:hover {
+    background-color: #F79D25B2;
+    text-decoration: none;
+}
+
+.dropdown-content a:link {
+    text-decoration: none;
+}
+
+.expand:hover .dropdown-content {
+  display: block;
+}
+
+.expand:hover .dropdown-toggle {
+  mix-blend-mode: color-burn;
 }

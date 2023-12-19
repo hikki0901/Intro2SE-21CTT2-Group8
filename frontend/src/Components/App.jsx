@@ -13,6 +13,7 @@ import Analytics from "./Analytics";
 import Mychat from "./myChat";
 import Support from "./Support";
 import Membership from "./Membership";
+import Settings from "./Settings";
 
 const appStyle = {
     margin: "0",
@@ -44,6 +45,7 @@ function App(){
                     <Route path="/my-chat" element={<Mychat />} />
                     <Route path="/support" element={<Support />} />
                     <Route path="/membership" element={<Membership />} />
+                    <Route path="/settings" element={<Settings />} />
                     <Route
                         path="/"
                         element={<Navigate to="/about" replace />}

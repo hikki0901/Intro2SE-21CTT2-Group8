@@ -33,7 +33,13 @@ function Heading(props){
         <input class="col notification" type="image" src={notification} />
         <input class="col user-image" type="image" src={userImage}></input>
         <p class="col username">{props.userName}</p>
-        <input class="col expand" type="image" src={expandArrow}></input>
+        <div class="col expand">
+          <input className="dropdown-toggle" type="image" src={expandArrow}/>
+          <div className="dropdown-content">
+          <Link to ='/settings'>Settings</Link>
+          <Link to ='/about'>Logout</Link>
+          </div>
+        </div>
       </div>)}
     </header>
   </div>
