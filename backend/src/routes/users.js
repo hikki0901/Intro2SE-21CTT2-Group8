@@ -5,8 +5,18 @@ import { userModel } from "../models/usersModel.js";
 
 const router = express.Router();
 
+function validatePhoneNumber(input_str) {
+    var re = /^[\d\s\-\(\)]+$/;
+  
+    return re.test(input_str);
+}
+
 router.post("/register", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, confirmPassword } = req.body;
+
+    if (!validatePhoneNumber(phone) || phone.length < 7 || phone.length > 15) {
+        return res.status(400).json({message: "Please enter a real phone number"});
+    }
 
     if (password !== confirmPassword) {
         return res.status(401).json({ message: "Password and confirm password do not match" });
@@ -39,7 +49,8 @@ router.post("/login", async (req, res) => {
         return res.status(401).json({ message: "User or password is invalid" });
     }
     const token = jwt.sign({ id: user._id}, "token");
-    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id });
+    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName });
 });
+
 
 export { router as userRouter };

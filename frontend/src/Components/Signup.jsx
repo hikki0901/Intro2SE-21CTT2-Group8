@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import signUpImg from "../image/SignUp.png"
 import Footer from "./Footer";
+import {useNavigate} from 'react-router-dom';
 import "../CSS/Signup.css"
 
 function Signup() {
@@ -12,6 +13,8 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -26,8 +29,9 @@ function Signup() {
           confirmPassword,
         });
         alert ("Registration completed");
+        navigate("/login")
       } catch (err) {
-        console.error("Error during login request:", err);
+        console.error("Error during register request:", err);
       }
   };
 
