@@ -28,6 +28,54 @@
 );
 }
 
+
+.mealCard_4{
+  width: 400px;
+  height: 180px;
+  margin-left: 100px;
+  border-radius: 20px;
+  background: linear-gradient(
+  to top,
+  #F1E6DB 0%,
+  #F1E6DB 15%,
+  #11B3CF 15%,
+  #11B3CF 75%,
+  #F79D25 75%,
+  #F79D25 100%
+);
+}
+
+.suggestCard{
+  width: 400px;
+  height: 200px;
+  margin-left: 100px;
+  border-radius: 20px;
+  background: linear-gradient(
+  to top,
+  #11B3CF 0%,
+  #11B3CF 75%,
+  #F79D25 75%,
+  #F79D25 100%
+);
+}
+
+.bmiCard{
+  width: 200px;
+  height: 45px;
+  margin-top: 10px;
+  border-radius: 20px;
+  background: #F1E6DB
+}
+
+.bmiResult{
+  text-align: center;
+  margin-top: 10px;
+  width: 200px;
+  height: 100px;
+  border-radius: 20px;
+  background: #F1E6DB
+}
+
 ul > li{
   font-size: 20px;
   color: #FFFFFF;
@@ -48,7 +96,78 @@ ul > li{
 
 .intake{
   text-align: right;
+  margin-right: 10px;
   font-size: 20px;
   font-weight: 500;
 
+}
+.target{
+  text-align: left;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#tg1,#tg2 {display: inline;
+
+  flex : 1 ;}
+
+.tg{
+  display: flex;
+}
+
+.textStyle{
+  font-size: 50px;
+  line-height: 76px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.ttintake{
+  font-style:bold ;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.textSuggest{
+  font-style:bold ;
+  text-align: left;
+  font-size: 31px;
+  font-weight: 500;
+}
+
+.suggest{
+  font-size: 19px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.bmiCal{
+  margin-left: 100px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.bmi{
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #0e0d0d;
+}
+
+.btn{
+  margin-right: 200px;
+  width: 200px;
+  height: 45px;
+  margin-top: 10px;
+  border-radius: 20px;
+  background: #9B67C6
+}
+
+.p-msg{
+  width: 200px;
+  height: 60px;
+  margin-top: 10px;
 }
