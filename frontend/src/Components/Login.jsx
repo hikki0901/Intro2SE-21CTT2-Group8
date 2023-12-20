@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 import Footer from "./Footer";
 import "../CSS/Login.css"
 
-function Login() {
+function Login({onLogin}) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -22,11 +22,8 @@ function Login() {
             });
 
             if (response.data.success) {
-                // Show success message
-                setSuccessMessage(response.data.message);
-                console.log(response.data.message);
-                alert("Login successful");
-                // Continue with other actions (setting cookies, navigating, etc.)
+                onLogin(response.data.userName);
+                
                 setCookies("access_token", response.data.token);
                 window.localStorage.setItem("userID", response.data.userID);
                 navigate("/home");

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Heading from "./Heading";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import About from "./About";
@@ -25,19 +25,29 @@ const appStyle = {
 
 function App(){
 
-    var userLoggedIn = true;
-    var user_name = "Jessica";
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
+    const [userName, setUserName] = useState('');
+
+    const handleLogin = (name) => {
+        setUserLoggedIn(true);
+        setUserName(name);
+    };
+
+     const handleLogout = () => {
+        setUserLoggedIn(false);
+            setUserName('');
+    };
 
     return(
         <Router>
             <div style={appStyle}>
-                <Heading isLogIn = {userLoggedIn} userName = {user_name}/>
+                <Heading isLogIn = {userLoggedIn} userName = {userName}/>
                 <Routes>
-                    <Route path="/home" element={<Home userName = {user_name}/>} />
+                    <Route path="/home" element={<Home userName = {userName}/>} />
                     <Route path="/video" element={<Video />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/login" element={<Login />} />
+                    <Route path="/login" element={<Login onLogin={handleLogin}/>} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/meal-plan" element={<MealPlan />} />
                     <Route path="/diet-diary" element={<DietDiary />} />
