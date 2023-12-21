@@ -25,7 +25,7 @@ function Home(props){
         <div class="col-2">
             <SlideBar class="col-3" />
         </div>
-        <div class="col-5">
+        <div class="col">
             <p class="greeting">Hello {props.userName}!</p>
             <p class="plan">Today's plan</p>
             {Meals.map(createMealCard)}
@@ -37,7 +37,7 @@ function Home(props){
                 <p class="progress-word" >{progress}</p>
             </div>
         </div>
-        <div class="col-5">
+        <div class="col">
             <div class="row">
                 {nutrition.map(nutriontype => (
                     <NutritionCard

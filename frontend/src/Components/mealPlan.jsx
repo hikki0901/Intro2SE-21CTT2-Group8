@@ -29,12 +29,12 @@ function MealPlan(){
             {Meals.map(createMealCard)}
         </div>
 
-        <div class = "col-3 edit-half">
-            <button type="button" class="col-12 btn button-color">Change</button>
-            <div class="d-flex justify-content-between col-12">
-                <button type="button" class="btn button-color">Add</button>
-                <button type="button" class="btn button-color">Edit</button>
-                <button type="button" class="btn button-color">Save</button>
+        <div class = "col-5 edit-half">
+        <button type="button" class="col-12 button-color d-block allign-middle" id="change">Change</button>
+            <div class="d-flex justify-content-center col-12">
+                <button type="button" class="button-color">Add</button>
+                <button type="button" class="button-color">Edit</button>
+                <button type="button" class="button-color">Save</button>
             </div>
             <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto">
             <li>

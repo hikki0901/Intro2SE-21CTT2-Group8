@@ -6,14 +6,21 @@
     font-weight: bold;
 }
 
+.nav-link:focus, .nav-link:hover {
+    color: #F79D25;
+    text-decoration: underline;
+}
+
 .btn{
+    text-decoration: none;
     border: none;
     box-shadow: none;
 }
 
-.btn-primary{
+#signup{
     background-color: #11B3CF;
     border-radius: 30px;
+    color: white;
 }
 
 .nav-link{
@@ -22,12 +29,8 @@
     line-height: 30px;
 }
 
-.verticalLine {
-    border-left: 3px solid #000000;
-}
-
 .notification{
-    width: 32px;
+    width: px;
     height: 32px;
 }
 
@@ -38,6 +41,12 @@
 
 .username{
     font-size: 20px;
+}
+
+#loggin{
+    text-decoration: none;
+    background-color: #FFF9F2;
+
 }
 
 .dropdown-toggle {

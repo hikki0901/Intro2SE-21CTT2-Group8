@@ -15,7 +15,7 @@ function PremiumCard(){
   <div class="card-body">
     <h5 class="card-title">Premium Pakage</h5>
     <p class="card-text">Set sails to a new and better app for your daily use</p>
-    <a href="#" class="btn btn-primary">Upgrade now</a>
+    <a href="/membership" class="premium">Upgrade now</a>
   </div>
 </div>);
 }
@@ -23,9 +23,6 @@ function PremiumCard(){
 
 function SlideBar(props){
   const isPremium = true;
-  
-  
-
   return(
   <div class="d-flex flex-column flex-shrink-0 p-3 side" >
   <ul class="nav nav-pills flex-column mb-auto">

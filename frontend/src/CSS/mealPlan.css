@@ -3,6 +3,12 @@
     border-radius: 20px;
     color: white;
     margin: 5px;
+    width: 108px;
+}
+
+#change{
+    width: 337px;
+    margin-right: 22%;
 }
 
 .edit-half{
