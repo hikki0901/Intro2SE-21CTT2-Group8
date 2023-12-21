@@ -41,7 +41,7 @@ function App(){
     return(
         <Router>
             <div style={appStyle}>
-                <Heading isLogIn = {userLoggedIn} userName = {userName}/>
+                <Heading isLogIn = {userLoggedIn} userName = {userName} onLogout={handleLogout} />
                 <Routes>
                     <Route path="/home" element={<Home userName = {userName}/>} />
                     <Route path="/video" element={<Video />} />

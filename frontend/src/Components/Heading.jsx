@@ -3,10 +3,17 @@ import logo from "../image/Logo.png"
 import notification from "../image/Notification.png"
 import userImage from "../image/user_image.png"
 import expandArrow from "../image/Expand Arrow.png"
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import "../CSS/Heading.css"
 
 function Heading(props){
+    const navigate = useNavigate();
+    const onSubmit = () => {
+      props.onLogout();
+      window.localStorage.removeItem("userID")
+      navigate("/login");
+    };
+
     return (
         <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -36,8 +43,8 @@ function Heading(props){
         <div class="col expand">
           <input className="dropdown-toggle" type="image" src={expandArrow}/>
           <div className="dropdown-content">
-          <Link to ='/settings'>Settings</Link>
-          <Link to ='/about'>Logout</Link>
+          <button onClick={() => navigate('/settings')}>Settings</button>
+          <button onClick={onSubmit} >Logout</button>
           </div>
         </div>
       </div>)}
