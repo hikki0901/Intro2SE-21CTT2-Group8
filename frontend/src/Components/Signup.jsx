@@ -18,8 +18,28 @@ function Signup() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+      if (!firstName) {
+        alert ("Please enter your first name");
+        return;
+      } else if (!lastName) {
+        alert ("Please enter your last name");
+        return;
+      } else if (!DOB) {
+        alert ("Please enter your birthday");
+        return;
+      } else if (!phone) {
+        alert ("Please enter your phone number");
+        return;
+      } else if (!email) {
+        alert ("Please enter your email");
+        return;
+      } else if (!lastName) {
+        alert ("Please enter your password");
+        return;
+      }
       try {
-        await axios.post("http://localhost:4000/auth/register", {
+        const response = await axios.post("http://localhost:4000/auth/register", {
           firstName,
           lastName,
           DOB,
@@ -28,8 +48,14 @@ function Signup() {
           password,
           confirmPassword,
         });
-        alert ("Registration completed");
-        navigate("/login")
+
+        if (response.data.success) {
+          alert(response.data.message)
+          navigate("/login")
+        } else {
+          alert(response.data.message)
+        }
+        
       } catch (err) {
         console.error("Error during register request:", err);
       }

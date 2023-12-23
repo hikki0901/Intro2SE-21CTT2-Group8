@@ -10,7 +10,8 @@ function Heading(props){
     const navigate = useNavigate();
     const onSubmit = () => {
       props.onLogout();
-      window.localStorage.removeItem("userID")
+      window.localStorage.removeItem("userID");
+      window.localStorage.removeItem("email");
       navigate("/login");
     };
 

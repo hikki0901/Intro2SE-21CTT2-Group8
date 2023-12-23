@@ -15,26 +15,26 @@ router.post("/register", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, confirmPassword } = req.body;
 
     if (!validatePhoneNumber(phone) || phone.length < 7 || phone.length > 15) {
-        return res.status(400).json({message: "Please enter a real phone number"});
+        return res.json({message: "Please enter a real phone number"});
     }
 
     if (password !== confirmPassword) {
-        return res.status(401).json({ message: "Password and confirm password do not match" });
+        return res.json({ message: "Password and confirm password do not match" });
     }
     const user = await userModel.findOne({ email });
 
     if (user) {
-        return res.status(401).json({ message: "User already exists" });
+        return res.json({ message: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new userModel({firstName, lastName, DOB, phone, email, password:hashedPassword});
+    const newUser = new userModel({firstName, lastName, DOB, phone, email, password:hashedPassword, });
     try {
         await newUser.save();
-        res.json({ message: "User registered successfully" });
+        res.json({ success: true, message: "User registered successfully" });
     } catch (error) {
         console.error("Error saving user:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.json({ message: "Internal server error" });
     }
 });
 
@@ -42,15 +42,39 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email });
     if (!user) {
-        return res.status(401).json({ message: "User doesn't exist" });
+        return res.json({ message: "User doesn't exist" });
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
-        return res.status(401).json({ message: "User or password is invalid" });
+        return res.json({ message: "User or password is invalid" });
     }
     const token = jwt.sign({ id: user._id}, "token");
-    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName });
+    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email });
 });
+
+router.post("/info", async (req, res) => {
+    const {email} = req.body;
+    console.log(email);
+    const user = await userModel.findOne({ email });
+    if (!user) {
+        return res.json({ message: "User doesn't exist" });
+    }
+    res.status(200).json({ firstName: user.firstName, lastName: user.lastName, height: user.height, weight:user.weight, DOB:user.DOB, gender:user.gender, phone: user.phone});
+});
+
+// router.post("/settings", async (req, res) => {
+//     const { firstName, lastName, height, weight, DOB, gender, phone, email, password, confirmPassword } = req.body;
+//     const user = await userModel.findOne({ email });
+//     if (!user) {
+//         return res.json({ message: "User doesn't exist" });
+//     }
+//     const isValidPassword = await bcrypt.compare(password, user.password);
+//     if (!isValidPassword) {
+//         return res.json({ message: "User or password is invalid" });
+//     }
+//     const token = jwt.sign({ id: user._id}, "token");
+//     res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName });
+// });
 
 
 export { router as userRouter };

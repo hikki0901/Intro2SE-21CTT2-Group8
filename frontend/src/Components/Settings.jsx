@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import "../CSS/settings.css"
 import profile_pic from '../image/profile_pic.png'
 import add_button from '../image/add_button.png'
@@ -22,6 +23,33 @@ const Settings = () => {
   const [bmi, setBmi] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
+  const getInfo = async (event) => {
+    try {
+        var email = window.localStorage.getItem("email");
+        console.log(email);
+        const response = await axios.post("http://localhost:4000/auth/info", {
+            email,
+        });
+        setFirstName(response.data.firstName);
+        setLastName(response.data.lastName);
+        setDob(response.data.DOB);
+        setPhone(response.data.phone);
+        setEmail(email);
+        setHeight(response.data.height);
+        setWeight(response.data.weight);
+        setGender(response.data.gender);
+        
+    } catch (err) {
+        console.error("Error during login request:", err);
+        alert("Error")
+    }
+  };
+
+  useEffect(() => {
+    // Call the getInfo function when the component is mounted
+    getInfo();
+  }, []); 
 
   const handleSubmit = (event) => {
     event.preventDefault();

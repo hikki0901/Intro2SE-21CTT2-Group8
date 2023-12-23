@@ -15,6 +15,12 @@ function Login({onLogin}) {
 
     const onSubmit = async (event) => {
         event.preventDefault();
+
+        if (!email || !password) {
+            alert("Email and password are required");
+            return;
+        }
+        
         try {
             const response = await axios.post("http://localhost:4000/auth/login", {
                 email,
@@ -26,11 +32,11 @@ function Login({onLogin}) {
                 
                 setCookies("access_token", response.data.token);
                 window.localStorage.setItem("userID", response.data.userID);
+                window.localStorage.setItem("email", response.data.email);
                 navigate("/home");
             } else {
                 // Show error message
-                alert("Email or password is invalid")
-                console.error(response.data.message);
+                alert(response.data.message)
             }
         } catch (err) {
             console.error("Error during login request:", err);
