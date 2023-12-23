@@ -72,3 +72,41 @@
     height: 61px;
     flex-shrink: 0;
 }
+
+.premium-container {
+    display: flex;
+    padding: 1em;
+}
+
+.suggestion {
+    width: 50%;
+}
+
+.status {
+    flex-grow: 1;
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.status p {
+    padding: 1em 0em;
+}
+
+.dietitian-container {
+    width: 80%;
+    border-radius: 60px;
+    background: #F1E6DB;
+    display: flex;
+    align-items: center;
+    margin: 2em 1em;
+}
+
+.dietitian-container img {
+    border-radius: 50%;
+    height: 100%;
+}
+
+.dietitian-content {
+    margin: 1em 1.5em 0em 1.5em;
+}
