@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 import "../CSS/settings.css"
 import profile_pic from '../image/profile_pic.png'
 import add_button from '../image/add_button.png'
@@ -8,32 +9,56 @@ const Settings = () => {
 
   const [currentPic, setCurrentPic] = useState(profile_pic);
 
+  const navigate = useNavigate();
+
   const handleEdit = (event) => {
     setCurrentPic(URL.createObjectURL(event.target.files[0]));
   };
 
+  const [initialValues, setInitialValues] = useState({
+    firstName: '',
+    lastName: '',
+    height: '',
+    weight: '',
+    DOB: '',
+    gender: '',
+    phone: '',
+  });
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [dob, setDob] = useState('');
+  const [DOB, setDob] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [gender, setGender] = useState('');
-  const [bmi, setBmi] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [BMI, setBMI] = useState('');
 
   const getInfo = async (event) => {
     try {
         var email = window.localStorage.getItem("email");
-        console.log(email);
         const response = await axios.post("http://localhost:4000/auth/info", {
             email,
         });
+
+        const formattedDOB = response.data.DOB ? new Date(response.data.DOB).toISOString().split('T')[0] : '';
+        if (!response.data.height || !response.data.weight) {
+            setBMI("");
+        } else {
+            const tmpBMI = response.data.weight/((response.data.height/100) * (response.data.height/100))
+            setBMI(tmpBMI.toFixed(1));
+        }
+        setInitialValues({
+            ...response.data,
+            DOB: formattedDOB,
+        });
+
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
-        setDob(response.data.DOB);
+        setDob(formattedDOB);
         setPhone(response.data.phone);
         setEmail(email);
         setHeight(response.data.height);
@@ -51,30 +76,61 @@ const Settings = () => {
     getInfo();
   }, []); 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleCancel = () => {
+    setFirstName(initialValues.firstName);
+    setLastName(initialValues.lastName);
+    setDob(initialValues.DOB);
+    setPhone(initialValues.phone);
+    setEmail(initialValues.email);
+    if (!initialValues.height) {
+        setHeight("");
+    } else { setHeight(initialValues.height) };
 
-    if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        return;
-    }
+    if (!initialValues.weight) {
+        setWeight("");
+    } else { setWeight(initialValues.weight) };
 
-    console.log(`Updated settings: ${firstName}, ${lastName}, ${dob}, ${phone}, ${email}, 
-    ${height}, ${weight}, ${gender}, ${bmi}, ${password}`);
+    if (!initialValues.gender) {
+        setGender("");
+    } else { setGender(initialValues.gender) };
+
+    setPassword("");
+    setConfirmPassword("");
   };
 
-  const handleCancel = () => {
-    setFirstName('');
-    setLastName('');
-    setDob('');
-    setPhone('');
-    setEmail('');
-    setHeight('');
-    setWeight('');
-    setGender('');
-    setBmi('');
-    setPassword('');
-    setConfirmPassword('');
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+      if (!firstName) {
+        alert ("Please enter your first name");
+        return;
+      } else if (!lastName) {
+        alert ("Please enter your last name");
+        return;
+      } else if (!DOB) {
+        alert ("Please enter your birthday");
+        return;
+      } else if (!phone) {
+        alert ("Please enter your phone number");
+        return;
+      }
+
+      try {
+        const response = await axios.post("http://localhost:4000/auth/settings", {
+            firstName, lastName, height, weight, DOB, gender, phone, email, password, confirmPassword,
+        });
+
+        if (response.data.success) {
+          alert(response.data.message);
+          navigate("/home");
+        } else {
+          alert(response.data.message);
+        }
+        
+      } catch (err) {
+        alert(err);
+        console.error("Error during register request:", err);
+      }
   };
   
   return (
@@ -90,7 +146,6 @@ const Settings = () => {
             <h1>Adjust your info</h1>
         </div>
         <div className='info'>
-            <form onSubmit={handleSubmit}>
                 <div className='control'>
                     <label className='name'>
                         First name:
@@ -114,7 +169,7 @@ const Settings = () => {
                     </label>                    
                     <label className='additional'>
                         Date of birth:
-                        <input type="date" value={dob} onChange={e => setDob(e.target.value)} />
+                        <input type="date" value={DOB} onChange={e => setDob(e.target.value)} />
                     </label>
                     <label className='body'>
                         Gender:
@@ -127,7 +182,7 @@ const Settings = () => {
                     </label>
                     <label className='body'>
                         BMI:
-                        <input type="number" step={0.1} value={bmi} onChange={e => setBmi(e.target.value)} 
+                        <input type="number" value = {BMI} readOnly
                         placeholder='BMI'/>
                     </label>
                     <label className='additional'>
@@ -142,7 +197,7 @@ const Settings = () => {
                     </label>
                     <label className='additional'>
                         Email:
-                        <input type="email" value={email} onChange={e => setEmail(e.target.value)} 
+                        <input type="email" value={email} readOnly
                         placeholder='Email'/>
                     </label>
                     <label className='pass'>
@@ -153,9 +208,8 @@ const Settings = () => {
                 </div>
                 <div className='choice'>
                     <button type="button" onClick={handleCancel}>Cancel</button>
-                    <input type="submit" value="Save" />
+                    <input type="submit" value="Save" onClick={onSubmit} />
                 </div>
-            </form>  
         </div>
     </div>
   )
