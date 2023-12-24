@@ -20,7 +20,7 @@ const mealSchema = new mongoose.Schema({
   },
   calories: {
     type: Float32Array,
-    required: true,
+    default: null,
   },
 });
 
