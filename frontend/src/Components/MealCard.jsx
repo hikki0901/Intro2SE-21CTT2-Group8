@@ -20,8 +20,8 @@ function MealCard_3(props){
         <p class="meal-name">{props.name}</p>
         <ul class="mt-4">{props.foodList}</ul>
         <div class = "tg">
-            <p id ="tg1"  class ="target">target : 100%</p>
-            <p id="tg2" class="intake">430 KCal</p>
+            <p id ="tg1"  class ="target">Target : {props.target}</p>
+            <p id="tg2" class="intake">{props.calories}</p>
         </div>
     </div>);
 }

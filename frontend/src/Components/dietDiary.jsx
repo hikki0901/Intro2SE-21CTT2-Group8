@@ -11,6 +11,8 @@ function createMealCard(mealItem){
             key={mealItem.id}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
+            target={mealItem.target}
+            calories={mealItem.totalCalories}
         />
     );
 }

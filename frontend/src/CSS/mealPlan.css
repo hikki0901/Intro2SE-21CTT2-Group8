@@ -4,11 +4,13 @@
     color: white;
     margin: 5px;
     width: 108px;
+    border: none;
 }
 
 #change{
-    width: 337px;
-    margin-right: 22%;
+    display:inline-block;        
+    margin-left: 20%;
+    width: 60%;
 }
 
 .edit-half{

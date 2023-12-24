@@ -65,7 +65,7 @@ function Contact() {
                   onChange={(event) => setMessage(event.target.value)}
                 />
 
-                <button onClick= {onSubmit} class="w-120 mb-2 button" type="submit">Send us</button>
+                <button onClick= {onSubmit} class="w-120 mb-2 contact-button" type="submit">Send us</button>
               </form>
             </div>
           </div>

@@ -72,13 +72,13 @@ function Login({onLogin}) {
                             onChange={(event) => setPassword(event.target.value)}></input>
                         </div>
 
-                        <button onClick={onSubmit} type="submit" >Log in</button>
+                        <button onClick={onSubmit} class="login-button" type="submit" >Log in</button>
 
                         <a href="#" class="forgot-pass">Forgot password?</a>
 
                         <hr></hr>
 
-                        <button type="submit">Register</button>
+                        <button type="submit" class="login-button">Register</button>
                     </div>
                 </div>
             </main>

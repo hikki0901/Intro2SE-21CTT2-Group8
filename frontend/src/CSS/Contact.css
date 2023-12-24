@@ -61,7 +61,7 @@ textarea {
   resize: none;
 }
 
-button {
+.contact-button {
   background: #9B67C6;
   width: 100px;
   border: none;

@@ -148,7 +148,7 @@ function Signup() {
 
                 <hr/>
 
-                <button onClick= {onSubmit} class="w-120 mb-2 button" type="submit">Sign up</button>
+                <button onClick= {onSubmit} class="w-120 mb-2 signup-button" type="submit">Sign up</button>
               </form>
             </div>
           </div>
