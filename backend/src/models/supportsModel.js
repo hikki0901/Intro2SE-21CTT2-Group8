@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const feedbackSchema = new mongoose.Schema({
+const supportSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -8,15 +8,12 @@ const feedbackSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
-  subject: {
-    type: String,
-    required: true,
-  },
-  message: {
+  password: {
     type: String,
     required: true,
   },
 });
 
-export const feedbackModel = mongoose.model("feedbacks", feedbackSchema);
+export const supportModel = mongoose.model("supports", supportSchema);
