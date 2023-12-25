@@ -1,0 +1,21 @@
+.dietitian-container {
+    width: 80%;
+    border-radius: 60px;
+    background: #F1E6DB;
+    display: flex;
+    align-items: center;
+    margin: 2em 1em;
+}
+
+.dietitian-container img {
+    border-radius: 50%;
+    height: 100%;
+}
+
+.dietitian-content {
+    margin: 1em 1.5em 0em 1.5em;
+}
+
+.suggestion {
+    width: 50%;
+}

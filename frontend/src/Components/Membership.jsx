@@ -1,7 +1,42 @@
 import React, { useState } from 'react';
 import SlideBar from "./SlideBar";
 import "../CSS/membership.css"
-import profile_pic from '../image/profile_pic.png'
+import DietitianCard from './UserCard';
+
+const Dietitian = [{
+    id: 1,
+    imageLink:require("../image/profile_pic.png"),
+    name: "Jessoca",
+    degree: "Master’s Degree in Public Health Nutrition"
+},{
+    id: 2,
+    imageLink:require("../image/profile_pic.png"),
+    name: "Jessica",
+    degree: "Certified Specialist in Sports Dietetics (CSSD)"
+},{
+    id: 3,
+    imageLink:require("../image/profile_pic.png"),
+    name: "Jessuca",
+    degree: "Certified Diabetes Educator (CDE)"
+},{
+    id: 4,
+    imageLink:require("../image/profile_pic.png"),
+    name: "Jessaca",
+    degree: "Bachelor’s Degree in Dietetics"
+},
+]
+
+function createDietitanCard(dietitianItem){
+    return(
+        <DietitianCard
+            key={dietitianItem.id}
+            name={dietitianItem.name}
+            image_link={dietitianItem.imageLink}
+            degree={dietitianItem.degree}
+        />
+    );
+}
+
 
 function Membership(){
 
@@ -21,42 +56,7 @@ function Membership(){
             <div className='premium-container'>
                 <div className='suggestion'>
                     <h1>Dietitian suggestions</h1>
-                    <div className='suggestion-list'>
-                        <div className='dietitian-container'>
-                            <img src={profile_pic}></img>
-                            <div className='dietitian-content'>
-                                <h2>Jessica</h2>
-                                <p>Master’s Degree in Public Health Nutrition</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='suggestion-list'>
-                        <div className='dietitian-container'>
-                            <img src={profile_pic}></img>
-                            <div className='dietitian-content'>
-                                <h2>Jasseci</h2>
-                                <p>Certified Specialist in Sports Dietetics (CSSD)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='suggestion-list'>
-                        <div className='dietitian-container'>
-                            <img src={profile_pic}></img>
-                            <div className='dietitian-content'>
-                                <h2>Jisseca</h2>
-                                <p>Certified Diabetes Educator (CDE)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='suggestion-list'>
-                        <div className='dietitian-container'>
-                            <img src={profile_pic}></img>
-                            <div className='dietitian-content'>
-                                <h2>Jassice</h2>
-                                <p>Bachelor’s Degree in Dietetics</p>
-                            </div>
-                        </div>
-                    </div>
+                    {Dietitian.map(createDietitanCard)}
                 </div>
                 <div className='status'>
                     <h1>Membership status</h1>
