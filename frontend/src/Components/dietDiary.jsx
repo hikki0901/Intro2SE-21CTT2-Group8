@@ -36,7 +36,7 @@ function DietDiary(){
     const [height, setHeight] = useState("");
     const [bmi, setBmi] = useState("");
 
-    const handleCalcultion = (e) => {
+    let calcBmi = (e) => {
         e.preventDefault()
 
         if(weight === 0 || height === 0) {
@@ -74,23 +74,25 @@ function DietDiary(){
 
                         <div class ="bmiCal">
                             <p class = "bmi">BMI Calculator</p>
-                            <div class ="row">
-                                <div class = "col-md-6">
-                                    <div >
-                                        <input class = "bmiCard" type='number' placeholder='Weight'value={weight} onChange={(e)=> setWeight(e.target.value)} />
-                                    </div>
+                            <form onSubmit={calcBmi}>  
+                                <div class ="row">
+                                    <div class = "col-md-6">
+                                        <div >
+                                            <input class = "bmiCard" type='number' placeholder='Weight'value={weight} onChange={(e)=> setWeight(e.target.value)} />
+                                        </div>
 
-                                    <div >
-                                        <input class ="bmiCard" type='number' placeholder='Height'value={height} onChange={(e)=> setHeight(e.target.value)} />
+                                        <div >
+                                            <input class ="bmiCard" type='number' placeholder='Height'value={height} onChange={(e)=> setHeight(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className='col-md-6'>
+                                        <p class = "bmiResult" > Result : {bmi}</p>
                                     </div>
                                 </div>
-                                <div className='col-md-6'>
-                                    <p class = "bmiResult" > Result : {bmi}</p>
+                                <div  >
+                                    <button  className='btn' type='submit'>Calculate</button>
                                 </div>
-                            </div>
-                            <div onSubmit={handleCalcultion} >
-                                <button  className='btn' type='submit'>Calculate</button>
-                            </div>
+                            </form> 
                         </div>
 
                     </div>
