@@ -1,6 +1,7 @@
 import React from 'react';
 import SlideBar from "./SlideBar";
 import MealCard from "./MealCard";
+import Calendar from './Calendar';
 import NutritionCard from './nutritionCard';
 import "../CSS/Home.css";
 import Meals from '../data/Meals';
@@ -19,6 +20,8 @@ function createMealCard(mealItem){
 function Home(props){
 
     const progress = '75%';
+
+    const quotes = ""
 
     return(
     <div class="home-style row">
@@ -50,9 +53,12 @@ function Home(props){
             </div>
             <div class="schedule p-1">
                 <p class="quote-title">Schedule</p>
+                <Calendar/>
             </div>
             <div class="quotes p-1">
                 <p class="quote-title">Daily</p>
+                <p class="quotes-content">"The greatest wealth is health."</p>
+                <p class="author">-Virgil</p>
             </div>
         </div>
     </div>

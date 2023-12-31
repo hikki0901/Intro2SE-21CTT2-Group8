@@ -1,0 +1,30 @@
+.date{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.day-item{
+    width: 35px;
+    height: 30px;
+}
+
+.numeric-days-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+  
+.numeric-day-item {
+  text-align: center;
+}
+
+.numeric-days-container > button{
+    background-color: none;
+}
+
+.numeric-days-container .nav-link.active{
+    color: var(--bs-nav-pills-link-active-color);
+    background-color: #D1C6BA;
+    border-radius: 20px;
+}

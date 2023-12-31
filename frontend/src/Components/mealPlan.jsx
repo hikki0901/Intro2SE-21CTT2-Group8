@@ -67,11 +67,11 @@ function MealPlan(){
         </div>
 
         <div class = "col-5 edit-half">
-        <button type="button" class="col-12 button-color" id="change">Change</button>
+        <button type="button" class="col-12 button-color" id="change">Save</button>
             <div class="d-flex justify-content-center col-12">
                 <button type="button" class="button-color">Add</button>
                 <button type="button" class="button-color">Edit</button>
-                <button type="button" class="button-color">Save</button>
+                <button type="button" class="button-color">Delete</button>
             </div>
             <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto">
             <li>
