@@ -71,6 +71,9 @@
     width: 263px;
     height: 61px;
     flex-shrink: 0;
+    border: none;
+    margin-top: 20px;
+    color: white;
 }
 
 .premium-container {
