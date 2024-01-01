@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SlideBar from "./SlideBar";
 import MealCard from "./MealCard";
 import Calendar from './Calendar';
@@ -6,6 +6,8 @@ import NutritionCard from './nutritionCard';
 import "../CSS/Home.css";
 import Meals from '../data/Meals';
 import nutrition from '../data/nutrition-track';
+import axios from 'axios';
+
 
 function createMealCard(mealItem){
     return(
@@ -18,6 +20,41 @@ function createMealCard(mealItem){
 }
 
 function Home(props){
+    const [Meals, setMeals] = useState([]);
+
+    useEffect(() => {
+        var email = window.localStorage.getItem("email");
+        
+        const fetchMeals = async () => {
+        try {
+            const response = await axios.post("http://localhost:4000/meals/dashboard", {
+            email, });
+            setMeals(response.data.meals);
+            window.localStorage.setItem("breakfastCalories", response.data.breakfastCalories);
+            window.localStorage.setItem("lunchCalories", response.data.lunchCalories);
+            window.localStorage.setItem("dinnerCalories", response.data.dinnerCalories);
+        } catch (error) {
+            console.error("Error fetching meals:", error);
+            // Handle the error as needed
+        }
+        };
+
+        fetchMeals();
+    }, []);
+
+    const nutrition = [{
+        id: 1,
+        name: "Calories",
+        amount: parseInt(window.localStorage.getItem("breakfastCalories"), 10) + parseInt(window.localStorage.getItem("lunchCalories"), 10) + parseInt(window.localStorage.getItem("dinnerCalories"), 10),
+        dimension: "kcal"
+    },
+    {
+        id: 2,
+        name: "Water",
+        amount: 2410,
+        dimension: "ml"
+    }
+    ]
 
     const progress = '75%';
 
