@@ -21,6 +21,7 @@ function createMealCard(mealItem){
 
 function Home(props){
     const [Meals, setMeals] = useState([]);
+    const [calories, setCalories] = useState();
 
     useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -30,9 +31,8 @@ function Home(props){
             const response = await axios.post("http://localhost:4000/meals/dashboard", {
             email, });
             setMeals(response.data.meals);
-            window.localStorage.setItem("breakfastCalories", response.data.breakfastCalories);
-            window.localStorage.setItem("lunchCalories", response.data.lunchCalories);
-            window.localStorage.setItem("dinnerCalories", response.data.dinnerCalories);
+            var tmpCalories = parseInt(response.data.breakfastCalories, 10) + parseInt(response.data.lunchCalories, 10) + parseInt(response.data.dinnerCalories, 10);
+            setCalories(tmpCalories);
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
@@ -45,7 +45,7 @@ function Home(props){
     const nutrition = [{
         id: 1,
         name: "Calories",
-        amount: parseInt(window.localStorage.getItem("breakfastCalories"), 10) + parseInt(window.localStorage.getItem("lunchCalories"), 10) + parseInt(window.localStorage.getItem("dinnerCalories"), 10),
+        amount: calories,
         dimension: "kcal"
     },
     {
