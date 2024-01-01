@@ -2,7 +2,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { userModel } from "../models/usersModel.js";
-
+import { dietitianModel } from "../models/dietitiansModel.js";
 const router = express.Router();
 
 function validatePhoneNumber(input_str) {
@@ -10,6 +10,7 @@ function validatePhoneNumber(input_str) {
   
     return re.test(input_str);
 }
+
 
 router.post("/register", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, confirmPassword } = req.body;
@@ -40,16 +41,25 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
+
     const user = await userModel.findOne({ email });
-    if (!user) {
+    const dietitian = await dietitianModel.findOne({ email });
+    
+    if (!user && !dietitian) {
         return res.json({ message: "User doesn't exist" });
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
         return res.json({ message: "User or password is invalid" });
     }
-    const token = jwt.sign({ id: user._id}, "token");
-    res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email });
+    if (user) {
+        const token = jwt.sign({ id: user._id}, "token");
+        res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email });
+    }
+    else {
+        const token = jwt.sign({ id: dietitian._id}, "token");
+        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.name, email: dietitian.email });
+    }
 });
 
 router.post("/info", async (req, res) => {
