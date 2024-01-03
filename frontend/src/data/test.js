@@ -23,7 +23,7 @@ const Meals1 = [{
     id: 2,
     meal_info: [{
         id: 1,
-        name: "Breakfast2",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",
@@ -45,7 +45,7 @@ const Meals1 = [{
     id: 3,
     meal_info: [{
         id: 1,
-        name: "Breakfast3",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",
@@ -67,7 +67,7 @@ const Meals1 = [{
     id: 4,
     meal_info: [{
         id: 1,
-        name: "Breakfast4",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",
@@ -89,7 +89,7 @@ const Meals1 = [{
     id: 5,
     meal_info: [{
         id: 1,
-        name: "Breakfast5",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",
@@ -111,14 +111,14 @@ const Meals1 = [{
     id: 6,
     meal_info: [{
         id: 1,
-        name: "Breakfast6",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",
         
         },{
             id: 2,
-            name: "Lunch7",
+            name: "Lunch",
             foods: ["Grilled chicken salad with a variety of colorful vegetables", "A piece of whole-grain bread"],
             target: "100%",
             totalCalories: "430kcal",
@@ -133,7 +133,7 @@ const Meals1 = [{
     id: 7,
     meal_info: [{
         id: 1,
-        name: "Breakfast8",
+        name: "Breakfast",
         foods: ["Oatmeal with fresh berries and a spoonful of honey", "A glass of freshly squeezed orange juice"],
         target: "100%",
         totalCalories: "430kcal",

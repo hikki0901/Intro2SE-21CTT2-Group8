@@ -22,6 +22,7 @@ function createMealCard(mealItem){
 function Home(props){
     const [Meals, setMeals] = useState([]);
     const [calories, setCalories] = useState();
+    const [water, setWater] = useState();
 
     useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -31,8 +32,11 @@ function Home(props){
             const response = await axios.post("http://localhost:4000/meals/dashboard", {
             email, });
             setMeals(response.data.meals);
-            var tmpCalories = parseInt(response.data.breakfastCalories, 10) + parseInt(response.data.lunchCalories, 10) + parseInt(response.data.dinnerCalories, 10);
+            const tmpCalories = parseInt(response.data.breakfastCalories, 10) + parseInt(response.data.lunchCalories, 10) + parseInt(response.data.dinnerCalories, 10);
             setCalories(tmpCalories);
+            const tmpWater = parseInt(response.data.breakfastWater, 10) + parseInt(response.data.lunchWater, 10) + parseInt(response.data.dinnerWater, 10);
+            console.log(response.data.breakfastWater);
+            setWater(tmpWater)
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
@@ -51,7 +55,7 @@ function Home(props){
     {
         id: 2,
         name: "Water",
-        amount: 2410,
+        amount: water,
         dimension: "ml"
     }
     ]

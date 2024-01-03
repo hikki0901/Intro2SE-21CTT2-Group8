@@ -19,7 +19,15 @@ const mealSchema = new mongoose.Schema({
   },
   calories: {
     type: Number,
-    default: null,
+    default: 0,
+  },
+  water: {
+    type: Number,
+    default: 0,
+  },
+  target: {
+    type: Number,
+    default: 0,
   },
 });
 

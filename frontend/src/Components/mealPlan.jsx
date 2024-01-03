@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
-import Meals1 from '../data/test';
-import "../CSS/mealPlan.css"
+// import Meals1 from '../data/test';
+import "../CSS/mealPlan.css";
+import axios from 'axios';
 
-function getDayMeal(i){
+function getDayMeal(Meals1, i){
   return (Meals1[i].meal_info);
   
 }
@@ -15,8 +16,8 @@ function createMealCard(mealItem){
             key={mealItem.id}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            target={mealItem.target}
-            calories={mealItem.totalCalories}
+            target={mealItem.target + "%"}
+            calories={mealItem.calories}
         />
     );
 }
@@ -49,21 +50,46 @@ function getDay(i){
 
 
 function MealPlan(){
+  const [Meals1, setMeals1] = useState();
+  const [day, setDay] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-    const [day, setDay] = useState(0);
+  const handleClick = (i)=>{
+    setDay(i)
+  };
 
-    const handleClick = (i)=>{
-      setDay(i)
+  
+        
+  useEffect(() => {
+    const fetchMeals = async () => {
+    try {
+        var email = window.localStorage.getItem("email");
+        const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
+        setMeals1(response.data.Meals1);
+    } catch (error) {
+        console.error("Error fetching meals:", error);
+        // Handle the error as needed
+    } finally {
+      setLoading(false); // Set loading to false whether the request is successful or not
+    }
     };
 
-    return(
+    fetchMeals();
+  }, []);
+
+  if (loading) {
+    // Render loading state or placeholder
+    return <p>Loading...</p>;
+  }
+
+  return(
     <div class="home-style row">
         <div class="col-2">
             <SlideBar class="col-3" />
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>
-            {getDayMeal(day).map(createMealCard)}
+            {getDayMeal(Meals1,day).map(createMealCard)}
         </div>
 
         <div class = "col-5 edit-half">
