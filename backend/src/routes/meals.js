@@ -259,6 +259,39 @@ router.post("/mealplan", async (req, res) => {
   res.status(200).json({ Meals1 });
 });
 
+router.post("/dietdiary", async (req, res) => {
+    const { email } = req.body;
+    const Breakfast = await mealModel.findOne({ email, date: today, mealType: "Breakfast" });
+    const Lunch = await mealModel.findOne({ email, date: today, mealType: "Lunch" });
+    const Dinner = await mealModel.findOne({ email, date: today, mealType: "Dinner" });
+    const meals = [
+        {
+          id: 1,
+          name: "Breakfast",
+          foods: Breakfast ? Breakfast.content : defaultMeal.foods,
+          target: Breakfast ? Breakfast.target : defaultMeal.target,
+          calories: Breakfast ? Breakfast.calories : defaultMeal.calories,
+        },
+        {
+          id: 2,
+          name: "Lunch",
+          foods: Lunch ? Lunch.content : defaultMeal.foods,
+          target: Lunch ? Lunch.target : defaultMeal.target,
+          calories: Lunch ? Lunch.calories : defaultMeal.calories,
+        },
+        {
+          id: 3,
+          name: "Dinner",
+          foods: Dinner ? Dinner.content : defaultMeal.foods,
+          target: Dinner ? Dinner.target : defaultMeal.target,
+          calories: Dinner ? Dinner.calories : defaultMeal.calories,
+        }
+      ];
+    res.status(200).json({
+        meals, 
+        });
+});
+
 router.post("/add", async (req, res) => {
     const { email, date, mealType, content, calories, water, target } = req.body;
     const newMeal = new mealModel({ email, date, mealType, content, calories, water, target});

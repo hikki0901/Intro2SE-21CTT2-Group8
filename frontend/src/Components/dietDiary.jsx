@@ -1,9 +1,10 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3, MealCard_4, Suggestions} from "./MealCard";
 import Meals from '../data/Meals';
 import "../CSS/mealPlan.css"
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 function createMealCard(mealItem){
     return(
@@ -11,7 +12,7 @@ function createMealCard(mealItem){
             key={mealItem.id}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            target={mealItem.target}
+            target={mealItem.target + "%"}
             calories={mealItem.totalCalories}
         />
     );
@@ -35,6 +36,7 @@ function DietDiary(){
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [bmi, setBmi] = useState("");
+    const [Meals, setMeals] = useState([]);
 
     let calcBmi = (e) => {
         e.preventDefault()
@@ -47,6 +49,22 @@ function DietDiary(){
             setBmi(bmiFormular.toFixed(2))
         }     
     }
+
+    useEffect(() => {
+        var email = window.localStorage.getItem("email");
+        
+        const fetchMeals = async () => {
+        try {
+            const response = await axios.post("http://localhost:4000/meals/dietdiary", { email });
+            setMeals(response.data.meals);
+        } catch (error) {
+            console.error("Error fetching meals:", error);
+            // Handle the error as needed
+        }
+        };
+
+        fetchMeals();
+    }, []);
 
     return(
     <div class="home-style row">
