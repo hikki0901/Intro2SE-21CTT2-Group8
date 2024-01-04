@@ -26,13 +26,17 @@ function MealCard_3(props){
     </div>);
 }
 
-function MealCard_4(){
-    return (<div class="mealCard_4 p-2 mt-3">
-        <p  class="ttintake">Total intake</p>
-        <p class ="textStyle">690/1000 kcal</p>
-        <p style={{textAlign: 'center'}}>"Try harder"</p>
-    </div>);
-}
+function MealCard_4({ totalIntake, target }) {
+    const message = totalIntake >= target ? "Great job!" : "Try harder";
+  
+    return (
+      <div className="mealCard_4 p-2 mt-3">
+        <p className="ttintake">Total intake</p>
+        <p className="textStyle">{`${totalIntake}/${target} kcal`}</p>
+        <p style={{ textAlign: 'center' }}>{message}</p>
+      </div>
+    );
+  }
 
 function Suggestions() {
     return (<div class="suggestCard p-2 mt-3">

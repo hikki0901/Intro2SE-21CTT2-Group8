@@ -31,6 +31,18 @@ function getWeekDates() {
   return dates;
 }
 
+function calculateTotals(meals) {
+  let totalIntake = 0;
+  let target = 0;
+
+  meals.forEach((meal) => {
+    totalIntake += meal.calories * (meal.target)/100;
+    target += meal.calories;
+  });
+
+  return { totalIntake, target };
+}
+
 const thisWeekDates = getWeekDates();
 
 
@@ -287,9 +299,9 @@ router.post("/dietdiary", async (req, res) => {
           calories: Dinner ? Dinner.calories : defaultMeal.calories,
         }
       ];
-    res.status(200).json({
-        meals, 
-        });
+    const { totalIntake, target } = calculateTotals(meals);
+    
+    res.status(200).json({ meals, totalIntake, target });
 });
 
 router.post("/add", async (req, res) => {

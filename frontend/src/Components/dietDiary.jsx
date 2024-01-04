@@ -3,7 +3,7 @@ import SlideBar from "./SlideBar";
 import {MealCard_3, MealCard_4, Suggestions} from "./MealCard";
 import Meals from '../data/Meals';
 import "../CSS/mealPlan.css"
-import {NavLink} from 'react-router-dom';
+import {NavLink, resolvePath} from 'react-router-dom';
 import axios from 'axios';
 
 function createMealCard(mealItem){
@@ -18,16 +18,9 @@ function createMealCard(mealItem){
     );
 }
 
-function createProgressCal() {
-    return(
-        <MealCard_4/>
-    )
-}
 
-function createSuggestions() {
-    return(
-        <Suggestions/>
-    )
+function createProgressCal({ totalIntake, target }) {
+  return <MealCard_4 totalIntake={totalIntake} target={target} />;
 }
 
 
@@ -37,6 +30,8 @@ function DietDiary(){
     const [height, setHeight] = useState("");
     const [bmi, setBmi] = useState("");
     const [Meals, setMeals] = useState([]);
+    const [totalIntake, setTotalIntake] = useState(0);
+    const [target, setTarget] = useState(0); 
 
     let calcBmi = (e) => {
         e.preventDefault()
@@ -57,6 +52,8 @@ function DietDiary(){
         try {
             const response = await axios.post("http://localhost:4000/meals/dietdiary", { email });
             setMeals(response.data.meals);
+            setTotalIntake(response.data.totalIntake);
+            setTarget(response.data.target);
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
@@ -66,7 +63,7 @@ function DietDiary(){
         fetchMeals();
     }, []);
 
-    return(
+    return (
     <div class="home-style row">
         <div class="col-2">
             <SlideBar class="col-3" />
@@ -82,9 +79,8 @@ function DietDiary(){
                     </div>
 
                     <div class="col-5 ">
-                        <createProgressCal>
-                            <MealCard_4/>
-                        </createProgressCal>
+                       {createProgressCal({ totalIntake, target })}
+
 
                         <createSuggestions>
                             <Suggestions/>
