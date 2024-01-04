@@ -40,7 +40,7 @@ function DietDiary(){
             alert('Hello please enter a valid number')
         }
         else {
-            let bmiFormular = (weight/(height * height))
+            let bmiFormular = weight/((height/100) * (height/100))
             setBmi(bmiFormular.toFixed(2))
         }     
     }
