@@ -1,0 +1,38 @@
+.bmi{
+    font-size: 24px;
+    font-weight: 1000;
+    line-height: 20px;
+    color: #0e0d0d;
+}
+
+.bmiResult{
+    width: 200px;
+    height: 100px;
+    line-height: 100px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    background: #F1E6DB
+}
+
+.bmiCard{
+    width: 200px;
+    height: 45px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #F1E6DB
+  }
+  
+.bmiCal{
+  margin-left: 100px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.calculate{
+    background-color: #9B67C6;
+    border: none;
+    color: white;
+}

@@ -3,6 +3,7 @@ import SlideBar from "./SlideBar";
 import {MealCard_3, MealCard_4, Suggestions} from "./MealCard";
 import Meals from '../data/Meals';
 import "../CSS/mealPlan.css"
+import "../CSS/dietDiary.css"
 import {NavLink, resolvePath} from 'react-router-dom';
 import axios from 'axios';
 
@@ -100,11 +101,11 @@ function DietDiary(){
                                         </div>
                                     </div>
                                     <div className='col-md-6'>
-                                        <p class = "bmiResult" > Result : {bmi}</p>
+                                        <p class = "bmiResult">{bmi}</p>
                                     </div>
                                 </div>
                                 <div  >
-                                    <button  className='btn' type='submit'>Calculate</button>
+                                    <button  className='calculate' type='submit'>Calculate</button>
                                 </div>
                             </form> 
                         </div>
