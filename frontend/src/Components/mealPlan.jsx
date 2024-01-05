@@ -57,8 +57,6 @@ function MealPlan(){
   const handleClick = (i)=>{
     setDay(i)
   };
-
-  
         
   useEffect(() => {
     const fetchMeals = async () => {

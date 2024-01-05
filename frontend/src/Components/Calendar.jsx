@@ -35,7 +35,7 @@ function Calendar(){
 
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"]
 
-  const [day, setDay] = useState(0);
+  const [day, setDay] = useState(currentDate.getDay());
 
     const handleClick = (i)=>{
       setDay(i)
