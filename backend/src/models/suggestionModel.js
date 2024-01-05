@@ -15,6 +15,6 @@ const suggestionSchema = new mongoose.Schema({
     }
   });
 
-mealSchema.index({ userEmail: 1, date: 1 }, { unique: true });
+  suggestionSchema.index({ userEmail: 1, date: 1 }, { unique: true });
 
 export const suggestionModel = mongoose.model("suggestions", suggestionSchema);

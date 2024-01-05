@@ -24,7 +24,9 @@ function createProgressCal({ totalIntake, target }) {
   return <MealCard_4 totalIntake={totalIntake} target={target} />;
 }
 
-
+function createSuggestions({suggestion}) {
+    return <Suggestions suggest={suggestion}/>;
+}
 function DietDiary(){
 
     const [weight, setWeight] = useState("");
@@ -33,6 +35,7 @@ function DietDiary(){
     const [Meals, setMeals] = useState([]);
     const [totalIntake, setTotalIntake] = useState(0);
     const [target, setTarget] = useState(0); 
+    const [suggestion, setSuggestion] = useState("");
 
     let calcBmi = (e) => {
         e.preventDefault()
@@ -59,9 +62,32 @@ function DietDiary(){
             console.error("Error fetching meals:", error);
             // Handle the error as needed
         }
+
+        try {
+            const response = await axios.post("http://localhost:4000/suggestion/view", { email });
+            setSuggestion(response.data.suggestion);
+
+        } catch (error) {
+            console.error("Error fetching suggestion:", error);
+            // Handle the error as needed
+        }
+
         };
 
+        // const fetchSuggestion = async () => {
+        //     try {
+        //         const response = await axios.post("http://localhost:4000/suggestion/view", { email });
+        //         setSuggestion(response.data.suggestion);
+
+        //     } catch (error) {
+        //         console.error("Error fetching suggestion:", error);
+        //         // Handle the error as needed
+        //     } finally {
+        //         setLoading(false); // Set loading to false whether the request is successful or not
+        //     }
+        // };
         fetchMeals();
+
     }, []);
 
     return (
@@ -83,9 +109,7 @@ function DietDiary(){
                        {createProgressCal({ totalIntake, target })}
 
 
-                        <createSuggestions>
-                            <Suggestions/>
-                        </createSuggestions>
+                       {createSuggestions({ suggestion })}
 
                         <div class ="bmiCal">
                             <p class = "bmi">BMI Calculator</p>

@@ -38,12 +38,12 @@ function MealCard_4({ totalIntake, target }) {
     );
   }
 
-function Suggestions() {
+function Suggestions({suggest}) {
     return (<div class="suggestCard p-2 mt-3">
     <p  class="textSuggest">Suggests</p>
-    <p class ="suggest">"These small things: nutrition, place, climate, recreation, the whole casuistry of selfishness are inconceivably more important than everything one has taken to be important so far." Friedrich Nietzsche.</p>
-</div>);
-}
+    <p class ="suggest">{suggest}</p>
+</div>);}
+
 
 export default MealCard
 export {MealCard_2, MealCard_3, MealCard_4,Suggestions}

@@ -140,5 +140,19 @@ router.post("/updatemembership", async (req, res) => {
       }
 });
 
+router.post("/deletemembership", async (req, res) => {
+    const email = req.body
+    try {
+        const users = await userModel.findOne(email);
+        users.premium = 0;
+        await users.save();
+    
+        res.status(200).json({ message: 'Succesfully updated user to premium' , premium: users.premium});
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
 
 export { router as userRouter };

@@ -1,14 +1,15 @@
-import React from 'react';
-import logo from "../image/Logo.png"
-import barChart from "../image/Bar Chart.png"
-import Message from "../image/Chat Message.png"
-import homePage from "../image/Home Page.png"
-import Journal from "../image/Journal.png"
-import onlineSupport from "../image/Online Support.png"
-import Reserve from "../image/Reserve.png"
-import salesPerformance from "../image/Sales Performance.png"
-import {NavLink} from 'react-router-dom'
+import React, {useState, useEffect} from 'react';
+import logo from "../image/Logo.png";
+import barChart from "../image/Bar Chart.png";
+import Message from "../image/Chat Message.png";
+import homePage from "../image/Home Page.png";
+import Journal from "../image/Journal.png";
+import onlineSupport from "../image/Online Support.png";
+import Reserve from "../image/Reserve.png";
+import salesPerformance from "../image/Sales Performance.png";
+import {NavLink} from 'react-router-dom';
 import '../CSS/slideBar.css';
+import axios from 'axios';
 
 function PremiumCard(){
   return(<div class="card">
@@ -22,7 +23,24 @@ function PremiumCard(){
 
 
 function SlideBar(props){
-  const isPremium = true;
+  const [isPremium, setIsPremium] = useState(false);
+
+  useEffect(() => {
+        var email = window.localStorage.getItem("email");
+        
+        const fetchMembership = async () => {
+        try {
+            const response = await axios.post("http://localhost:4000/auth/viewmembership", {
+            email, });
+            setIsPremium(response.data.premium)
+        } catch (error) {
+            console.error("Error fetching premium membership:", error);
+            // Handle the error as needed
+        }
+        };
+
+        fetchMembership();
+    }, []);
   return(
   <div class="d-flex flex-column flex-shrink-0 p-3 side" >
   <ul class="nav nav-pills flex-column mb-auto">
@@ -77,7 +95,9 @@ function SlideBar(props){
       </NavLink>
     </li>
   </ul>
-  {isPremium && <PremiumCard/>}
+  {!isPremium ? (
+        <PremiumCard />
+      ) : null}
   </div>
   );
 }
