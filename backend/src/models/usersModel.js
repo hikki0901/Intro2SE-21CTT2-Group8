@@ -38,6 +38,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  premium: {
+    type: Boolean,
+    default: 0,
+  },
 });
 
 export const userModel = mongoose.model("users", userSchema);

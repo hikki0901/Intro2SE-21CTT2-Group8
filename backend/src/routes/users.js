@@ -115,5 +115,30 @@ router.post("/settings", async (req, res) => {
     }
 });
 
+router.post("/viewmembership", async (req, res) => {
+    const email = req.body
+    try {
+        const users = await userModel.findOne(email);    
+        res.status(200).json({ premium: users.premium });
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
+router.post("/updatemembership", async (req, res) => {
+    const email = req.body
+    try {
+        const users = await userModel.findOne(email);
+        users.premium = 1;
+        await users.save();
+    
+        res.status(200).json({ message: 'Succesfully updated user to premium' , premium: users.premium});
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
 
 export { router as userRouter };

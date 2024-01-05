@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SlideBar from "./SlideBar";
 import "../CSS/membership.css"
 import DietitianCard from './UserCard';
+import axios from 'axios';
 
 const Dietitian = [{
     id: 1,
@@ -41,10 +42,43 @@ function createDietitanCard(dietitianItem){
 function Membership(){
 
     const [isPremiumMember, setIsPremiumMember] = useState(false);
+    const [loading, setLoading] = useState(true);
 
-    const handleSubscribe = () => {
-      setIsPremiumMember(true);
+    useEffect(() => {
+        var email = window.localStorage.getItem("email");
+        
+        const fetchMembership = async () => {
+        try {
+            const response = await axios.post("http://localhost:4000/auth/viewmembership", {
+            email, });
+            setIsPremiumMember(response.data.premium)
+        } catch (error) {
+            console.error("Error fetching premium membership:", error);
+            // Handle the error as needed
+        } finally {
+            setLoading(false); // Set loading to false whether the request is successful or not
+        }
+        };
+
+        fetchMembership();
+    }, []);
+
+    const handleSubscribe = async () => {
+        var email = window.localStorage.getItem("email");
+        try {
+            const response = await axios.post("http://localhost:4000/auth/updatemembership", {
+            email, });
+            setIsPremiumMember(response.data.premium)
+        } catch (error) {
+            console.error("Error updating membership:", error);
+            // Handle the error as needed
+        }
     };
+
+    if (loading) {
+        // Render loading state or placeholder
+        return <p>Loading...</p>;
+    }
 
     return(
         <div class="row">
