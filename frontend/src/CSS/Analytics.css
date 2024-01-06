@@ -3,3 +3,8 @@
     height: 400px;
 
 }
+.loading{
+    align-items: center;
+    justify-content: center;
+    display: flex; 
+}

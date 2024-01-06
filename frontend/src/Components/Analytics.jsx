@@ -4,6 +4,7 @@ import Graph from './graph.jsx';
 import {MealCard_2} from "./MealCard";
 import axios from 'axios';
 import "../CSS/Analytics.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 
@@ -71,7 +72,21 @@ function Analytics(){
 
     if (loading) {
         // Render loading state or placeholder
-        return <p>Loading...</p>;
+        return (
+            <div class="home-style row">
+              <div class="col-2">
+                <SlideBar class="col-3" />
+              </div>
+              <div class ="loading col-10">
+                <ClipLoader
+                color= "#36d7b7"
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"/>
+              </div>
+          </div>
+        );
     }
 
     return(
