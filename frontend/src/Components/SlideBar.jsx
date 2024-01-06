@@ -51,12 +51,12 @@ function SlideBar({ userType }){
         </li>
         <li>
         <li>
-        <NavLink to='/my-clients-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+        <NavLink to='/dietitian/my-clients-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
             My chat
           </NavLink>
         </li>
-        <NavLink to='/my-clients' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+        <NavLink to='/dietitian/my-clients' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
             My clients
           </NavLink>
