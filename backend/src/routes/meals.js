@@ -10,7 +10,16 @@ function getCurrentDayInISOFormat() {
     return isoDate;
   }
   
+function getYesterdayInISOFormat() {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 1); // Subtract one day
+    
+    const isoDate = currentDate.toISOString().split('T')[0]; // Extracting the date part
+    
+    return isoDate;
+  }
 const today = getCurrentDayInISOFormat();
+const yesterday = getYesterdayInISOFormat();
 
 function getWeekDates() {
   const currentDate = new Date();
@@ -60,6 +69,15 @@ router.post("/dashboard", async (req, res) => {
     const Breakfast = await mealModel.findOne({ email, date: today, mealType: "Breakfast" });
     const Lunch = await mealModel.findOne({ email, date: today, mealType: "Lunch" });
     const Dinner = await mealModel.findOne({ email, date: today, mealType: "Dinner" });
+
+    const Breakfast_y = await mealModel.findOne({ email, date: yesterday, mealType: "Breakfast" });
+    const Lunch_y = await mealModel.findOne({ email, date: yesterday, mealType: "Lunch" });
+    const Dinner_y = await mealModel.findOne({ email, date: yesterday, mealType: "Dinner" });
+
+    calories_today = Breakfast.calories + Lunch.calories + Dinner.calories
+    calories_yesterday = Breakfast_y.calories + Lunch_y.calories + Dinner_y.calories
+    calories_difference = calories_today - calories_yesterday
+
     const meals = [
         {
           id: 1,
