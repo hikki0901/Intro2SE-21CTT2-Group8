@@ -60,7 +60,7 @@ function MyClientsChat() {
                     </div>
                 ))}
                 </div>
-                {selectedUser && (
+                {selectedUser ? (
                     <div className='chat-container'>
                         <div className='message-container'>
                             <div className='message-header'>
@@ -90,6 +90,19 @@ function MyClientsChat() {
                             <img src={profile_pic}></img>
                             <h2>My Dietitian</h2>
                             <input type='image' src={video_call}></input>
+                        </div>
+                    </div>
+                ) : (
+                    <div className='chat-container'>
+                        <div className='message-container'>
+                            <div className='message-header'>
+                            </div>
+                            <div className='message-empty'>
+                                <p>Please choose a client to begin chatting</p>
+                            </div>
+                        </div>
+                        <div className='info-container'>
+
                         </div>
                     </div>
                 )}

@@ -29,3 +29,10 @@
     margin: 5px;
     margin-bottom: 0;
 }
+
+.message-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+}
