@@ -42,7 +42,29 @@ function getRecentMonths() {
         }, ],
     }
 
-    res.status(200).json({BMIdata})
+    res.status(200).json({BMI: BMIdata})
+});
+
+router.post("/monthly-report", async (req, res) => {
+    const months = getRecentMonths()
+    const { email } = req.body;
+
+    const newMonthlyStat_4 = await monthlyStatModel.findOne({ email, month: months[3] });
+    const newMonthlyStat_5 = await monthlyStatModel.findOne({ email, month: months[4] });
+
+    const data_1 = newMonthlyStat_5 ? newMonthlyStat_5.BMI : 0
+    const data_2 = newMonthlyStat_4 ? newMonthlyStat_4.BMI : 0
+
+    var ratio
+
+    if (data_2 == 0) {
+        ratio = -1
+    } else {
+        ratio = data_1 / data_2
+    }
+    ratio = Number(ratio.toFixed(2))
+    
+    res.status(200).json({ratio})
 });
 
 router.post("/add", async (req, res) => {

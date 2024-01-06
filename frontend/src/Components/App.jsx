@@ -58,8 +58,8 @@ function App(){
                     <Route path="/support" element={<Support />} />
                     <Route path="/membership" element={<Membership />} />
                     <Route path="/settings" element={<Settings />} />
-                    <Route path="/my-clients-chat" element={<MyClientsChat />} />
-                    <Route path="/my-clients" element={<MyClients />} />
+                    <Route path="/dietitian/my-clients-chat" element={<MyClientsChat />} />
+                    <Route path="/dietitian/my-clients" element={<MyClients />} />
                     <Route
                         path="/"
                         element={<Navigate to="/about" replace />}

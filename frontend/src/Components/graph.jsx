@@ -4,7 +4,7 @@ import Chart from "chart.js/auto";
 import "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 
-function Graph() {
+function Graph({BMIdata}) {
   return (
     <Line data = {BMIdata}/>
   );

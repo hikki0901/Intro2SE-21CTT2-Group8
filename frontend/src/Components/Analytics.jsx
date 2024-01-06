@@ -9,6 +9,9 @@ import "../CSS/Analytics.css";
 
 function Analytics(){
     const [calories, setCalories] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [BMIdata, setBMIdata] = useState();
+    const [ratio, setRatio] = useState(0)
     useEffect(() => {
         var email = window.localStorage.getItem("email");
         
@@ -19,6 +22,22 @@ function Analytics(){
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
+        }
+        try {
+            const response = await axios.post("http://localhost:4000/monthlyStat/monthly-report", { email });
+            setRatio(response.data.ratio)
+        } catch (error) {
+            console.error("Error fetching ratio:", error);
+            // Handle the error as needed
+        }
+        try {
+            const response = await axios.post("http://localhost:4000/monthlyStat/graph", { email });
+            setBMIdata(response.data.BMI);
+        } catch (error) {
+            console.error("Error fetching meals:", error);
+            // Handle the error as needed
+        } finally {
+            setLoading(false); // Set loading to false whether the request is successful or not
         }
         };
         fetchCalories();
@@ -36,7 +55,25 @@ function Analytics(){
         }
       
         return content;
+    }
+
+    function generateMealCardContent_(ratio) {
+        let content;
+      
+        if (ratio >= 0) {
+          content = `Your average daily intake is ${Math.abs(ratio) * 100}% compare to last month`;
+        } else {
+          content = "No data for last month";
+        }
+      
+        return content;
       }
+
+    if (loading) {
+        // Render loading state or placeholder
+        return <p>Loading...</p>;
+    }
+
     return(
         <div class="row">
             <div class="col-2">
@@ -44,9 +81,9 @@ function Analytics(){
             </div>
             <div class = "col-10 row">
                 <MealCard_2 class="col-5" name="Today" content={generateMealCardContent(calories)}/>
-                <MealCard_2 class="col-5"  name="This month" content="Your average daily intake is 30% less than last month"/>
+                <MealCard_2 class="col-5"  name="This month" content={generateMealCardContent_(ratio)}/>
                 <div class="col-5 graph d-flex justify-content-center align-items-center">
-                    <Graph />
+                {Graph({BMIdata})}
                 </div>
             </div>
         </div>
