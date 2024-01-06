@@ -1,0 +1,31 @@
+.my-clients-chat {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-list {
+    width: 18%;    
+    border-right: solid #EFEAE3;
+}
+
+.user-info {
+    display: flex;
+    direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    padding-left: 0;
+    border-bottom: solid #EFEAE3;
+}
+
+.user-info img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.user-info p {
+    margin: 5px;
+    margin-bottom: 0;
+}
