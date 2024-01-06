@@ -77,7 +77,7 @@ router.post("/analytics", async (req, res) => {
     const calories = [Breakfast ? Breakfast.calories : 0, Lunch ? Lunch.calories : 0, Dinner ? Dinner.calories : 0,
                       Breakfast_y ? Breakfast_y.calories : 0, Lunch_y ? Lunch_y.calories : 0, Dinner_y ? Dinner_y.calories : 0]
 
-    calories_difference = calories[0] + calories[1] + calories[2] - calories[3] - calories[4] - calories[5]
+    const calories_difference = calories[0] + calories[1] + calories[2] - calories[3] - calories[4] - calories[5]
 
     res.status(200).json({
       calories_difference
