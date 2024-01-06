@@ -7,7 +7,7 @@ import Journal from "../image/Journal.png";
 import onlineSupport from "../image/Online Support.png";
 import Reserve from "../image/Reserve.png";
 import salesPerformance from "../image/Sales Performance.png";
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import '../CSS/slideBar.css';
 import axios from 'axios';
 
@@ -16,7 +16,7 @@ function PremiumCard(){
   <div class="card-body">
     <h5 class="card-title">Premium Pakage</h5>
     <p class="card-text">Set sails to a new and better app for your daily use</p>
-    <a href="/membership" class="premium">Upgrade now</a>
+    <Link to="/membership" class="premium">Upgrade now</Link>
   </div>
 </div>);
 }

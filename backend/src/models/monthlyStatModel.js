@@ -15,6 +15,6 @@ const monthlyStatSchema = new mongoose.Schema({
     }
   });
 
-mealSchema.index({ email: 1, month: 1 }, { unique: true });
+  monthlyStatSchema.index({ email: 1, month: 1 }, { unique: true });
 
-export const monthlyStatModel = mongoose.model("suggestions", monthlyStatSchema);
+export const monthlyStatModel = mongoose.model("monthlyStat", monthlyStatSchema);
