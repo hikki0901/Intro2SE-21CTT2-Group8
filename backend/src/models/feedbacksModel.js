@@ -19,4 +19,6 @@ const feedbackSchema = new mongoose.Schema({
   },
 });
 
+feedbackSchema.index({name: 1, email: 1, subject: 1}, { unique: true });
+
 export const feedbackModel = mongoose.model("feedbacks", feedbackSchema);
