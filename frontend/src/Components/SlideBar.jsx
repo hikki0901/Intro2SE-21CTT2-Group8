@@ -21,9 +21,9 @@ function PremiumCard(){
 </div>);
 }
 
-
-function SlideBar(props){
+function SlideBar({ userType }){
   const [isPremium, setIsPremium] = useState(false);
+  const isDietitian = userType === "dietitian";
 
   useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -41,63 +41,101 @@ function SlideBar(props){
 
         fetchMembership();
     }, []);
+
+    const dietitianLinks = (
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <p class="bold">
+            GENERAL
+          </p>
+        </li>
+        <li>
+        <li>
+        <NavLink to='/my-clients-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+          <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
+            My chat
+          </NavLink>
+        </li>
+        <NavLink to='/my-clients' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+          <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
+            My clients
+          </NavLink>
+        </li>
+        <p class="bold">
+            FEATURES
+        </p>
+        <li>
+        <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+          <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
+            Support
+          </NavLink>
+        </li>
+      </ul>
+    );
+  
+    const userLinks = (
+      <div>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <p class="bold">
+              GENERAL
+            </p>
+          </li>
+          <li class="nav-item">
+            <NavLink to='/home' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={homePage} alt="App logo" width="16" height="16"/>
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+          <NavLink to='/meal-plan' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
+              Meal plans
+            </NavLink>
+          </li>
+          <li>
+          <NavLink to='/diet-diary' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={Journal} alt="App logo" width="16" height="16"/>
+              Diet diary
+            </NavLink>
+          </li>
+          <li>
+          <NavLink to='/analytics' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={barChart} alt="App logo" width="16" height="16"/>
+              Analytics
+            </NavLink>
+          </li>
+          <li>
+          <NavLink to='/my-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
+              My chat
+            </NavLink>
+          </li>
+          <p class="bold">
+              FEATURES
+          </p>
+          <li>
+          <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
+              Support
+            </NavLink>
+          </li>
+          <li>
+          <NavLink to='/membership' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+            <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
+              Membership
+            </NavLink>
+          </li>
+        </ul>
+        {!isPremium ? (
+        <PremiumCard />
+        ) : null}
+      </div>
+    );
+  
   return(
   <div class="d-flex flex-column flex-shrink-0 p-3 side" >
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <p class="bold">
-        GENERAL
-      </p>
-    </li>
-    <li class="nav-item">
-      <NavLink to='/home' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={homePage} alt="App logo" width="16" height="16"/>
-        Dashboard
-      </NavLink>
-    </li>
-    <li>
-    <NavLink to='/meal-plan' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
-        Meal plans
-      </NavLink>
-    </li>
-    <li>
-    <NavLink to='/diet-diary' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={Journal} alt="App logo" width="16" height="16"/>
-        Diet diary
-      </NavLink>
-    </li>
-    <li>
-    <NavLink to='/analytics' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={barChart} alt="App logo" width="16" height="16"/>
-        Analytics
-      </NavLink>
-    </li>
-    <li>
-    <NavLink to='/my-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
-        My chat
-      </NavLink>
-    </li>
-    <p class="bold">
-        FEATURES
-    </p>
-    <li>
-    <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
-        Support
-      </NavLink>
-    </li>
-    <li>
-    <NavLink to='/membership' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
-      <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
-        Membership
-      </NavLink>
-    </li>
-  </ul>
-  {!isPremium ? (
-        <PremiumCard />
-      ) : null}
+  {isDietitian ? dietitianLinks : userLinks}
   </div>
   );
 }
