@@ -42,7 +42,7 @@ function getRecentMonths() {
         }, ],
     }
 
-    res.status(200).json({BMIdata})
+    res.status(200).json({BMI: BMIdata})
 });
 
 router.post("/monthly-report", async (req, res) => {

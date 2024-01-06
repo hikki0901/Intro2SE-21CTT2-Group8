@@ -9,6 +9,8 @@ import "../CSS/Analytics.css";
 
 function Analytics(){
     const [calories, setCalories] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [BMIdata, setBMIdata] = useState();
     useEffect(() => {
         var email = window.localStorage.getItem("email");
         
@@ -19,6 +21,16 @@ function Analytics(){
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
+        }
+        try {
+            const response = await axios.post("http://localhost:4000/monthlyStat/graph", { email });
+            console.log("aaaaaaaaaaaaa",response.data.BMI)
+            setBMIdata(response.data.BMI);
+        } catch (error) {
+            console.error("Error fetching meals:", error);
+            // Handle the error as needed
+        } finally {
+            setLoading(false); // Set loading to false whether the request is successful or not
         }
         };
         fetchCalories();
@@ -36,7 +48,13 @@ function Analytics(){
         }
       
         return content;
-      }
+    }
+
+    if (loading) {
+        // Render loading state or placeholder
+        return <p>Loading...</p>;
+    }
+
     return(
         <div class="row">
             <div class="col-2">
@@ -46,7 +64,7 @@ function Analytics(){
                 <MealCard_2 class="col-5" name="Today" content={generateMealCardContent(calories)}/>
                 <MealCard_2 class="col-5"  name="This month" content="Your average daily intake is 30% less than last month"/>
                 <div class="col-5 graph d-flex justify-content-center align-items-center">
-                    <Graph />
+                {Graph({BMIdata})}
                 </div>
             </div>
         </div>
