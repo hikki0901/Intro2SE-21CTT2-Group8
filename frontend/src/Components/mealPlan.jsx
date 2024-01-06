@@ -3,6 +3,7 @@ import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
+import ClipLoader from "react-spinners/ClipLoader";
 import axios from 'axios';
 
 function getDayMeal(Meals1, i){
@@ -76,8 +77,21 @@ function MealPlan(){
   }, []);
 
   if (loading) {
-    // Render loading state or placeholder
-    return <p>Loading...</p>;
+    return (
+      <div class="home-style row">
+        <div class="col-2">
+          <SlideBar class="col-3" />
+        </div>
+        <div class ="loading col-10">
+          <ClipLoader
+          color= "#36d7b7"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"/>
+        </div>
+    </div>
+  );
   }
 
   return(
