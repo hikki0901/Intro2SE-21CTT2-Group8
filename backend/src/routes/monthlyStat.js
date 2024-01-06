@@ -55,12 +55,15 @@ router.post("/monthly-report", async (req, res) => {
     const data_1 = newMonthlyStat_5 ? newMonthlyStat_5.BMI : 0
     const data_2 = newMonthlyStat_4 ? newMonthlyStat_4.BMI : 0
 
-    if (data_2 = 0) {
+    var ratio
+
+    if (data_2 == 0) {
         ratio = -1
     } else {
         ratio = data_1 / data_2
     }
-
+    ratio = Number(ratio.toFixed(2))
+    
     res.status(200).json({ratio})
 });
 
