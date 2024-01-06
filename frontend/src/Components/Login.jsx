@@ -26,13 +26,20 @@ function Login({ onLogin }) {
         password,
       });
 
-      if (response.data.success) {
+      if (response.data.success && !response.data.dietitianName) {
         onLogin(response.data.userName);
 
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
         window.localStorage.setItem("email", response.data.email);
         navigate("/home");
+      } else if (response.data.success && !response.data.userName) {
+        onLogin(response.data.dietitianName);
+
+        setCookies("access_token", response.data.token);
+        window.localStorage.setItem("userID", response.data.dietitianID);
+        window.localStorage.setItem("email", response.data.email);
+        navigate("/dietitian/my-clients");
       } else {
         // Show error message
         alert(response.data.message)

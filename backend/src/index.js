@@ -7,6 +7,7 @@ import {feedbackRouter} from './routes/feedbacks.js';
 import {mealRouter} from './routes/meals.js';
 import {suggestionRouter} from './routes/suggestion.js';
 import {monthlyStatRouter} from './routes/monthlyStat.js';
+import {dietitianRouter} from './routes/dietitians.js'
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(feedbackRouter);
 app.use('/meals', mealRouter);
 app.use('/suggestion', suggestionRouter);
 app.use('/monthlyStat',monthlyStatRouter);
+app.use('/dietitian', dietitianRouter);
 
 const DB_URL = "mongodb+srv://admin:cRj8cvgq6XfL9lZz@cluster0.mfnrknp.mongodb.net/Dietarium?retryWrites=true&w=majority";
 mongoose.connect(DB_URL)

@@ -48,17 +48,21 @@ router.post("/login", async (req, res) => {
     if (!user && !dietitian) {
         return res.json({ message: "User doesn't exist" });
     }
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-        return res.json({ message: "User or password is invalid" });
-    }
     if (user) {
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) { 
+            return res.json({ message: "User or password is invalid" });
+        }
         const token = jwt.sign({ id: user._id}, "token");
         res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email });
     }
     else {
+        const isValidPassword = await bcrypt.compare(password, dietitian.password);
+        if (!isValidPassword) { 
+            return res.json({ message: "User or password is invalid" });
+        }
         const token = jwt.sign({ id: dietitian._id}, "token");
-        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.name, email: dietitian.email });
+        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.lastName, email: dietitian.email });
     }
 });
 
