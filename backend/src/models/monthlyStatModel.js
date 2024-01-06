@@ -12,6 +12,10 @@ const monthlyStatSchema = new mongoose.Schema({
     avgCalories: {
       type: Number,
       required: true,
+    },
+    BMI: {
+      type: Number,
+      required: true,
     }
   });
 
