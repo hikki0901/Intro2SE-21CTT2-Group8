@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
+import {useNavigate} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
 import Loading from './Loading';
@@ -75,6 +76,32 @@ function MealPlan(){
   const [add, setAdd] = useState(false);
   const [remove, setRemove] = useState(false);
 
+  const navigate = useNavigate();
+  
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+      if (!Meals1) {
+        alert ("Save meals failed");
+        return;
+      }
+
+      try {
+        const response = await axios.post("http://localhost:4000/users", {Meals1});
+
+        if (response.data.success) {
+          alert(response.data.message);
+          navigate("/home");
+        } else {
+          alert(response.data.message);
+        }
+        
+      } catch (err) {
+        alert(err);
+        console.error("Save meals failed", err);
+      }
+  };
+
   const handleClick = (i)=>{
     setDay(i)
   };
@@ -131,6 +158,7 @@ function MealPlan(){
   };
 
   const handleSaveClick = () => {
+    onSubmit();
     setEditing(false); 
   };
 
