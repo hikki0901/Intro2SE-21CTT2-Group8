@@ -27,19 +27,22 @@ function SlideBar({ userType }){
 
   useEffect(() => {
         var email = window.localStorage.getItem("email");
-        
-        const fetchMembership = async () => {
-        try {
-            const response = await axios.post("http://localhost:4000/auth/viewmembership", {
-            email, });
-            setIsPremium(response.data.premium)
-        } catch (error) {
-            console.error("Error fetching premium membership:", error);
-            // Handle the error as needed
+        const type = window.localStorage.getItem("type");
+        if (type === "user"){
+          const fetchMembership = async () => {
+            try {
+                const response = await axios.post("http://localhost:4000/auth/viewmembership", {
+                email, });
+                setIsPremium(response.data.premium)
+            } catch (error) {
+                console.error("Error fetching premium membership:", error);
+                // Handle the error as needed
+            }
+            };
+    
+            fetchMembership();
         }
-        };
-
-        fetchMembership();
+        
     }, []);
 
     const dietitianLinks = (

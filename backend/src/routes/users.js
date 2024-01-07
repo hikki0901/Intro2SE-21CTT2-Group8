@@ -48,27 +48,44 @@ router.post("/login", async (req, res) => {
     if (!user && !dietitian) {
         return res.json({ message: "User doesn't exist" });
     }
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-        return res.json({ message: "User or password is invalid" });
-    }
     if (user) {
+        const isValidPassword = await bcrypt.compare(password, user.password);
+        if (!isValidPassword) { 
+            return res.json({ message: "User or password is invalid" });
+        }
         const token = jwt.sign({ id: user._id}, "token");
-        res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email });
+        res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email, type: "user" });
     }
     else {
+        const isValidPassword = await bcrypt.compare(password, dietitian.password);
+        if (!isValidPassword) { 
+            return res.json({ message: "User or password is invalid" });
+        }
         const token = jwt.sign({ id: dietitian._id}, "token");
-        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.name, email: dietitian.email });
+        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.lastName, email: dietitian.email, type: "dietitian" });
     }
 });
 
 router.post("/info", async (req, res) => {
     const {email} = req.body;
-    const user = await userModel.findOne({ email });
+    var user = await userModel.findOne({ email });
     if (!user) {
+       user = await dietitianModel.findOne({ email });
+    }
+    if (user) {
+        res.status(200).json({ 
+            firstName: user.firstName, 
+            lastName: user.lastName, 
+            height: user.height ? user.height : null, 
+            weight:user.weight ? user.weight: null, 
+            DOB:user.DOB, 
+            gender:user.gender, 
+            phone: user.phone});
+    }
+    else {
         return res.json({ message: "User doesn't exist" });
     }
-    res.status(200).json({ firstName: user.firstName, lastName: user.lastName, height: user.height, weight:user.weight, DOB:user.DOB, gender:user.gender, phone: user.phone});
+    
 });
 
 router.post("/settings", async (req, res) => {

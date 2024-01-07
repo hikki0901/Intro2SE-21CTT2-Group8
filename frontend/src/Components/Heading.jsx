@@ -7,6 +7,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import "../CSS/Heading.css"
 
 function Heading(props){
+    const type = window.localStorage.getItem("type");
     const navigate = useNavigate();
     const onSubmit = () => {
       props.onLogout();
@@ -25,7 +26,7 @@ function Heading(props){
             </div>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              {props.isLogIn === true && (<li><Link to ='/home' class="nav-link px-2">HOME</Link></li>)}
+              {props.isLogIn === true &&  (<li><Link to={type === "user" ? '/home' : '/dietitian/my-clients'} className="nav-link px-2">HOME</Link></li>)}
               <li><Link to ='/video' class="nav-link px-2">VIDEOS</Link></li>
               <li><Link to ='/about' class="nav-link px-2">ABOUT</Link></li>
               <li><Link to ='/contact' class="nav-link px-2">CONTACT</Link></li>
