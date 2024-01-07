@@ -32,6 +32,7 @@ function Login({ onLogin }) {
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
         window.localStorage.setItem("email", response.data.email);
+        window.localStorage.setItem("type", response.data.type)
         navigate("/home");
       } else if (response.data.success && !response.data.userName) {
         onLogin(response.data.dietitianName);
@@ -39,6 +40,7 @@ function Login({ onLogin }) {
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.dietitianID);
         window.localStorage.setItem("email", response.data.email);
+        window.localStorage.setItem("type", response.data.type)
         navigate("/dietitian/my-clients");
       } else {
         // Show error message

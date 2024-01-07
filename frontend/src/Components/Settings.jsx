@@ -6,7 +6,7 @@ import profile_pic from '../image/profile_pic.png'
 import add_button from '../image/add_button.png'
 
 const Settings = () => {
-
+  const type = window.localStorage.getItem("type");
   const [currentPic, setCurrentPic] = useState(profile_pic);
 
   const navigate = useNavigate();
@@ -160,12 +160,14 @@ const Settings = () => {
                     <label className='body'>
                         Height (cm):
                         <input type="number" step={0.1} value={height} onChange={e => setHeight(e.target.value)} 
-                        placeholder='Height'/>
+                        placeholder='Height'
+                        readOnly={type === 'dietitian'} />
                     </label>
                     <label className='body'>
                         Weight (kg):
                         <input type="number" step={0.1} value={weight} onChange={e => setWeight(e.target.value)} 
-                        placeholder='Weight'/>
+                        placeholder='Weight'
+                        readOnly={type === 'dietitian'}/>
                     </label>                    
                     <label className='additional'>
                         Date of birth:
