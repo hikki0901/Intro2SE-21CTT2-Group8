@@ -13,7 +13,7 @@ function createMealCard(mealItem){
             key={mealItem.id}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            target={mealItem.target + "%"}
+            target={<p id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
             calories={mealItem.totalCalories}
         />
     );

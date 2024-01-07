@@ -21,6 +21,7 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
     handleTextChange(e, mealId, foodIndex, editing);
     if (!editing && !saved) {
       setSaved(true);
+      console.log(TempMeal)
       setMeals1(TempMeal);
       update_meals1_to_backend();
     }
@@ -36,7 +37,6 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
   const handleInputForTarget = (e, mealId, foodIndex) => {
     handleTextChangeForTarget(e, mealId, editing);
     if (!editing && !saved) {
-      setSaved(true);
       setSaved(true);
       setMeals1(TempMeal);
       update_meals1_to_backend();
@@ -127,6 +127,7 @@ function MealPlan(){
   const handleEditClick = () => {
     setEditing(true);
     setSaved(false);
+    setTempMeal([...Meals1])
   };
 
   const handleSaveClick = () => {
@@ -182,7 +183,8 @@ function MealPlan(){
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>
-            {getDayMeal(TempMeal, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
+            {saved ? getDayMeal(Meals1, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove)) :
+            getDayMeal(TempMeal, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
         </div>
         
         <div class = "col-5 edit-half">
