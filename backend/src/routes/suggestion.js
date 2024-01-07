@@ -13,7 +13,6 @@ const today = getCurrentDayInISOFormat();
 
 router.post("/view", async (req, res) => {
     const { email } = req.body;
-    console.group(email);
     const suggestion = await suggestionModel.findOne({ userEmail: email, date: today });
     res.status(200).json({
         suggestion: suggestion ? suggestion.context : "",

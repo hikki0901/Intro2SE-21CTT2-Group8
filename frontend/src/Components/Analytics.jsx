@@ -5,6 +5,7 @@ import {MealCard_2} from "./MealCard";
 import axios from 'axios';
 import "../CSS/Analytics.css";
 import ClipLoader from "react-spinners/ClipLoader";
+import { json } from 'react-router-dom';
 
 
 
@@ -18,22 +19,43 @@ function Analytics(){
         
         const fetchCalories = async () => {
         try {
+          if (!window.localStorage.getItem("calories_difference")){
             const response = await axios.post("http://localhost:4000/meals/analytics", { email });
-            setCalories(response.data.calories_difference)
-        } catch (error) {
+            setCalories(response.data.calories_difference);
+            window.localStorage.setItem("calories_difference", response.data.calories_difference);
+          } else {
+            const storedCalories = window.localStorage.getItem("calories_difference");
+            setCalories(storedCalories);
+          }
+        }
+         catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
         }
+        
         try {
+          if (!window.localStorage.getItem("ratio")) {
             const response = await axios.post("http://localhost:4000/monthlyStat/monthly-report", { email });
-            setRatio(response.data.ratio)
+            setRatio(response.data.ratio);
+            window.localStorage.setItem("ratio", response.data.ratio);
+          } else {
+            const storedRatio = window.localStorage.getItem("ratio");
+            setRatio(storedRatio);
+          }
         } catch (error) {
             console.error("Error fetching ratio:", error);
             // Handle the error as needed
         }
         try {
+          if (!window.localStorage.getItem("BMI")) {
             const response = await axios.post("http://localhost:4000/monthlyStat/graph", { email });
             setBMIdata(response.data.BMI);
+            window.localStorage.setItem("BMI", JSON.stringify(response.data.BMI));
+          } else {
+            const storedBMI = JSON.parse(window.localStorage.getItem("BMI"));
+            setBMIdata(storedBMI);
+          }
+            
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed

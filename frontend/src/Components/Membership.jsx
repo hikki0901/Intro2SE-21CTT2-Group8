@@ -38,20 +38,36 @@ function createDietitanCard(dietitianItem){
     );
 }
 
+function getFirstDayOfNextMonth() {
+    const today = new Date();
+    const firstDayOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  
+    // Format first day as dd/mm/yyyy
+    const formattedFirstDay = `${firstDayOfNextMonth.getDate()}/${firstDayOfNextMonth.getMonth() + 1}/${firstDayOfNextMonth.getFullYear()}`;
+  
+    // Calculate days left
+    const daysLeft = Math.floor((firstDayOfNextMonth - today) / (1000 * 60 * 60 * 24));
+  
+    return { firstDay: formattedFirstDay, daysLeft };
+}
+
 
 function Membership(){
-
     const [isPremiumMember, setIsPremiumMember] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    const [firstDay, setFirstDay] = useState('');
+    const [daysLeft, setDaysLeft] = useState(0);
+    
     useEffect(() => {
         var email = window.localStorage.getItem("email");
-        
         const fetchMembership = async () => {
         try {
             const response = await axios.post("http://localhost:4000/auth/viewmembership", {
             email, });
             setIsPremiumMember(response.data.premium)
+            const { firstDay, daysLeft } = getFirstDayOfNextMonth();
+            setFirstDay(firstDay);
+            setDaysLeft(daysLeft);
         } catch (error) {
             console.error("Error fetching premium membership:", error);
             // Handle the error as needed
@@ -75,6 +91,8 @@ function Membership(){
         }
     };
 
+    
+
     if (loading) {
         // Render loading state or placeholder
         return <p>Loading...</p>;
@@ -94,8 +112,8 @@ function Membership(){
                 </div>
                 <div className='status'>
                     <h1>Membership status</h1>
-                    <p>Your membership will end in 10/10/2023
-                    <br></br> <br></br> You have 100 days left</p>
+                    <p>Your membership will end in {firstDay}
+                    <br></br> <br></br> You have {daysLeft} day(s) left</p>
                 </div>
             </div> : 
             <div class='membership-container'>

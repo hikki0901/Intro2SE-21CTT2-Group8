@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
-import "../CSS/Login.css"
+import "../CSS/Login.css";
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState("");
@@ -94,7 +94,7 @@ function Login({ onLogin }) {
 
               <hr></hr>
 
-              <button type="submit" className="login-button">Register</button>
+              <button onClick={() => navigate("/signup")} className="login-button">Register</button>
             </div>
           </div>
         </main>

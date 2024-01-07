@@ -143,11 +143,19 @@ function MealPlan(){
         
   useEffect(() => {
     const fetchMeals = async () => {
-    try {
-        var email = window.localStorage.getItem("email");
-        const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
-        setMeals1(response.data.Meals1);
-        setTempMeal([...response.data.Meals1]);
+      try {
+        // Check if "mealplan" is already set in local storage
+        if (!window.localStorage.getItem("mealplan")) {
+          var email = window.localStorage.getItem("email");
+          const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
+          setMeals1(response.data.Meals1);
+          setTempMeal([...response.data.Meals1]);
+          window.localStorage.setItem("mealplan", JSON.stringify(response.data.Meals1));
+        } else {
+          const storedMeals = JSON.parse(window.localStorage.getItem("mealplan"));
+          setMeals1(storedMeals);
+          setTempMeal([...storedMeals]);
+        }
     } catch (error) {
         console.error("Error fetching meals:", error);
         // Handle the error as needed
