@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SlideBar from "./SlideBar";
 import "../CSS/membership.css"
 import DietitianCard from './UserCard';
+import ClipLoader from "react-spinners/ClipLoader";
 import axios from 'axios';
 
 const Dietitians = []
@@ -105,9 +106,22 @@ function Membership(){
 
     if (loading) {
         // Render loading state or placeholder
-        return <p>Loading...</p>;
+        return (
+            <div class="home-style row">
+              <div class="col-2">
+                <SlideBar class="col-3" />
+              </div>
+              <div class ="loading col-10">
+                <ClipLoader
+                color= "#36d7b7"
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"/>
+              </div>
+          </div>
+        );
     }
-
     return(
         <div class="row">
         <div class="col-2">
