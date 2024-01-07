@@ -60,6 +60,7 @@ function App(){
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/dietitian/my-clients-chat" element={<MyClientsChat />} />
                     <Route path="/dietitian/my-clients" element={<MyClients />} />
+                    <Route path="/dietitian/support" element={<Support userType="dietitian" />} />
                     <Route
                         path="/"
                         element={<Navigate to="/about" replace />}

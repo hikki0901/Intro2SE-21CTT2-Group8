@@ -6,11 +6,11 @@ import video_call from '../image/VideoCall.svg'
 import file_upload from '../image/FileUpload.svg'
 import sent from '../image/Sent.svg'
 
-function Support(){
+function Support({userType}){
     return(
         <div class="row">
         <div class="col-2">
-            <SlideBar class="col-3" />
+            <SlideBar userType={userType} class="col-3" />
         </div>
         <div class="col-10">
             <div className='chat-container'>

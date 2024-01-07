@@ -68,7 +68,7 @@ function SlideBar({ userType }){
             FEATURES
         </p>
         <li>
-        <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
+        <NavLink to='/dietitian/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
             Support
           </NavLink>
