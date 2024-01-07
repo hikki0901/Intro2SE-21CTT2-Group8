@@ -1,13 +1,13 @@
 .mealCard{
-    width: 500px;
-    height: 180px;
+    display: flex;
+    flex-direction: column;
     margin-left: 30px;
     border-radius: 20px;
     background: linear-gradient(
     to top,
     #11B3CF 0%,
-    #11B3CF 75%,
-    #F79D25 75%,
+    #11B3CF calc(100% - 50px),
+    #F79D25 calc(100% - 50px),
     #F79D25 100%
   );
 }
@@ -39,6 +39,20 @@
   #F1E6DB 0%,
   #F1E6DB 15%,
   #11B3CF 15%,
+  #11B3CF 75%,
+  #F79D25 75%,
+  #F79D25 100%
+);
+}
+
+.mealCard_5{
+  width: 500px;
+  height: 180px;
+  margin-left: 30px;
+  border-radius: 20px;
+  background: linear-gradient(
+  to top,
+  #11B3CF 0%,
   #11B3CF 75%,
   #F79D25 75%,
   #F79D25 100%
@@ -99,6 +113,7 @@ ul > li{
 
 .tg{
 }
+
 
 .textStyle{
   font-size: 50px;

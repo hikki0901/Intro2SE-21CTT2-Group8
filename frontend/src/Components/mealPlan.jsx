@@ -11,42 +11,52 @@ function getDayMeal(Meals1, i){
   
 }
 
-function createMealCard(mealItem){
-    return(
-        <MealCard_3
-            key={mealItem.id}
-            name={mealItem.name}
-            foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            target={mealItem.target + "%"}
-            calories={mealItem.calories}
-        />
-    );
+function createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, handleAddFood, handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove) {
+
+  if (mealItem.foods.length === 0){
+    mealItem.foods.push("");
+  }
+
+  const handleInput = (e, mealId, foodIndex) => {
+    handleTextChange(e, mealId, foodIndex, editing);
+    if (!editing && !saved) {
+      setSaved(true);
+    }
+    if (add === true){
+      handleAddFood(mealId, add, setAdd)
+    }
+
+    if (remove === true){
+      handleDeleteFood(mealId, foodIndex, remove, setRemove)
+    }
+  };
+
+  const handleInputForTarget = (e, mealId, foodIndex) => {
+    handleTextChangeForTarget(e, mealId, editing);
+    if (!editing && !saved) {
+      setSaved(true);
+    }
+  };
+
+  return (
+    <MealCard_3
+      contentEditable = {true}
+      key={mealItem.id}
+      name={mealItem.name}
+      foodList={mealItem.foods.map((food, index) => (
+        <li key={index} contentEditable={editing || !saved} onInput={(e) => handleInput(e, mealItem.id, index)} onFocus={(e) => handleInput(e, mealItem.id, index)}>
+          {food}
+        </li>
+      ))}
+      target={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id)} id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
+      calories={mealItem.calories}
+    />
+  );
 }
 
-function getDay(i){
-  switch(i){
-    case 0:
-      return "Monday";
-      break;
-    case 1:
-      return "Tuesday";
-      break;
-    case 2:
-      return "Wednesday";
-      break;
-    case 3:
-      return "Thursday";
-      break;
-    case 4:
-      return "Friday";
-      break;
-    case 5:
-      return "Saturday";
-      break;
-    case 6:
-      return "Sunday";
-      break;
-  }
+function getDay(i) {
+  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  return days[i] || "";
 }
 
 
@@ -54,9 +64,75 @@ function MealPlan(){
   const [Meals1, setMeals1] = useState();
   const [day, setDay] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
+  const [saved, setSaved] = useState(true);
+  const [add, setAdd] = useState(false);
+  const [remove, setRemove] = useState(false);
 
   const handleClick = (i)=>{
     setDay(i)
+  };
+
+  const handleTextChange = (e, mealId, foodIndex, editing) => {
+      setMeals1((prevMeals) => {
+        const updatedMeals = [...prevMeals];
+        if (editing === false){
+          updatedMeals[day].meal_info[mealId - 1].foods[foodIndex] = e.target.innerText;
+        }
+        return updatedMeals;
+      });
+  };
+
+  const handleTextChangeForTarget = (e, mealId, editing) => {
+    setMeals1((prevMeals) => {
+      const updatedMeals = [...prevMeals];
+      if (editing === false){
+        const currentText = e.target.innerText;
+        const newText = currentText.slice(0, -1); 
+        e.target.innerText = newText;
+        updatedMeals[day].meal_info[mealId - 1].target = e.target.innerText;
+      }
+      return updatedMeals;
+    });
+  };
+
+  const handleAddFood = (mealId, add, setAdd) => {
+      setMeals1((prevMeals) => {
+        const updatedMeals = [...prevMeals];
+        if (add === true){
+          updatedMeals[day].meal_info[mealId - 1].foods.push("New Food Item");
+        }
+        setAdd(false);
+        return updatedMeals;
+      });
+  };
+
+  const handleDeleteFood = (mealId, foodIndex, remove, setRemove) => {
+    setMeals1((prevMeals) => {
+      const updatedMeals = [...prevMeals];
+      if (remove === true){
+        updatedMeals[day].meal_info[mealId - 1].foods.splice(foodIndex, 1);
+      }
+      setRemove(false);
+      return updatedMeals;
+    });
+};
+
+  const handleEditClick = () => {
+    setEditing(true);
+    setSaved(false);
+  };
+
+  const handleSaveClick = () => {
+    setEditing(false); 
+  };
+
+  const addFoodItem = () => {
+    setAdd(true);
+  };
+
+  const removeFoodItem = () => {
+    setRemove(true);
   };
         
   useEffect(() => {
@@ -101,15 +177,15 @@ function MealPlan(){
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>
-            {getDayMeal(Meals1,day).map(createMealCard)}
+            {getDayMeal(Meals1, day).map((mealItem) => createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
         </div>
-
+        
         <div class = "col-5 edit-half">
-        <button type="button" class="col-12 button-color" id="change">Save</button>
+        <button type="button" class="col-12 button-color" id="change" onClick={handleSaveClick} disabled = {saved}>Save</button>
             <div class="d-flex justify-content-center col-12">
-                <button type="button" class="button-color">Add</button>
-                <button type="button" class="button-color">Edit</button>
-                <button type="button" class="button-color">Delete</button>
+                <button type="button" class="button-color"  onClick={addFoodItem} disabled={!editing}>Add</button>
+                <button type="button" class="button-color" onClick={handleEditClick} disabled={editing}>Edit</button>
+                <button type="button" class="button-color" onClick={removeFoodItem} disabled={!editing}>Delete</button>
             </div>
             <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto">
             <li>

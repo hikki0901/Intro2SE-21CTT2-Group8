@@ -4,23 +4,25 @@ import "../CSS/MealCard.css"
 function MealCard(props){
     return (<div class="mealCard p-2 mt-3">
         <p class="meal-name">{props.name}</p>
-        <ul class="mt-4">{props.foodList}</ul>
+        <ul class="">{props.foodList}</ul>
     </div>);
 }
 
 function MealCard_2(props){
-    return (<div class="mealCard p-2 mt-3">
+    return (<div class="mealCard_5 p-2 mt-3">
         <p class="meal-name">{props.name}</p>
         <p class="content">{props.content}</p>
     </div>);
 }
 
 function MealCard_3(props){
+
     return (<div class="mealCard_3 p-2 mt-3">
         <p class="meal-name">{props.name}</p>
-        <ul class="">{props.foodList}</ul>
+        <ul class="" >{props.foodList}</ul>
         <div class = "tg">
-            <p id ="tg1"  class ="target">Target : {props.target}</p>
+            <p id ="tg1"  class ="target">Target: </p>
+            {props.target}
             <p id="tg2" class="intake">{props.calories}</p>
         </div>
     </div>);
