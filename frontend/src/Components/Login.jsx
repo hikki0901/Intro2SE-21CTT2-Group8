@@ -75,6 +75,7 @@ function Login() {
                 <input
                   type="text"
                   placeholder="Enter your Email"
+                  style={{paddingLeft : '20px'}}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 ></input>
@@ -83,7 +84,8 @@ function Login() {
               <div className="input-password">
                 <input
                   type="password"
-                  placeholder="Enter your Password"
+                  placeholder="Password"
+                  style={{paddingLeft : '20px'}}
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   onKeyPress={handleKeyPress} 
@@ -92,11 +94,11 @@ function Login() {
 
               <button onClick={onSubmit} className="login-button" type="submit">Log in</button>
 
-              <a href="#" className="forgot-pass">Forgot password?</a>
+              <a href="#" className="forgot-pass">Forget password?</a>
 
-              <hr></hr>
+              <hr class="hr"></hr>
 
-              <button onClick={() => navigate("/signup")} className="login-button">Register</button>
+              <button onClick={() => navigate("/signup")} className="signup-button">Sign up</button>
             </div>
           </div>
         </main>
