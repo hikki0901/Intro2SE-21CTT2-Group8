@@ -1,6 +1,5 @@
 import express from "express";
 import { dietitianModel } from "../models/dietitiansModel.js";
-import { personalDietitianModel } from '../models/perDietModel.js'
 import bcrypt from "bcrypt";
 
 const router = express.Router();

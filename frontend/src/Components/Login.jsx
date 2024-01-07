@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from "./Footer";
 import "../CSS/Login.css";
 
-function Login({ onLogin }) {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [_, setCookies] = useCookies(["access_token"]);
@@ -27,20 +27,22 @@ function Login({ onLogin }) {
       });
 
       if (response.data.success && !response.data.dietitianName) {
-        onLogin(response.data.userName);
 
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
         window.localStorage.setItem("email", response.data.email);
-        window.localStorage.setItem("type", response.data.type)
+        window.localStorage.setItem("type", response.data.type);
+        window.localStorage.setItem("isLogin", response.data.isLogin);
+        window.localStorage.setItem("username", response.data.userName);
         navigate("/home");
       } else if (response.data.success && !response.data.userName) {
-        onLogin(response.data.dietitianName);
 
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.dietitianID);
         window.localStorage.setItem("email", response.data.email);
-        window.localStorage.setItem("type", response.data.type)
+        window.localStorage.setItem("type", response.data.type);
+        window.localStorage.setItem("isLogin", response.data.isLogin);
+        window.localStorage.setItem("username", response.data.dietitianName);
         navigate("/dietitian/my-clients");
       } else {
         // Show error message

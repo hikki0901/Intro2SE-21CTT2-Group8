@@ -19,10 +19,11 @@ function createMealCard(mealItem){
     );
 }
 
-function Home(props){
+function Home(){
     const [Meals, setMeals] = useState([]);
     const [calories, setCalories] = useState();
     const [water, setWater] = useState();
+    const name = window.localStorage.getItem("username");
 
     useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -70,7 +71,7 @@ function Home(props){
             <SlideBar class="col-3" />
         </div>
         <div class="col">
-            <p class="greeting">Hello {props.userName}!</p>
+            <p class="greeting">Hello {name}!</p>
             <p class="plan">Today's plan</p>
             {Meals.map(createMealCard)}
             <div class="progress-bar-div d-flex align-items-center justify-content-center">

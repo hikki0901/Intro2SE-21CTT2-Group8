@@ -28,24 +28,21 @@ const appStyle = {
 function App(){
 
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const [userName, setUserName] = useState('');
 
-    const handleLogin = (name) => {
+    const handleLogin = () => {
         setUserLoggedIn(true);
-        setUserName(name);
     };
 
      const handleLogout = () => {
         setUserLoggedIn(false);
-            setUserName('');
     };
 
     return(
         <Router>
             <div style={appStyle}>
-                <Heading isLogIn = {userLoggedIn} userName = {userName} onLogout={handleLogout} />
+                <Heading isLogIn = {userLoggedIn} onLogout={handleLogout} />
                 <Routes>
-                    <Route path="/home" element={<Home userName = {userName}/>} />
+                    <Route path="/home" element={<Home/>} />
                     <Route path="/video" element={<Video />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />

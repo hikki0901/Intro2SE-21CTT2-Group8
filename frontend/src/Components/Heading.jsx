@@ -8,6 +8,8 @@ import "../CSS/Heading.css"
 
 function Heading(props){
     const type = window.localStorage.getItem("type");
+    const login = window.localStorage.getItem("isLogin");
+    const name = window.localStorage.getItem("username");
     const navigate = useNavigate();
     const onSubmit = () => {
       props.onLogout();
@@ -26,21 +28,21 @@ function Heading(props){
             </div>
 
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-              {props.isLogIn === true &&  (<li><Link to={type === "user" ? '/home' : '/dietitian/my-clients'} className="nav-link px-2">HOME</Link></li>)}
+              {(props.isLogIn === true || login == 1) &&  (<li><Link to={type === "user" ? '/home' : '/dietitian/my-clients'} className="nav-link px-2">HOME</Link></li>)}
               <li><Link to ='/video' class="nav-link px-2">VIDEOS</Link></li>
               <li><Link to ='/about' class="nav-link px-2">ABOUT</Link></li>
               <li><Link to ='/contact' class="nav-link px-2">CONTACT</Link></li>
             </ul>
 
-            {props.isLogIn === false && (<div class="col-md-2 text-end row">
+            {(props.isLogIn === false && login != 1) && (<div class="col-md-2 text-end row">
               <Link to ='/login' type="button" class="btn me-2 col-5" id="loggin">LOGIN</Link>
               <Link to ='/signup' type="button" class="btn col-5" id = "signup">SIGN UP</Link>
             </div>)}
 
-      {props.isLogIn === true && (<div class="verticalLine col-md-3 row">
+      {(props.isLogIn === true || login == 1) && (<div class="verticalLine col-md-3 row">
         <input class="col notification" type="image" src={notification} />
         <input class="col user-image" type="image" src={userImage}></input>
-        <p class="col username">{props.userName}</p>
+        <p class="col username">{name}</p>
         <div class="col expand">
           <input className="dropdown-toggle" type="image" src={expandArrow}/>
           <div className="dropdown-content">

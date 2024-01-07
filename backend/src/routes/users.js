@@ -54,7 +54,15 @@ router.post("/login", async (req, res) => {
             return res.json({ message: "User or password is invalid" });
         }
         const token = jwt.sign({ id: user._id}, "token");
-        res.status(200).json({ success: true, message: "Login successful", token, userID: user._id, userName: user.lastName, email: user.email, type: "user" });
+        res.status(200).json({ 
+            success: true, 
+            message: "Login successful", 
+            token, 
+            userID: user._id, 
+            userName: user.lastName, 
+            email: user.email, 
+            type: "user", 
+            isLogin: 1 });
     }
     else {
         const isValidPassword = await bcrypt.compare(password, dietitian.password);
@@ -62,7 +70,15 @@ router.post("/login", async (req, res) => {
             return res.json({ message: "User or password is invalid" });
         }
         const token = jwt.sign({ id: dietitian._id}, "token");
-        res.status(200).json({ success: true, message: "Login successful", token, dietitianID: dietitian._id, dietitianName: dietitian.lastName, email: dietitian.email, type: "dietitian" });
+        res.status(200).json({ 
+            success: true, 
+            message: "Login successful", 
+            token, 
+            dietitianID: dietitian._id, 
+            dietitianName: dietitian.lastName, 
+            email: dietitian.email, 
+            type: "dietitian", 
+            isLogin: 1 });
     }
 });
 
