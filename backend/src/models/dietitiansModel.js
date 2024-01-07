@@ -29,7 +29,11 @@ const dietitianSchema = new mongoose.Schema({
   gender: {
     type: String,
     default: null,
-  },
+  }, 
+  degree : {
+    type: String,
+    default: null,
+  }
 });
 
 export const dietitianModel = mongoose.model("dietitians", dietitianSchema);

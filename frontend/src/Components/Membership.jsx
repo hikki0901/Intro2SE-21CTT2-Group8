@@ -4,28 +4,7 @@ import "../CSS/membership.css"
 import DietitianCard from './UserCard';
 import axios from 'axios';
 
-const Dietitian = [{
-    id: 1,
-    imageLink:require("../image/profile_pic.png"),
-    name: "Jessoca",
-    degree: "Master’s Degree in Public Health Nutrition"
-},{
-    id: 2,
-    imageLink:require("../image/profile_pic.png"),
-    name: "Jessica",
-    degree: "Certified Specialist in Sports Dietetics (CSSD)"
-},{
-    id: 3,
-    imageLink:require("../image/profile_pic.png"),
-    name: "Jessuca",
-    degree: "Certified Diabetes Educator (CDE)"
-},{
-    id: 4,
-    imageLink:require("../image/profile_pic.png"),
-    name: "Jessaca",
-    degree: "Bachelor’s Degree in Dietetics"
-},
-]
+const Dietitians = []
 
 function createDietitanCard(dietitianItem){
     return(
@@ -51,12 +30,29 @@ function getFirstDayOfNextMonth() {
     return { firstDay: formattedFirstDay, daysLeft };
 }
 
+function addProfiles(dietitian) {
+    Dietitians.length = 0;
+    // Iterate through names and degrees to create and add profiles
+    for (let i = 0; i < dietitian.length; i++) {
+      let newDietitian = {
+        
+        id: i + 1, // Generate a new ID (you can adjust this logic)
+        imageLink: require("../image/profile_pic.png"), // You can set a default image link or leave it empty
+        name: dietitian[i].firstName + " " + dietitian[i].lastName,
+        degree: dietitian[i].degree,
+      };
+      console.log(newDietitian);
+  
+      Dietitians.push(newDietitian);
+    }
 
+}
 function Membership(){
     const [isPremiumMember, setIsPremiumMember] = useState(false);
     const [loading, setLoading] = useState(true);
     const [firstDay, setFirstDay] = useState('');
     const [daysLeft, setDaysLeft] = useState(0);
+    const [dietitian, setDietitian] = useState([]);
     
     useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -71,13 +67,27 @@ function Membership(){
         } catch (error) {
             console.error("Error fetching premium membership:", error);
             // Handle the error as needed
+        } 
+        try {
+            const response = await axios.post("http://localhost:4000/dietitian/view");
+            setDietitian(response.data.dietitians);
+            
+            
+        } catch (error) {
+            console.error("Error fetching dietitian data:", error);
+            // Handle the error as needed
         } finally {
-            setLoading(false); // Set loading to false whether the request is successful or not
+            setLoading(false);
         }
         };
-
+        
         fetchMembership();
+        
     }, []);
+
+    useEffect(() => {
+        addProfiles( dietitian );
+    }, [dietitian]);
 
     const handleSubscribe = async () => {
         var email = window.localStorage.getItem("email");
@@ -108,7 +118,7 @@ function Membership(){
             <div className='premium-container'>
                 <div className='suggestion'>
                     <h1>Dietitian suggestions</h1>
-                    {Dietitian.map(createDietitanCard)}
+                    {Dietitians.map(createDietitanCard)}
                 </div>
                 <div className='status'>
                     <h1>Membership status</h1>
