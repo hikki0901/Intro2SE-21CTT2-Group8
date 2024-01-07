@@ -34,7 +34,7 @@ function MealCard_4({ totalIntake, target }) {
     return (
       <div className="mealCard_4 p-2 mt-3">
         <p className="ttintake">Total intake</p>
-        <p className="textStyle">{`${totalIntake}/${target} kcal`}</p>
+        <p className="textStyle text-center">{`${totalIntake}/${target} kcal`}</p>
         <p style={{ textAlign: 'center' }}>{message}</p>
       </div>
     );

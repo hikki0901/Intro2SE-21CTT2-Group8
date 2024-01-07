@@ -22,7 +22,7 @@ function PremiumCard(){
 }
 
 function SlideBar({ userType }){
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(true);
   const isDietitian = userType === "dietitian";
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
-import ClipLoader from "react-spinners/ClipLoader";
+import Loading from './Loading';
 import axios from 'axios';
 
 function getDayMeal(Meals1, i){
@@ -11,7 +11,7 @@ function getDayMeal(Meals1, i){
   
 }
 
-function createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, handleAddFood, handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove) {
+function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood, handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove) {
 
   if (mealItem.foods.length === 0){
     mealItem.foods.push("");
@@ -21,6 +21,8 @@ function createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, h
     handleTextChange(e, mealId, foodIndex, editing);
     if (!editing && !saved) {
       setSaved(true);
+      setMeals1(TempMeal);
+      update_meals1_to_backend();
     }
     if (add === true){
       handleAddFood(mealId, add, setAdd)
@@ -35,6 +37,9 @@ function createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, h
     handleTextChangeForTarget(e, mealId, editing);
     if (!editing && !saved) {
       setSaved(true);
+      setSaved(true);
+      setMeals1(TempMeal);
+      update_meals1_to_backend();
     }
   };
 
@@ -62,6 +67,7 @@ function getDay(i) {
 
 function MealPlan(){
   const [Meals1, setMeals1] = useState();
+  const [TempMeal, setTempMeal] = useState();
   const [day, setDay] = useState(0);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
@@ -74,7 +80,7 @@ function MealPlan(){
   };
 
   const handleTextChange = (e, mealId, foodIndex, editing) => {
-      setMeals1((prevMeals) => {
+      setTempMeal((prevMeals) => {
         const updatedMeals = [...prevMeals];
         if (editing === false){
           updatedMeals[day].meal_info[mealId - 1].foods[foodIndex] = e.target.innerText;
@@ -84,7 +90,7 @@ function MealPlan(){
   };
 
   const handleTextChangeForTarget = (e, mealId, editing) => {
-    setMeals1((prevMeals) => {
+    setTempMeal((prevMeals) => {
       const updatedMeals = [...prevMeals];
       if (editing === false){
         const currentText = e.target.innerText;
@@ -97,18 +103,18 @@ function MealPlan(){
   };
 
   const handleAddFood = (mealId, add, setAdd) => {
-      setMeals1((prevMeals) => {
+      setTempMeal((prevMeals) => {
         const updatedMeals = [...prevMeals];
         if (add === true){
           updatedMeals[day].meal_info[mealId - 1].foods.push("New Food Item");
+          setAdd(false);
         }
-        setAdd(false);
         return updatedMeals;
       });
   };
 
   const handleDeleteFood = (mealId, foodIndex, remove, setRemove) => {
-    setMeals1((prevMeals) => {
+    setTempMeal((prevMeals) => {
       const updatedMeals = [...prevMeals];
       if (remove === true){
         updatedMeals[day].meal_info[mealId - 1].foods.splice(foodIndex, 1);
@@ -141,6 +147,7 @@ function MealPlan(){
         var email = window.localStorage.getItem("email");
         const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
         setMeals1(response.data.Meals1);
+        setTempMeal([...response.data.Meals1]);
     } catch (error) {
         console.error("Error fetching meals:", error);
         // Handle the error as needed
@@ -154,21 +161,11 @@ function MealPlan(){
 
   if (loading) {
     return (
-      <div class="home-style row">
-        <div class="col-2">
-          <SlideBar class="col-3" />
-        </div>
-        <div class ="loading col-10">
-          <ClipLoader
-          color= "#36d7b7"
-          loading={loading}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"/>
-        </div>
-    </div>
-  );
+      <Loading loading = {loading}/>
+    );
   }
+
+  const update_meals1_to_backend  = () => {}
 
   return(
     <div class="home-style row">
@@ -177,7 +174,7 @@ function MealPlan(){
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>
-            {getDayMeal(Meals1, day).map((mealItem) => createMealCard(mealItem, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
+            {getDayMeal(TempMeal, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
         </div>
         
         <div class = "col-5 edit-half">
