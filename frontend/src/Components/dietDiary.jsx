@@ -1,10 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3, MealCard_4, Suggestions} from "./MealCard";
-import Meals from '../data/Meals';
 import "../CSS/mealPlan.css"
 import "../CSS/dietDiary.css"
-import {NavLink, resolvePath} from 'react-router-dom';
 import axios from 'axios';
 
 function createMealCard(mealItem){

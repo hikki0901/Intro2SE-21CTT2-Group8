@@ -59,15 +59,22 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
 }
 
 function getDay(i) {
-  const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   return days[i] || "";
+}
+
+const currentDayIndex = () => {
+  const currentDate = new Date();
+  const dayIndex = currentDate.getDay(); 
+  
+  return dayIndex;
 }
 
 
 function MealPlan(props){
   const [Meals1, setMeals1] = useState();
   const [TempMeal, setTempMeal] = useState();
-  const [day, setDay] = useState(0);
+  const [day, setDay] = useState(currentDayIndex);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saved, setSaved] = useState(true);
@@ -231,43 +238,43 @@ function MealPlan(props){
         <button type="button" class="col-12 button-color" id="change" onClick={handleSaveClick} disabled = {saved}>Save</button>
             <div class="d-flex justify-content-center col-12">
                 <button type="button" class="button-color"  onClick={addFoodItem} disabled={!editing}>Add</button>
-                <button type="button" class="button-color" onClick={handleEditClick} disabled={editing}>Edit</button>
+                <button type="button" class="button-color" onClick={handleEditClick} disabled={editing || day < currentDayIndex()}>Edit</button>
                 <button type="button" class="button-color" onClick={removeFoodItem} disabled={!editing}>Delete</button>
             </div>
             <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto">
             <li>
             <a type='button' onClick={() => handleClick(0)} className={`nav-link link-body-emphasis ${day === 0 ? 'active' : ''}`} aria-current="page">
-                Monday
+                Sunday
               </a>
             </li>
             <li>
             <a type='button' onClick={() => handleClick(1)} className={`nav-link link-body-emphasis ${day === 1 ? 'active' : ''}`} aria-current="page">
-                Tuesday
+                Monday
               </a>
             </li>
             <li> 
             <a type='button' onClick={() => handleClick(2)} className={`nav-link link-body-emphasis ${day === 2 ? 'active' : ''}`} aria-current="page">
-                Wednesday
+                Tuesday
               </a>
             </li>
             <li>
             <a type='button' onClick={() => handleClick(3)} className={`nav-link link-body-emphasis ${day === 3? 'active' : ''}`} aria-current="page">
-                Thursday
+                Wednesday
               </a>
             </li>
             <li>
             <a type='button' onClick={() => handleClick(4)} className={`nav-link link-body-emphasis ${day === 4 ? 'active' : ''}`} aria-current="page">
-                Friday
+                Thursday
               </a>
             </li>
             <li>
             <a type='button' onClick={() => handleClick(5)} className={`nav-link link-body-emphasis ${day === 5 ? 'active' : ''}`} aria-current="page">
-                Sartuday
+                Friday
               </a>
             </li>
             <li>
             <a type='button' onClick={() => handleClick(6)} className={`nav-link link-body-emphasis ${day === 6 ? 'active' : ''}`} aria-current="page">
-                Sunday
+                Saturday
               </a>
             </li>
             </ul>

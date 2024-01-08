@@ -61,7 +61,19 @@ function Home(){
     }
     ]
 
-    const progress = '75%';
+    const progress = () => {
+        const currentDayIndex = new Date().getDay();
+        const daysInWeek = 7;
+        
+        const dayProgress = Math.round((currentDayIndex / daysInWeek) * 100);
+        
+        return dayProgress + '%';
+    };
+      
+      // Example usage:
+      const result = progress();
+      console.log("Percentage of the day passed: " + result);
+      
 
     const quotes = ""
 
@@ -77,9 +89,9 @@ function Home(){
             <div class="progress-bar-div d-flex align-items-center justify-content-center">
                 <p class="progress-word">progress</p>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style={{width: progress}} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style={{width: progress()}} aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <p class="progress-word" >{progress}</p>
+                <p class="progress-word" >{progress()}</p>
             </div>
         </div>
         <div class="col">

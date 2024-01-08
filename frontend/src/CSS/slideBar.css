@@ -1,5 +1,6 @@
 .side{
     background-color: #ECE0D3;
+    min-height: 100vh;
     height: 100%;
 }
 
