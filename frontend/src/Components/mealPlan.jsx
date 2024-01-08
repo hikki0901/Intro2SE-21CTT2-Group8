@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
 import Loading from './Loading';
@@ -80,8 +80,12 @@ function MealPlan(props){
   const [saved, setSaved] = useState(true);
   const [add, setAdd] = useState(false);
   const [remove, setRemove] = useState(false);
+  const isDietitian = props.userType === "dietitian";
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const data = location.state && location.state.data;
   
   const onSubmit = async (event) => {
       if (!Meals1) {
@@ -90,12 +94,15 @@ function MealPlan(props){
       }
 
       try {
-        const email = window.localStorage.getItem("email");
+        const email = data ? data : window.localStorage.getItem("email");
         const response = await axios.post("http://localhost:4000/meals/save", {email, Meals1});
 
         if (response.data.success) {
           alert(response.data.message);
-          window.localStorage.setItem("mealplan", JSON.stringify(Meals1));
+          if (!isDietitian) {
+            window.localStorage.setItem("mealplan", JSON.stringify(Meals1));
+          }
+          
         } else {
           alert(response.data.message);
         }
@@ -182,11 +189,13 @@ function MealPlan(props){
       try {
         // Check if "mealplan" is already set in local storage
         if (!window.localStorage.getItem("mealplan")) {
-          var email = window.localStorage.getItem("email");
+          var email = data ? data : window.localStorage.getItem("email");
           const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
           setMeals1(response.data.Meals1);
           setTempMeal([...response.data.Meals1]);
-          window.localStorage.setItem("mealplan", JSON.stringify(response.data.Meals1));
+          if (!isDietitian) {
+            window.localStorage.setItem("mealplan", JSON.stringify(response.data.Meals1));
+          }
         } else {
           const storedMeals = JSON.parse(window.localStorage.getItem("mealplan"));
           setMeals1(storedMeals);

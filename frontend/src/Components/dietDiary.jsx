@@ -47,9 +47,6 @@ function DietDiary(props){
     const location = useLocation();
     const data = location.state && location.state.data;
 
-    // Use the 'data' in your component
-    console.log(data);
-
     const handleSuggestionChange = (event) => {
       setSuggestion(event.target.value);
     };
@@ -72,7 +69,7 @@ function DietDiary(props){
     }
 
     useEffect(() => {
-        var email = window.localStorage.getItem("email");
+        var email= data? data : window.localStorage.getItem("email");
         
         const fetchMeals = async () => {
         try {

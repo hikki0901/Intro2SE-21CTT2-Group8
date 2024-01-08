@@ -57,6 +57,7 @@ function MyClients(){
             id: client[i].id, // Generate a new ID (you can adjust this logic)
             name: client[i].firstName + " " + client[i].lastName,
             progress: client[i].target + "%",
+            email: client[i].email,
           };
       
           usersData.push(newClient);
@@ -159,9 +160,9 @@ function MyClients(){
                                 </div>
                             </div>
                             <div className='button-list'>
-                                <button onClick={() => navigate(`/dietitian/meal-plan/${selectedUser.id}`)}>Plan</button>
-                                <button onClick={() => handleNavigate(`/dietitian/diet-diary/${selectedUser.id}`, selectedUser.id)}>Diary</button>
-                                <button onClick={() => navigate(`/dietitian/analytics/${selectedUser.id}`)}>Analytics</button>
+                                <button onClick={() => handleNavigate(`/dietitian/meal-plan/${selectedUser.id}`, selectedUser.email)}>Plan</button>
+                                <button onClick={() => handleNavigate(`/dietitian/diet-diary/${selectedUser.id}`, selectedUser.email)}>Diary</button>
+                                <button onClick={() => handleNavigate(`/dietitian/analytics/${selectedUser.id}`, selectedUser.email)}>Analytics</button>
                             </div>
                         </div>
                         }

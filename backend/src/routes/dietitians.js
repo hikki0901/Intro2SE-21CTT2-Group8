@@ -56,7 +56,7 @@ router.post("/viewclient", async (req, res) => {
         for (let i = 0; i < userMeals.length; i++) {
           target += (userMeals[i].target ? userMeals[i].target : 0) / userMeals.length;
         }
-        progress.push({id: user._id, firstName: user.firstName, lastName: user.lastName, DOB: user.DOB, gender: user.gender, height: user.height, weight: user.weight,target: target});
+        progress.push({id: user._id, firstName: user.firstName, lastName: user.lastName, DOB: user.DOB, gender: user.gender, height: user.height, weight: user.weight,target: target, email: user.email});
       }
       
       }

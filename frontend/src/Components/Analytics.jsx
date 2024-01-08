@@ -5,7 +5,7 @@ import {MealCard_2} from "./MealCard";
 import axios from 'axios';
 import "../CSS/Analytics.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import { json } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 
 
 
@@ -13,16 +13,24 @@ function Analytics(props){
     const [calories, setCalories] = useState(0);
     const [loading, setLoading] = useState(true);
     const [BMIdata, setBMIdata] = useState();
-    const [ratio, setRatio] = useState(0)
+    const [ratio, setRatio] = useState(0);
+    const isDietitian = props.userType === "dietitian";
+
+    const location = useLocation();
+    const data = location.state && location.state.data;
+
     useEffect(() => {
-        var email = window.localStorage.getItem("email");
+        var email = data ? data : window.localStorage.getItem("email");
         
         const fetchCalories = async () => {
         try {
           if (!window.localStorage.getItem("calories_difference")){
             const response = await axios.post("http://localhost:4000/meals/analytics", { email });
             setCalories(response.data.calories_difference);
-            window.localStorage.setItem("calories_difference", response.data.calories_difference);
+            if (!isDietitian){
+              window.localStorage.setItem("calories_difference", response.data.calories_difference);
+            }
+            
           } else {
             const storedCalories = window.localStorage.getItem("calories_difference");
             setCalories(storedCalories);
@@ -37,7 +45,9 @@ function Analytics(props){
           if (!window.localStorage.getItem("ratio")) {
             const response = await axios.post("http://localhost:4000/monthlyStat/monthly-report", { email });
             setRatio(response.data.ratio);
-            window.localStorage.setItem("ratio", response.data.ratio);
+            if (!isDietitian){
+              window.localStorage.setItem("ratio", response.data.ratio);
+            }
           } else {
             const storedRatio = window.localStorage.getItem("ratio");
             setRatio(storedRatio);
@@ -50,7 +60,9 @@ function Analytics(props){
           if (!window.localStorage.getItem("BMI")) {
             const response = await axios.post("http://localhost:4000/monthlyStat/graph", { email });
             setBMIdata(response.data.BMI);
-            window.localStorage.setItem("BMI", JSON.stringify(response.data.BMI));
+            if (!isDietitian){
+              window.localStorage.setItem("BMI", JSON.stringify(response.data.BMI));
+            }
           } else {
             const storedBMI = JSON.parse(window.localStorage.getItem("BMI"));
             setBMIdata(storedBMI);
