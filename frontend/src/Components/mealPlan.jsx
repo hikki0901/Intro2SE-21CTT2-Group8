@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
-import Loading from './Loading';
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -33,12 +32,10 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
     }
   };
 
-  const handleInputForTarget = (e, mealId, foodIndex) => {
-    handleTextChangeForTarget(e, mealId, editing, setMeals1, update_meals1_to_backend);
+  const handleInputForTarget = (e, mealId, check) => {
+    handleTextChangeForTarget(e, mealId, editing, setMeals1, update_meals1_to_backend, check);
     if (!editing && !saved) {
       setSaved(true);
-      setMeals1(TempMeal);
-      update_meals1_to_backend();
     }
   };
 
@@ -52,8 +49,8 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
           {food}
         </li>
       ))}
-      target={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id)} id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
-      calories={mealItem.totalCalories}
+      target={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id, true)} id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
+      calories={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id, false)} id ="tg1"  class ="target">{mealItem.totalCalories}</p>}
     />
   );
 }
@@ -80,12 +77,8 @@ function MealPlan(props){
   const [saved, setSaved] = useState(true);
   const [add, setAdd] = useState(false);
   const [remove, setRemove] = useState(false);
-  const isDietitian = props.userType === "dietitian";
 
   const navigate = useNavigate();
-
-  const location = useLocation();
-  const data = location.state && location.state.data;
   
   const onSubmit = async (event) => {
       if (!Meals1) {
@@ -94,15 +87,12 @@ function MealPlan(props){
       }
 
       try {
-        const email = data ? data : window.localStorage.getItem("email");
+        const email = window.localStorage.getItem("email");
         const response = await axios.post("http://localhost:4000/meals/save", {email, Meals1});
 
         if (response.data.success) {
           alert(response.data.message);
-          if (!isDietitian) {
-            window.localStorage.setItem("mealplan", JSON.stringify(Meals1));
-          }
-          
+          window.localStorage.setItem("mealplan", JSON.stringify(Meals1));
         } else {
           alert(response.data.message);
         }
@@ -129,14 +119,17 @@ function MealPlan(props){
       });
   };
 
-  const handleTextChangeForTarget = (e, mealId, editing, setMeals1, update_meals1_to_backend) => {
+  const handleTextChangeForTarget = (e, mealId, editing, setMeals1, update_meals1_to_backend, check) => {
     setTempMeal((prevMeals) => {
       const updatedMeals = [...prevMeals];
       if (editing === false){
-        const currentText = e.target.innerText;
-        const newText = currentText.slice(0, -1); 
-        e.target.innerText = newText;
-        updatedMeals[day].meal_info[mealId - 1].target = e.target.innerText;
+        if (check){
+          const newText = e.target.innerText.slice(0, -1); 
+          updatedMeals[day].meal_info[mealId - 1].target = newText;
+        }
+        else {
+          updatedMeals[day].meal_info[mealId - 1].totalCalories = e.target.innerText;
+        }
         setMeals1(updatedMeals);
         update_meals1_to_backend()
       }
@@ -189,13 +182,11 @@ function MealPlan(props){
       try {
         // Check if "mealplan" is already set in local storage
         if (!window.localStorage.getItem("mealplan")) {
-          var email = data ? data : window.localStorage.getItem("email");
+          var email = window.localStorage.getItem("email");
           const response = await axios.post("http://localhost:4000/meals/mealplan", { email });
           setMeals1(response.data.Meals1);
           setTempMeal([...response.data.Meals1]);
-          if (!isDietitian) {
-            window.localStorage.setItem("mealplan", JSON.stringify(response.data.Meals1));
-          }
+          window.localStorage.setItem("mealplan", JSON.stringify(response.data.Meals1));
         } else {
           const storedMeals = JSON.parse(window.localStorage.getItem("mealplan"));
           setMeals1(storedMeals);
@@ -240,8 +231,7 @@ function MealPlan(props){
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>
-            {saved ? getDayMeal(Meals1, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove)) :
-            getDayMeal(TempMeal, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
+            {getDayMeal(Meals1, day).map((mealItem) => createMealCard(update_meals1_to_backend, mealItem,TempMeal, setMeals1, handleTextChange, handleTextChangeForTarget, handleAddFood ,handleDeleteFood, editing, saved, setSaved, add, setAdd, remove, setRemove))}
         </div>
         
         <div class = "col-5 edit-half">
