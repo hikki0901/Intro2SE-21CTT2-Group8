@@ -56,9 +56,9 @@ function Calendar(){
       <div className="numeric-days-container">
         {daysInWeek.map((dayItem, index) => (
           <div key={index} className="numeric-day-item">
-            <a type='button' onClick={() => handleClick(index)} className = {`day-item nav-link link-body-emphasis ${day === index ? 'active' : ''}`}>
+            <div className = {`day-item nav-link link-body-emphasis ${day === index ? 'active' : ''}`}>
                 {dayItem}
-            </a>
+            </div>
           </div>
         ))}
       </div>

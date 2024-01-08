@@ -60,15 +60,15 @@
 }
 
 .suggestCard{
-  width: 400px;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
   margin-left: 100px;
   border-radius: 20px;
   background: linear-gradient(
   to top,
   #11B3CF 0%,
-  #11B3CF 75%,
-  #F79D25 75%,
+  #11B3CF calc(100% - 50px),
+  #F79D25 calc(100% - 50px),
   #F79D25 100%
 );
 }

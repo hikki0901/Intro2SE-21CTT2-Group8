@@ -16,6 +16,8 @@ import Membership from "./Membership";
 import Settings from "./Settings";
 import MyClientsChat from "./MyClientsChat";
 import MyClients from "./MyClients";
+import ForgetPassWord from "./forgetPassword";
+import ResetPassWord from "./reset-password";
 
 const appStyle = {
     margin: "0",
@@ -47,6 +49,8 @@ function App(){
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login onLogin={handleLogin}/>} />
+                    <Route path="/forget-password" element={<ForgetPassWord/>} />
+                    <Route path="/reset-password" element={<ResetPassWord/>} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/meal-plan" element={<MealPlan />} />
                     <Route path="/diet-diary" element={<DietDiary />} />

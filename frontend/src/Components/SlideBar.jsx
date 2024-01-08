@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import logo from "../image/Logo.png";
 import barChart from "../image/Bar Chart.png";
 import Message from "../image/Chat Message.png";
 import homePage from "../image/Home Page.png";
