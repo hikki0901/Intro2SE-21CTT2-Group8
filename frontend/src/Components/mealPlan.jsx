@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
 import {MealCard_3} from "./MealCard";
+import {useNavigate} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
 import Loading from './Loading';
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 
 function getDayMeal(Meals1, i){
   return (Meals1[i].meal_info);
@@ -75,6 +77,31 @@ function MealPlan(){
   const [add, setAdd] = useState(false);
   const [remove, setRemove] = useState(false);
 
+  const navigate = useNavigate();
+  
+  const onSubmit = async (event) => {
+
+      if (!Meals1) {
+        alert ("Save meals failed");
+        return;
+      }
+
+      try {
+        const email = window.localStorage.getItem("email");
+        const response = await axios.post("http://localhost:4000/meals/save", {email, Meals1});
+
+        if (response.data.success) {
+          alert(response.data.message);
+        } else {
+          alert(response.data.message);
+        }
+        
+      } catch (err) {
+        alert(err);
+        console.error("Save meals failed", err);
+      }
+  };
+
   const handleClick = (i)=>{
     setDay(i)
   };
@@ -131,6 +158,7 @@ function MealPlan(){
   };
 
   const handleSaveClick = () => {
+    onSubmit();
     setEditing(false); 
   };
 
@@ -170,8 +198,20 @@ function MealPlan(){
 
   if (loading) {
     return (
-      <Loading loading = {loading}/>
-    );
+      <div class="home-style row">
+        <div class="col-2">
+          <SlideBar class="col-3" />
+        </div>
+        <div class ="loading col-10">
+          <ClipLoader
+          color= "#36d7b7"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"/>
+        </div>
+    </div>
+  );
   }
 
   const update_meals1_to_backend  = () => {}

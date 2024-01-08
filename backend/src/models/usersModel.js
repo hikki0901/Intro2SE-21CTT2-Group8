@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: 0,
   },
+  dietitianEmail: {
+    type: String,
+    default: null,
+  }
 });
 
 export const userModel = mongoose.model("users", userSchema);
