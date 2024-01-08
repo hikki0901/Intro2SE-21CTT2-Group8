@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Footer from "./Footer";
 import "../CSS/Login.css";
 
@@ -75,7 +75,7 @@ function Login() {
                 <input
                   type="text"
                   placeholder="Enter your Email"
-                  style={{paddingLeft : '20px'}}
+                  style={{paddingLeft : '20px', border: 'none'}}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 ></input>
@@ -85,7 +85,7 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password"
-                  style={{paddingLeft : '20px'}}
+                  style={{paddingLeft : '20px', border: 'none'}}
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   onKeyPress={handleKeyPress} 
@@ -94,7 +94,7 @@ function Login() {
 
               <button onClick={onSubmit} className="login-button" type="submit">Log in</button>
 
-              <a href="#" className="forgot-pass">Forget password?</a>
+              <Link to="/forget-password" className="forgot-pass">Forget password?</Link>
 
               <hr class="hr"></hr>
 

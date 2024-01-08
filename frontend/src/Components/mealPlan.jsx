@@ -23,7 +23,6 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
     handleTextChange(e, mealId, foodIndex, editing);
     if (!editing && !saved) {
       setSaved(true);
-      console.log(TempMeal)
       setMeals1(TempMeal);
       update_meals1_to_backend();
     }
@@ -158,7 +157,6 @@ function MealPlan(){
   };
 
   const handleSaveClick = () => {
-    onSubmit();
     setEditing(false); 
   };
 
@@ -214,7 +212,7 @@ function MealPlan(){
   );
   }
 
-  const update_meals1_to_backend  = () => {}
+  const update_meals1_to_backend  = () => {onSubmit();}
 
   return(
     <div class="home-style row">
