@@ -4,6 +4,7 @@ import {MealCard_3, MealCard_4, Suggestions} from "./MealCard";
 import "../CSS/mealPlan.css"
 import "../CSS/dietDiary.css"
 import axios from 'axios';
+import {useLocation} from 'react-router-dom';
 
 function createMealCard(mealItem){
     return(
@@ -42,6 +43,12 @@ function DietDiary(props){
     const [target, setTarget] = useState(0); 
     const [suggestion, setSuggestion] = useState("");
     const isDietitian = props.userType === "dietitian";
+
+    const location = useLocation();
+    const data = location.state && location.state.data;
+
+    // Use the 'data' in your component
+    console.log(data);
 
     const handleSuggestionChange = (event) => {
       setSuggestion(event.target.value);

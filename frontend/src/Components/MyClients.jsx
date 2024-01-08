@@ -31,6 +31,10 @@ function MyClients(){
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const handleNavigate = (path, dataToSend) => {
+        navigate(path, { state: { data: dataToSend } });
+    };
+
     function createUserCard(userItem){
         return(
             <UserCard
@@ -50,7 +54,7 @@ function MyClients(){
         for (let i = 0; i < client.length; i++) {
           let newClient = {
             
-            id: i + 1, // Generate a new ID (you can adjust this logic)
+            id: client[i].id, // Generate a new ID (you can adjust this logic)
             name: client[i].firstName + " " + client[i].lastName,
             progress: client[i].target + "%",
           };
@@ -103,6 +107,7 @@ function MyClients(){
     }
     return(
         <div class="row">
+
         <div class="col-2">
             <SlideBar userType="dietitian" class="col-3" />
         </div>
@@ -155,7 +160,7 @@ function MyClients(){
                             </div>
                             <div className='button-list'>
                                 <button onClick={() => navigate(`/dietitian/meal-plan/${selectedUser.id}`)}>Plan</button>
-                                <button onClick={() => navigate(`/dietitian/diet-diary/${selectedUser.id}`)}>Diary</button>
+                                <button onClick={() => handleNavigate(`/dietitian/diet-diary/${selectedUser.id}`, selectedUser.id)}>Diary</button>
                                 <button onClick={() => navigate(`/dietitian/analytics/${selectedUser.id}`)}>Analytics</button>
                             </div>
                         </div>
