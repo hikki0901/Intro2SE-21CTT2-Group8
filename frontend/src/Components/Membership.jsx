@@ -49,12 +49,28 @@ function addProfiles(dietitian) {
     }
 
 }
+
+function addCurrentDietitian(personalDietitian) {
+    
+    currentDietitian.length = 0;
+    // Iterate through names and degrees to create and add profiles
+    
+    let newDietitian = {
+        id: personalDietitian._id, // Generate a new ID (you can adjust this logic)
+        imageLink: require("../image/profile_pic.png"), // You can set a default image link or leave it empty
+        name: personalDietitian.firstName + " " + personalDietitian.lastName,
+        degree: personalDietitian.degree,
+    };
+  
+    currentDietitian.push(newDietitian);
+}
 function Membership(){
     const [isPremiumMember, setIsPremiumMember] = useState(false);
     const [loading, setLoading] = useState(true);
     const [firstDay, setFirstDay] = useState('');
     const [daysLeft, setDaysLeft] = useState(0);
     const [dietitian, setDietitian] = useState([]);
+    const [personalDietitian, setPersonalDietitian] = useState([]);
     
     useEffect(() => {
         var email = window.localStorage.getItem("email");
@@ -78,6 +94,14 @@ function Membership(){
         } catch (error) {
             console.error("Error fetching dietitian data:", error);
             // Handle the error as needed
+        }
+        
+        try {
+            const response = await axios.post("http://localhost:4000/auth/viewdietitian");
+            setPersonalDietitian(response.data.dietitian);
+        } catch (error) {
+            console.error("Error fetching dietitian data:", error);
+            // Handle the error as needed
         } finally {
             setLoading(false);
         }
@@ -90,6 +114,10 @@ function Membership(){
     useEffect(() => {
         addProfiles( dietitian );
     }, [dietitian]);
+
+    useEffect(() => {
+        addCurrentDietitian( personalDietitian );
+    }, [personalDietitian]);
 
     const handleSubscribe = async () => {
         var email = window.localStorage.getItem("email");
@@ -146,7 +174,7 @@ function Membership(){
                         {currentDietitian.length === 0 ? 
                         <DietitianCard image_link={profile_pic} name='No dietitian yet' degree='Choose your favourable dietitian to start'/>
                         :
-                        <DietitianCard imageLink={currentDietitian.imageLink} name={currentDietitian.name} degree={currentDietitian.degree}/>
+                        <DietitianCard image_link={currentDietitian[0].imageLink} name={currentDietitian[0].name} degree={currentDietitian[0].degree}/>
                         }
                     </div>
                 </div>

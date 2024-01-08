@@ -51,9 +51,21 @@ function DietDiary(props){
       setSuggestion(event.target.value);
     };
   
-    const handleSave = () => {
-      // Save the new suggestion here
-      console.log(suggestion);
+    const handleSave = async () => {
+        if (!suggestion) {
+            alert("please enter the suggestion")
+        }
+        var email= data ? data : window.localStorage.getItem("email");
+        try {
+            const response = await axios.post("http://localhost:4000/suggestion/save", { email, suggestion });
+            if (response.data.success) {
+                alert(response.data.message)
+            }
+        } catch (error) {
+            console.error("error updating suggestion", error);
+            alert(error);
+            // Handle the error as needed
+        }
     };
 
     let calcBmi = (e) => {
@@ -129,7 +141,21 @@ function DietDiary(props){
                        {createProgressCal({ totalIntake, target })}
 
 
-                       {createSuggestions({ suggestion, props, handleSuggestionChange })}
+                       <div class="suggestCard p-2 mt-3">
+                        <p  class="textSuggest">Suggests</p>
+                        {isDietitian ? (
+                        <label className='suggest'>
+                        <input
+                            type="text"
+                            value={suggestion}
+                            onChange={handleSuggestionChange}
+                            className="scrollableInput"
+                        />
+                        </label>
+                        ) : (
+                            <p className="suggest">{suggestion}</p>
+                        )}
+                        </div>
 
                         {!isDietitian ?
                         <div class ="bmiCal">

@@ -152,3 +152,8 @@ ul > li{
   height: 60px;
   margin-top: 10px;
 }
+
+.scrollableInput {
+  width: 320px; /* Set your desired width */
+  height: 300px; /* Set your desired height */
+}

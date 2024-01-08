@@ -31,5 +31,29 @@ router.post("/add", async (req, res) => {
     }
 });
 
+router.post("/save", async (req, res) => {
+    const { email, suggestion } = req.body;
+    try {
+        const suggestions = await suggestionModel.findOne({ userEmail: email, date: today });
+        if (suggestions) {
+            suggestions.context = suggestion;
+            await suggestions.save();
+        } else {
+            const newSuggestion = new suggestionModel({ userEmail, date: today, context: suggestion});
+            try {
+                await newSuggestion.save();
+                return res.json({ success: true, message: "Suggestion created successfully" });
+            } catch (error) {
+                console.error("Error saving suggestion:", error);
+                return res.json({ message: "Internal server error" });
+            }
+        }
+        res.json({ success: true, message: "Suggestion updated successfully" });
+    } catch (error) {
+        console.error("Error saving suggestion:", error);
+        res.json({ message: "Internal server error" });
+    }
+});
+
 
 export { router as suggestionRouter };

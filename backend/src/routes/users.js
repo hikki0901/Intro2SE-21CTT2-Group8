@@ -217,4 +217,16 @@ router.post("/resetpassword", async (req, res) => {
       }
 });
 
+router.post("/viewdietitian", async (req, res) => {
+    const email = req.body
+    try {
+        const user = await userModel.findOne(email).select("dietitianEmail");
+        const dietitian = await dietitianModel.findOne({email : user.dietitianEmail}).select("firstName lastName degree _id")
+        res.status(200).json({ dietitian: dietitian });
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
 export { router as userRouter };

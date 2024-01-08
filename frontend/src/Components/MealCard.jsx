@@ -39,19 +39,21 @@ function MealCard_4({ totalIntake, target }) {
     );
   }
 
-function Suggestions({suggest, userType, onChange}) {
+function Suggestions({suggest, userType, handleSuggestionChange}) {
 
     const isDietitian = userType === "dietitian";
 
     return (<div class="suggestCard p-2 mt-3">
     <p  class="textSuggest">Suggests</p>
     {isDietitian ? (
-        <p
-          className="suggest"
-          contenteditable="true"
-          value={suggest}
-          onChange={onChange}
-        />
+      <label className='suggest'>
+      <input
+        type="text"
+        value={suggest}
+        onChange={handleSuggestionChange}
+        className="scrollableInput"
+      />
+      </label>
       ) : (
         <p className="suggest">{suggest}</p>
       )}
