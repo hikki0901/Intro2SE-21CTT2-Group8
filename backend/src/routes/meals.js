@@ -363,15 +363,34 @@ router.post("/save", async (req, res) => {
         if (j == 2) {
           s = "Dinner"
         }
-        updatedMeals = await mealModel.findOneAndUpdate(
-        {email, date: thisWeekDates[i], mealType: s},
-        {
+        const filter = { email, date: thisWeekDates[i], mealType: s };
+        const update = {
           content: Meals1[i].meal_info[j].foods,
           target: Meals1[i].meal_info[j].target,
-        },{
-          upsert: true,
-          new: true,
-        });
+        };
+
+        const existingMeals = await mealModel.findOne(filter);
+        if (existingMeals) {
+          if (existingMeals.content) {
+            updatedMeals = await mealModel.updateOne(
+              {email, date: thisWeekDates[i], mealType: s},
+              {
+                content: Meals1[i].meal_info[j].foods,
+                target: Meals1[i].meal_info[j].target,
+              });
+          } else {
+            updatedMeals = await mealModel.updateOne(
+              {email, date: thisWeekDates[i], mealType: s},
+              {
+                $push: { content: Meals1[i].meal_info[j].foods },
+                target: Meals1[i].meal_info[j].target,
+              });
+          }
+        } else {
+          const newMeals = new mealModel({ ...filter, ...update });
+          await newMeals.save();
+          console.log("User information added successfully");
+        }
       }
     if (updatedMeals.acknowledged) {
       res.json({ success: true, message: "User information updated successfully" });
