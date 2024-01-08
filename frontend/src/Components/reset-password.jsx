@@ -24,6 +24,7 @@ function ResetPassWord() {
         });
 
         if (response.data.success) {
+          alert(response.data.message);
           window.localStorage.clear();
           navigate("/login");
         } else {

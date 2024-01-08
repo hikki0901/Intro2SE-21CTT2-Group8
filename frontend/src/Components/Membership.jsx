@@ -42,7 +42,6 @@ function addProfiles(dietitian) {
         name: dietitian[i].firstName + " " + dietitian[i].lastName,
         degree: dietitian[i].degree,
       };
-      console.log(newDietitian);
   
       Dietitians.push(newDietitian);
     }

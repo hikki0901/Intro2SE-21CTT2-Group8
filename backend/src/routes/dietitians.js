@@ -1,8 +1,18 @@
 import express from "express";
 import { dietitianModel } from "../models/dietitiansModel.js";
+import { userModel } from '../models/usersModel.js';
+import {mealModel} from '../models/mealsModel.js';
 import bcrypt from "bcrypt";
 
 const router = express.Router();
+
+function getCurrentDayInISOFormat() {
+  const currentDate = new Date();
+  const isoDate = currentDate.toISOString().split('T')[0]; // Extracting the date part
+
+  return isoDate;
+}
+const today = getCurrentDayInISOFormat();
 
 router.post("/add", async (req, res) => {
     const { firstName, lastName, DOB, phone, email, password, gender, degree } = req.body;
@@ -32,8 +42,29 @@ router.post("/view", async (req, res) => {
       console.error('Error retrieving dietitians:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
+});
   
-
+router.post("/viewclient", async (req, res) => {
+  const {email} = req.body;
+  const progress = []
+  try {
+    const users = await userModel.find({dietitianEmail: email}).select('firstName lastName DOB gender height weight email');
+    for (const user of users) {
+      const userMeals = await mealModel.find({ email: user.email, date: today}).select('target');
+      if (userMeals) {
+        let target = 0;
+        for (let i = 0; i < userMeals.length; i++) {
+          target += (userMeals[i].target ? userMeals[i].target : 0) / userMeals.length;
+        }
+        progress.push({firstName: user.firstName, lastName: user.lastName, DOB: user.DOB, gender: user.gender, height: user.height, weight: user.weight,target: target});
+      }
+      
+      }
+    res.status(200).json({progress}); 
+  } catch (error) {
+    console.error('Error retrieving dietitians:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 export { router as dietitianRouter };

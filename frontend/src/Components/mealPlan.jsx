@@ -84,7 +84,6 @@ function MealPlan(props){
   const navigate = useNavigate();
   
   const onSubmit = async (event) => {
-
       if (!Meals1) {
         alert ("Save meals failed");
         return;
@@ -96,6 +95,7 @@ function MealPlan(props){
 
         if (response.data.success) {
           alert(response.data.message);
+          window.localStorage.setItem("mealplan", JSON.stringify(Meals1));
         } else {
           alert(response.data.message);
         }
