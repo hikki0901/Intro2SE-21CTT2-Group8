@@ -350,19 +350,15 @@ router.post("/save", async (req, res) => {
   try {
     const { email, Meals1 } = req.body;
     console.log(Meals1[0].meal_info[0].foods);
+
     var updatedMeals
     for (let i = 0; i < 7; i++)
       for (let j = 0; j < 3; j++) {
         var s;
-        if (j == 0) {
-          s = "Breakfast"
-        }
-        if (j == 1) {
-          s = "Lunch"
-        }
-        if (j == 2) {
-          s = "Dinner"
-        }
+        if (j == 0) { s = "Breakfast" }
+        if (j == 1) { s = "Lunch" }
+        if (j == 2) { s = "Dinner" }
+
         const filter = { email, date: thisWeekDates[i], mealType: s };
         const update = {
           content: Meals1[i].meal_info[j].foods,
@@ -372,15 +368,9 @@ router.post("/save", async (req, res) => {
         const existingMeals = await mealModel.findOne(filter);
         if (existingMeals) {
           if (existingMeals.content) {
-            updatedMeals = await mealModel.updateOne(
-              {email, date: thisWeekDates[i], mealType: s},
-              {
-                content: Meals1[i].meal_info[j].foods,
-                target: Meals1[i].meal_info[j].target,
-              });
+            updatedMeals = await mealModel.updateOne(filter, update);
           } else {
-            updatedMeals = await mealModel.updateOne(
-              {email, date: thisWeekDates[i], mealType: s},
+            updatedMeals = await mealModel.updateOne(filter,
               {
                 $push: { content: Meals1[i].meal_info[j].foods },
                 target: Meals1[i].meal_info[j].target,
