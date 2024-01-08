@@ -11,7 +11,6 @@ function Loading(props){
           size={150}
           aria-label="Loading Spinner"
           data-testid="loader"/>
-        <p class="textl">Loading....</p>
       </div>
     </div>
     )

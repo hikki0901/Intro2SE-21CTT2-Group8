@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom';
 import "../CSS/mealPlan.css";
 import Loading from './Loading';
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 
 function getDayMeal(Meals1, i){
   return (Meals1[i].meal_info);
@@ -197,8 +198,20 @@ function MealPlan(){
 
   if (loading) {
     return (
-      <Loading loading = {loading}/>
-    );
+      <div class="home-style row">
+        <div class="col-2">
+          <SlideBar class="col-3" />
+        </div>
+        <div class ="loading col-10">
+          <ClipLoader
+          color= "#36d7b7"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"/>
+        </div>
+    </div>
+  );
   }
 
   const update_meals1_to_backend  = () => {}
