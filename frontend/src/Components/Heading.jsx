@@ -6,6 +6,14 @@ import expandArrow from "../image/Expand Arrow.png"
 import {Link, useNavigate} from 'react-router-dom'
 import "../CSS/Heading.css"
 
+
+const notificationData = [
+  { id: 1, message: 'Hello, it\'s time to record your day with us!' },
+  { id: 2, message: 'A week has passed, your average daily completion is 78%. Nice!' },
+  { id: 3, message: 'Your dietitian has replied your chat.' },
+];
+
+
 function Heading(props){
     const type = window.localStorage.getItem("type");
     const login = window.localStorage.getItem("isLogin");
@@ -40,7 +48,19 @@ function Heading(props){
             </div>)}
 
       {(props.isLogIn === true || login == 1) && (<div class="verticalLine col-md-3 row">
-        <input class="col notification" type="image" src={notification} />
+        <div class="col expand">
+          <input id='noti-tog' className="dropdown-toggle" type="image" src={notification}/>
+          <div id='noti-dc' className="dropdown-content">
+            <h4>Notification</h4>
+            <div className="noti-list">
+              {notificationData.map(noti => (
+                <div key={noti.id} className="noti-content">
+                  <p>{noti.message}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
         <input class="col user-image" type="image" src={userImage}></input>
         <p class="col username">{name}</p>
         <div class="col expand">

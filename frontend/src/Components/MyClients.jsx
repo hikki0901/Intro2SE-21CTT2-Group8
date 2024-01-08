@@ -145,7 +145,6 @@ function MyClients(){
                             <div className='client-details'>
                                 <div className='client-detail-section'>
                                     <p>Date of birth:</p>
-                                    {/* <p>01/01/2000</p> */}
                                     <p>{selectedUser.DOB}</p>
                                 </div>
                                 <div className='client-detail-section'>
