@@ -363,11 +363,14 @@ router.post("/save", async (req, res) => {
         if (j == 2) {
           s = "Dinner"
         }
-        updatedMeals = await mealModel.updateOne(
+        updatedMeals = await mealModel.findOneAndUpdate(
         {email, date: thisWeekDates[i], mealType: s},
         {
           content: Meals1[i].meal_info[j].foods,
           target: Meals1[i].meal_info[j].target,
+        },{
+          upsert: true,
+          new: true,
         });
       }
     if (updatedMeals.acknowledged) {
