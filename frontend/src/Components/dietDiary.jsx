@@ -27,7 +27,7 @@ function createProgressCal({ totalIntake, target }) {
 function createSuggestions({suggestion}) {
     return <Suggestions suggest={suggestion}/>;
 }
-function DietDiary(){
+function DietDiary(props){
 
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
@@ -93,7 +93,7 @@ function DietDiary(){
     return (
     <div class="home-style row">
         <div class="col-2">
-            <SlideBar class="col-3" />
+            <SlideBar userType={props.userType} class="col-3" />
         </div>
         <div class = "col-10">
             <div class ="row-2">

@@ -9,7 +9,7 @@ import { json } from 'react-router-dom';
 
 
 
-function Analytics(){
+function Analytics(props){
     const [calories, setCalories] = useState(0);
     const [loading, setLoading] = useState(true);
     const [BMIdata, setBMIdata] = useState();
@@ -97,7 +97,7 @@ function Analytics(){
         return (
             <div class="home-style row">
               <div class="col-2">
-                <SlideBar class="col-3" />
+                <SlideBar userType={props.userType} class="col-3" />
               </div>
               <div class ="loading col-10">
                 <ClipLoader
@@ -114,7 +114,7 @@ function Analytics(){
     return(
         <div class="row">
             <div class="col-2">
-                <SlideBar class="col-3" />
+                <SlideBar userType={props.userType} class="col-3" />
             </div>
             <div class = "col-10 row">
                 <MealCard_2 class="col-5" name="Today" content={generateMealCardContent(calories)}/>

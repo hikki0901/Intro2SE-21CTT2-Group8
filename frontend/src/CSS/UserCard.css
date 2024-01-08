@@ -7,6 +7,11 @@
     margin: 2em 1em;
 }
 
+.dietitian-container:hover {
+    background: #DFCDBB;
+    transition: 0.25s;
+}
+
 .dietitian-container img {
     border-radius: 50%;
     height: 100%;

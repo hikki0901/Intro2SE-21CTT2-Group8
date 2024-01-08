@@ -66,7 +66,7 @@ function getDay(i) {
 }
 
 
-function MealPlan(){
+function MealPlan(props){
   const [Meals1, setMeals1] = useState();
   const [TempMeal, setTempMeal] = useState();
   const [day, setDay] = useState(0);
@@ -198,7 +198,7 @@ function MealPlan(){
     return (
       <div class="home-style row">
         <div class="col-2">
-          <SlideBar class="col-3" />
+          <SlideBar userType={props.userType} class="col-3" />
         </div>
         <div class ="loading col-10">
           <ClipLoader
@@ -217,7 +217,7 @@ function MealPlan(){
   return(
     <div class="home-style row">
         <div class="col-2">
-            <SlideBar class="col-3" />
+            <SlideBar userType={props.userType} class="col-3" />
         </div>
         <div class="col-5">
             <p class="plan">{getDay(day)}'s plan</p>

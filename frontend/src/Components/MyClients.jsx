@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import {Link, useNavigate} from 'react-router-dom'
 import SlideBar from "./SlideBar";
 import "../CSS/myClients.css"
 import UserCard from './UserCard';
@@ -15,6 +16,7 @@ const usersData = [
 
 function MyClients(){
 
+    const navigate = useNavigate();
     const [users, setUsers] = useState(usersData);
     const [selectedUser, setSelectedUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
@@ -97,9 +99,9 @@ function MyClients(){
                                 </div>
                             </div>
                             <div className='button-list'>
-                                <button>Plan</button>
-                                <button>Diary</button>
-                                <button>Analytics</button>
+                                <button onClick={() => navigate(`/dietitian/meal-plan/${selectedUser.id}`)}>Plan</button>
+                                <button onClick={() => navigate(`/dietitian/diet-diary/${selectedUser.id}`)}>Diary</button>
+                                <button onClick={() => navigate(`/dietitian/analytics/${selectedUser.id}`)}>Analytics</button>
                             </div>
                         </div>
                         }
