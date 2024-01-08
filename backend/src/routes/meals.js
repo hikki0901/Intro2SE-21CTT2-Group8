@@ -346,4 +346,38 @@ router.post("/add", async (req, res) => {
     }
 });
 
+router.post("/save", async (req, res) => {
+  try {
+    const { email, Meals1 } = req.body;
+    var updatedMeals
+    for (let i = 0; i < 7; i++)
+      for (let j = 0; j < 3; j++) {
+        var s;
+        if (j == 0) {
+          s = "Breakfast"
+        }
+        if (j == 1) {
+          s = "Lunch"
+        }
+        if (j == 2) {
+          s = "Dinner"
+        }
+        updatedMeals = await mealModel.updateOne(
+        {email, date: thisWeekDates[i], mealType: s},
+        {
+          content: Meals1[i].meal_info[j].foods,
+          target: Meals1[i].meal_info[j].target,
+        });
+      }
+    if (updatedMeals.acknowledged) {
+      res.json({ success: true, message: "User information updated successfully" });
+    } else {
+      res.json({ success: false, message: "Failed to update user information" });
+    }
+  } catch (error) {
+    console.error("Error during settings update:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
 export { router as mealRouter };

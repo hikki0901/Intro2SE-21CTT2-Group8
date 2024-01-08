@@ -79,7 +79,6 @@ function MealPlan(){
   const navigate = useNavigate();
   
   const onSubmit = async (event) => {
-    event.preventDefault();
 
       if (!Meals1) {
         alert ("Save meals failed");
@@ -87,11 +86,11 @@ function MealPlan(){
       }
 
       try {
-        const response = await axios.post("http://localhost:4000/users", {Meals1});
+        const email = window.localStorage.getItem("email");
+        const response = await axios.post("http://localhost:4000/meals/save", {email, Meals1});
 
         if (response.data.success) {
           alert(response.data.message);
-          navigate("/home");
         } else {
           alert(response.data.message);
         }
