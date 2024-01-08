@@ -58,6 +58,11 @@ function MyClients(){
             name: client[i].firstName + " " + client[i].lastName,
             progress: client[i].target + "%",
             email: client[i].email,
+            DOB: (new Date(client[i].DOB)).getDate() + '/' + ((new Date(client[i].DOB)).getMonth()+1) + '/' + (new Date(client[i].DOB)).getFullYear(),
+            gender: client[i].gender ? client[i].gender.charAt(0).toUpperCase() + client[i].gender.slice(1) : '',
+            height: client[i].height ? client[i].height + 'cm' : '',
+            weight: client[i].weight ? client[i].weight + 'kg' : '',
+            BMI: (Number(client[i].weight)/((Number(client[i].height)/100) * (Number(client[i].height)/100))).toFixed(2)
           };
       
           usersData.push(newClient);
@@ -140,23 +145,24 @@ function MyClients(){
                             <div className='client-details'>
                                 <div className='client-detail-section'>
                                     <p>Date of birth:</p>
-                                    <p>01/01/2000</p>
+                                    {/* <p>01/01/2000</p> */}
+                                    <p>{selectedUser.DOB}</p>
                                 </div>
                                 <div className='client-detail-section'>
                                     <p>Gender:</p>
-                                    <p>Female</p>
+                                    <p>{selectedUser.gender}</p>
                                 </div>
                                 <div className='client-detail-section'>
                                     <p>Height:</p>
-                                    <p>200cm</p>
+                                    <p>{selectedUser.height}</p>
                                 </div>
                                 <div className='client-detail-section'>
                                     <p>Weight:</p>
-                                    <p>100kg</p>
+                                    <p>{selectedUser.weight}</p>
                                 </div>
                                 <div className='client-detail-section'>
                                     <p>BMI:</p>
-                                    <p>25</p>
+                                    <p>{selectedUser.BMI}</p>
                                 </div>
                             </div>
                             <div className='button-list'>
