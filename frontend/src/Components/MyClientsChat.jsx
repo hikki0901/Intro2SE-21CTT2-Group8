@@ -88,7 +88,7 @@ function MyClientsChat() {
                         </div>
                         <div className='info-container'>
                             <img src={profile_pic}></img>
-                            <h2>My Dietitian</h2>
+                            <h2>{selectedUser.name}</h2>
                             <input type='image' src={video_call}></input>
                         </div>
                     </div>

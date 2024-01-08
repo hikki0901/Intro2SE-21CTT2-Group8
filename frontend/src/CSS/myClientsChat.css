@@ -18,6 +18,11 @@
     border-bottom: solid #EFEAE3;
 }
 
+.user-info:hover {
+    background: #F79D25B2;
+    transition: 0.25s;
+}
+
 .user-info img {
     border-radius: 50%;
     width: 50px;
