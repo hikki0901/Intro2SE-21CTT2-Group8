@@ -40,10 +40,22 @@ function MealCard_4({ totalIntake, target }) {
     );
   }
 
-function Suggestions({suggest}) {
+function Suggestions({suggest, userType, onChange}) {
+
+    const isDietitian = userType === "dietitian";
+
     return (<div class="suggestCard p-2 mt-3">
     <p  class="textSuggest">Suggests</p>
-    <p class ="suggest">{suggest}</p>
+    {isDietitian ? (
+        <p
+          className="suggest"
+          contenteditable="true"
+          value={suggest}
+          onChange={onChange}
+        />
+      ) : (
+        <p className="suggest">{suggest}</p>
+      )}
 </div>);}
 
 

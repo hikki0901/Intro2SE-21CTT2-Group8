@@ -32,7 +32,14 @@
 }
 
 .calculate{
-    background-color: #9B67C6;
-    border: none;
-    color: white;
+  background-color: #9B67C6;
+  border: none;
+  color: white;
+}
+
+.save-suggest{
+  background-color: #9B67C6;
+  border: none;
+  color: white;
+  float: right;
 }

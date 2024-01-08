@@ -24,9 +24,16 @@ function createProgressCal({ totalIntake, target }) {
   return <MealCard_4 totalIntake={totalIntake} target={target} />;
 }
 
-function createSuggestions({suggestion}) {
-    return <Suggestions suggest={suggestion}/>;
+function createSuggestions({suggestion, props, handleSuggestionChange}) {
+    return (
+        <Suggestions
+          suggest={suggestion}
+          userType={props.userType}
+          onChange={handleSuggestionChange}
+        />
+      );
 }
+
 function DietDiary(props){
 
     const [weight, setWeight] = useState("");
@@ -36,6 +43,16 @@ function DietDiary(props){
     const [totalIntake, setTotalIntake] = useState(0);
     const [target, setTarget] = useState(0); 
     const [suggestion, setSuggestion] = useState("");
+    const isDietitian = props.userType === "dietitian";
+
+    const handleSuggestionChange = (event) => {
+      setSuggestion(event.target.value);
+    };
+  
+    const handleSave = () => {
+      // Save the new suggestion here
+      console.log(suggestion);
+    };
 
     let calcBmi = (e) => {
         e.preventDefault()
@@ -109,8 +126,9 @@ function DietDiary(props){
                        {createProgressCal({ totalIntake, target })}
 
 
-                       {createSuggestions({ suggestion })}
+                       {createSuggestions({ suggestion, props, handleSuggestionChange })}
 
+                        {!isDietitian ?
                         <div class ="bmiCal">
                             <p class = "bmi">BMI Calculator</p>
                             <form onSubmit={calcBmi}>  
@@ -133,6 +151,11 @@ function DietDiary(props){
                                 </div>
                             </form> 
                         </div>
+                        :
+                        <div className='bmiCal'>
+                            <button  className='save-suggest' type='submit' onClick={handleSave}>Save</button>
+                        </div>
+                        }
 
                     </div>
                 </div>
