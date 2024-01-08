@@ -41,7 +41,7 @@ function Mychat(){
             <div className='chat-container'>
                 <div className='message-container'>
                    <div className='message-header'>
-                        <p>Last seen 17h ago</p>
+                        
                    </div>
                    <div className='message-list'>
                         <div className='message-received'>
