@@ -4,22 +4,20 @@ import SlideBar from "./SlideBar";
 import "../CSS/myClients.css"
 import UserCard from './UserCard';
 import search from '../image/search.png'
-import profile_pic from '../image/profile_pic.png'
+import profile_pic from '../image/profile_pic.png';
+import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 
-const usersData = [
-    { id: 1, name: 'User 1', progress:'75%' },
-    { id: 2, name: 'User 2', progress:'55%' },
-    { id: 3, name: 'User 3', progress:'45%' },
-    { id: 4, name: 'User 4', progress:'15%' },
-    // Add more users as needed
-  ];
+const usersData = [];
 
 function MyClients(){
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
     const [users, setUsers] = useState(usersData);
     const [selectedUser, setSelectedUser] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [client, SetClient] = useState([]);
   
     const handleUserClick = (user) => {
       setSelectedUser(user);
@@ -46,6 +44,63 @@ function MyClients(){
         );
     }
 
+    function addProfiles(client) {
+        usersData.length = 0;
+        // Iterate through names and degrees to create and add profiles
+        for (let i = 0; i < client.length; i++) {
+          let newClient = {
+            
+            id: i + 1, // Generate a new ID (you can adjust this logic)
+            name: client[i].firstName + " " + client[i].lastName,
+            progress: client[i].target + "%",
+          };
+      
+          usersData.push(newClient);
+        }
+    
+    }
+
+    useEffect(() => {
+        var email = window.localStorage.getItem("email");
+        const fetchClient = async () => {
+        try {
+            const response = await axios.post("http://localhost:4000/dietitian/viewclient", {
+            email, });
+            SetClient(response.data.progress);
+            
+        } catch (error) {
+            console.error("Error fetching premium membership:", error);
+            // Handle the error as needed
+        } finally {
+            setLoading(false);
+        }
+        };
+        
+        fetchClient();
+        
+    }, []);
+
+    useEffect(() => {
+        addProfiles( client );
+    }, [client]);
+    if (loading) {
+        // Render loading state or placeholder
+        return (
+            <div class="home-style row">
+              <div class="col-2">
+                <SlideBar class="col-3" />
+              </div>
+              <div class ="loading col-10">
+                <ClipLoader
+                color= "#36d7b7"
+                loading={loading}
+                size={150}
+                aria-label="Loading Spinner"
+                data-testid="loader"/>
+              </div>
+          </div>
+        );
+    }
     return(
         <div class="row">
         <div class="col-2">
