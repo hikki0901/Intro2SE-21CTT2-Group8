@@ -41,7 +41,6 @@ function Contact() {
                       type="text" 
                       placeholder="Your name" 
                       onChange={(event) => setName(event.target.value)}
-                      style={{border: 'none'}}
                     />
                   </div>
                   <div class="input-email">
@@ -49,7 +48,6 @@ function Contact() {
                       type="email" 
                       placeholder="Your email"
                       onChange={(event) => setEmail(event.target.value)}
-                      style={{border: 'none'}}
                     />
                   </div>
                 </div>
@@ -59,14 +57,12 @@ function Contact() {
                     type="text" 
                     placeholder="Subject"
                     onChange={(event) => setSubject(event.target.value)}
-                    style={{border: 'none'}}
                   />
                 </div>
 
                 <textarea 
                   placeholder='Your message'
                   onChange={(event) => setMessage(event.target.value)}
-                  style={{border: 'none'}}
                 />
 
                 <button onClick= {onSubmit} class="w-120 mb-2 contact-button" type="submit">Send us</button>

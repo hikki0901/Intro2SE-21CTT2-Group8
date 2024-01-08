@@ -75,7 +75,7 @@ function Login() {
                 <input
                   type="text"
                   placeholder="Enter your Email"
-                  style={{paddingLeft : '20px', border: 'none'}}
+                  style={{paddingLeft : '20px'}}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                 ></input>
@@ -85,7 +85,7 @@ function Login() {
                 <input
                   type="password"
                   placeholder="Password"
-                  style={{paddingLeft : '20px', border: 'none'}}
+                  style={{paddingLeft : '20px'}}
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   onKeyPress={handleKeyPress} 

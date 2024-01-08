@@ -20,11 +20,9 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
   }
 
   const handleInput = (e, mealId, foodIndex) => {
-    handleTextChange(e, mealId, foodIndex, editing);
+    handleTextChange(e, mealId, foodIndex, editing, setMeals1, update_meals1_to_backend);
     if (!editing && !saved) {
       setSaved(true);
-      setMeals1(TempMeal);
-      update_meals1_to_backend();
     }
     if (add === true){
       handleAddFood(mealId, add, setAdd)
@@ -36,7 +34,7 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
   };
 
   const handleInputForTarget = (e, mealId, foodIndex) => {
-    handleTextChangeForTarget(e, mealId, editing);
+    handleTextChangeForTarget(e, mealId, editing, setMeals1, update_meals1_to_backend);
     if (!editing && !saved) {
       setSaved(true);
       setMeals1(TempMeal);
@@ -105,17 +103,19 @@ function MealPlan(props){
     setDay(i)
   };
 
-  const handleTextChange = (e, mealId, foodIndex, editing) => {
+  const handleTextChange = (e, mealId, foodIndex, editing, setMeals1, update_meals1_to_backend) => {
       setTempMeal((prevMeals) => {
         const updatedMeals = [...prevMeals];
         if (editing === false){
           updatedMeals[day].meal_info[mealId - 1].foods[foodIndex] = e.target.innerText;
+          setMeals1(updatedMeals);
+          update_meals1_to_backend();
         }
         return updatedMeals;
       });
   };
 
-  const handleTextChangeForTarget = (e, mealId, editing) => {
+  const handleTextChangeForTarget = (e, mealId, editing, setMeals1, update_meals1_to_backend) => {
     setTempMeal((prevMeals) => {
       const updatedMeals = [...prevMeals];
       if (editing === false){
@@ -123,6 +123,8 @@ function MealPlan(props){
         const newText = currentText.slice(0, -1); 
         e.target.innerText = newText;
         updatedMeals[day].meal_info[mealId - 1].target = e.target.innerText;
+        setMeals1(updatedMeals);
+        update_meals1_to_backend()
       }
       return updatedMeals;
     });

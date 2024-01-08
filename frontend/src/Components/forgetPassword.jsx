@@ -9,11 +9,6 @@ function ForgetPassWord() {
   const [validEmail, setValidEmail] = useState(true);
   const navigate = useNavigate();
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-    }
-  };
-
   const onSubmit = async (event) => {
     event.preventDefault();
       console.log(email);
@@ -38,6 +33,13 @@ function ForgetPassWord() {
         console.error("Error during request:", err);
       }
   };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSubmit(event);
+    }
+  };
+  
   return (
     <div>
       <div className="container">
@@ -56,9 +58,10 @@ function ForgetPassWord() {
                 <input
                   type="text"
                   placeholder="Enter your Email"
-                  style={{paddingLeft : '20px', border: 'none'}}
+                  style={{paddingLeft : '20px'}}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
+                  onKeyPress={handleKeyPress} 
                 ></input>
               </div>
 

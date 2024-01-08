@@ -9,14 +9,12 @@ function ResetPassWord() {
   const [ConfirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-    }
-  };
-
   const onSubmit  = async (event) =>{
     if (password != ConfirmPassword){
         alert("Your pasword doesn't match")
+    }
+    else if (password ==="" && ConfirmPassword === ""){
+        alert("The password can not be blank");
     }
     else{
       var email = window.localStorage.getItem("email");
@@ -38,6 +36,13 @@ function ResetPassWord() {
       }
     }
   }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      onSubmit(event);
+    }
+  };
+
   return (
     <div>
       <div className="container">
@@ -56,7 +61,7 @@ function ResetPassWord() {
                 <input
                   type="password"
                   placeholder="Password"
-                  style={{paddingLeft : '20px', border: 'none'}}
+                  style={{paddingLeft : '20px'}}
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 ></input>
@@ -66,9 +71,10 @@ function ResetPassWord() {
                 <input
                   type="password"
                   placeholder="Confirm Password"
-                  style={{paddingLeft : '20px', border: 'none'}}
+                  style={{paddingLeft : '20px'}}
                   value={ConfirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)}
+                  onKeyPress={handleKeyPress} 
                 ></input>
               </div>
               
