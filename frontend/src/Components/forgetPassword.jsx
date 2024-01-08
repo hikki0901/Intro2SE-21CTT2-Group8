@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import Footer from "./Footer";
 import "../CSS/Login.css";
+import axios from 'axios';
 
 function ForgetPassWord() {
   const [email, setEmail] = useState("");
@@ -13,14 +14,30 @@ function ForgetPassWord() {
     }
   };
 
-  const onSubmit = () =>{
-    if (!validEmail){
-        alert("Your email doesn't exist")
-    }
-    else{
-        navigate("/reset-password")
-    }
-  }
+  const onSubmit = async (event) => {
+    event.preventDefault();
+      console.log(email);
+      if (!email) {
+        alert("Please enter an email");
+      } 
+
+      try {
+        const response = await axios.post("http://localhost:4000/auth/password", {
+            email
+        });
+
+        if (response.data.success) {
+          window.localStorage.setItem("email", email);
+          navigate("/reset-password");
+        } else {
+          alert(response.data.message);
+        }
+        
+      } catch (err) {
+        alert(err);
+        console.error("Error during request:", err);
+      }
+  };
   return (
     <div>
       <div className="container">

@@ -187,5 +187,34 @@ router.post("/deletemembership", async (req, res) => {
       }
 });
 
+router.post("/password", async (req, res) => {
+    const email = req.body
+    try {
+        const users = await userModel.findOne(email);
+        if (!users) {
+            res.status(200).json({success: false, message: 'user does not exist'});
+        }
+    
+        res.status(200).json({success: true});
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
+router.post("/resetpassword", async (req, res) => {
+    const { email, password }= req.body
+    try {
+        const users = await userModel.findOne({email});
+        const hashedPassword = await bcrypt.hash(password, 10);
+        users.password = hashedPassword;
+        await users.save();
+    
+        res.status(200).json({ message: 'Succesfully updated user password'});
+      } catch (error) {
+        console.error('Error updating user password:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
 
 export { router as userRouter };

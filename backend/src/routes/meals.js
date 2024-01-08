@@ -349,6 +349,7 @@ router.post("/add", async (req, res) => {
 router.post("/save", async (req, res) => {
   try {
     const { email, Meals1 } = req.body;
+    console.log(Meals1[0].meal_info[0].foods);
     var updatedMeals
     for (let i = 0; i < 7; i++)
       for (let j = 0; j < 3; j++) {
