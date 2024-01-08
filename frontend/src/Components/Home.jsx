@@ -4,8 +4,6 @@ import MealCard from "./MealCard";
 import Calendar from './Calendar';
 import NutritionCard from './nutritionCard';
 import "../CSS/Home.css";
-import Meals from '../data/Meals';
-import nutrition from '../data/nutrition-track';
 import axios from 'axios';
 
 

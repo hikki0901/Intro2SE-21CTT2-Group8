@@ -12,7 +12,7 @@ function createMealCard(mealItem){
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
             target={<p id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
-            calories={mealItem.totalCalories}
+            calories={mealItem.calories}
         />
     );
 }
@@ -73,6 +73,7 @@ function DietDiary(props){
             setMeals(response.data.meals);
             setTotalIntake(response.data.totalIntake);
             setTarget(response.data.target);
+            console.log(Meals);
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed

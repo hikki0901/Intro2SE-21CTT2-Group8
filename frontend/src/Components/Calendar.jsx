@@ -33,9 +33,9 @@ function Calendar(){
     daysInWeek.push(day.getDate());
   }
 
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"]
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri","Sat", "Sun"]
 
-  const [day, setDay] = useState(currentDate.getDay());
+  const [day, setDay] = useState(currentDate.getDay() - 1);
 
     const handleClick = (i)=>{
       setDay(i)

@@ -21,9 +21,8 @@ function MealCard_3(props){
         <p class="meal-name">{props.name}</p>
         <ul class="" >{props.foodList}</ul>
         <div class = "tg">
-            <p id ="tg1"  class ="target">Target: </p>
-            {props.target}
-            <p id="tg2" class="intake">{props.calories}</p>
+            <p id ="tg1"  class ="target">Target: {props.target}</p>
+            <p id="tg2" class="intake">{props.calories} Cal</p>
         </div>
     </div>);
 }

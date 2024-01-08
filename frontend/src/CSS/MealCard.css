@@ -20,8 +20,8 @@
   background: linear-gradient(
   to top,
   #F1E6DB 0%,
-  #F1E6DB 40px,
-  #11B3CF 40px,
+  #F1E6DB 60px,
+  #11B3CF 60px,
   #11B3CF calc(100% - 50px),
   #F79D25 calc(100% - 50px),
   #F79D25 100%
@@ -95,6 +95,7 @@ ul > li{
 .intake{
   text-align: right;
   margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: 500;
 
@@ -102,6 +103,7 @@ ul > li{
 .target{
   text-align: left;
   margin-left: 10px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: 500;
 }
@@ -112,6 +114,8 @@ ul > li{
 }
 
 .tg{
+  display: flex;
+  align-items: flex-end;
 }
 
 
