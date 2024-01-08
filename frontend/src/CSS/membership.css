@@ -83,11 +83,15 @@
 
 .status {
     flex-grow: 1;
+}
+
+.time-left p {
     font-family: Poppins;
     font-size: 24px;
     font-weight: 500;
+    padding: 1em 0em;
 }
 
-.status p {
-    padding: 1em 0em;
+.current-dietitian {
+    margin-left: -25px;
 }

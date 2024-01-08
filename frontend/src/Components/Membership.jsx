@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import SlideBar from "./SlideBar";
 import "../CSS/membership.css"
 import DietitianCard from './UserCard';
+import profile_pic from '../image/profile_pic.png';
 import ClipLoader from "react-spinners/ClipLoader";
 import axios from 'axios';
 
 const Dietitians = []
+const currentDietitian = []
 
 function createDietitanCard(dietitianItem){
     return(
@@ -135,8 +137,18 @@ function Membership(){
                 </div>
                 <div className='status'>
                     <h1>Membership status</h1>
-                    <p>Your membership will end in {firstDay}
-                    <br></br> <br></br> You have {daysLeft} day(s) left</p>
+                    <div className='time-left'>
+                        <p id='will-end'>Your membership will end in {firstDay}
+                        <br></br> <br></br> You have {daysLeft} day(s) left</p>
+                    </div>
+                    <h1>Your current dietitian</h1>
+                    <div className='current-dietitian'>
+                        {currentDietitian.length === 0 ? 
+                        <DietitianCard image_link={profile_pic} name='No dietitian yet' degree='Choose your favourable dietitian to start'/>
+                        :
+                        <DietitianCard imageLink={currentDietitian.imageLink} name={currentDietitian.name} degree={currentDietitian.degree}/>
+                        }
+                    </div>
                 </div>
             </div> : 
             <div class='membership-container'>

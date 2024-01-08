@@ -93,7 +93,7 @@ function MyClients(){
         return (
             <div class="home-style row">
               <div class="col-2">
-                <SlideBar class="col-3" />
+                <SlideBar  userType="dietitian" class="col-3" />
               </div>
               <div class ="loading col-10">
                 <ClipLoader
