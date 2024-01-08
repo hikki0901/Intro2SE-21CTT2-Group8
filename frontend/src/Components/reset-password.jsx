@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import Footer from "./Footer";
 import "../CSS/Login.css";
+import axios from 'axios';
 
 function ResetPassWord() {
   const [password, setPassword] = useState("");
@@ -13,13 +14,28 @@ function ResetPassWord() {
     }
   };
 
-  const onSubmit = () =>{
+  const onSubmit  = async (event) =>{
     if (password != ConfirmPassword){
         alert("Your pasword doesn't match")
     }
     else{
-        alert("Password is changed successfully")
-        navigate("/login")
+      var email = window.localStorage.getItem("email");
+      try {
+        const response = await axios.post("http://localhost:4000/auth/resetpassword", {
+            email, password
+        });
+
+        if (response.data.success) {
+          window.localStorage.clear();
+          navigate("/login");
+        } else {
+          alert(response.data.message);
+        }
+        
+      } catch (err) {
+        alert(err);
+        console.error("Error during request:", err);
+      }
     }
   }
   return (
