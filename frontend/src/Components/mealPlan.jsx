@@ -62,7 +62,6 @@ function getDay(i) {
 const currentDayIndex = () => {
   const currentDate = new Date();
   const dayIndex = currentDate.getDay(); 
-  
   return dayIndex - 1;
 }
 
@@ -231,7 +230,7 @@ function MealPlan(props){
         <button type="button" class="col-12 button-color" id="change" onClick={handleSaveClick} disabled = {saved}>Save</button>
             <div class="d-flex justify-content-center col-12">
                 <button type="button" class="button-color"  onClick={addFoodItem} disabled={!editing}>Add</button>
-                <button type="button" class="button-color" onClick={handleEditClick} disabled={editing || day < currentDayIndex}>Edit</button>
+                <button type="button" class="button-color" onClick={handleEditClick} disabled={editing || day < currentDayIndex()}>Edit</button>
                 <button type="button" class="button-color" onClick={removeFoodItem} disabled={!editing}>Delete</button>
             </div>
             <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto mt-4">
