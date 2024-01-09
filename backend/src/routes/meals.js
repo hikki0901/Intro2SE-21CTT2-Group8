@@ -97,16 +97,19 @@ router.post("/dashboard", async (req, res) => {
           id: 1,
           name: "Breakfast",
           foods: Breakfast ? Breakfast.content : defaultMeal.foods,
+          haveEaten: Breakfast ? Breakfast.haveEaten : false
         },
         {
           id: 2,
           name: "Lunch",
           foods: Lunch ? Lunch.content : defaultMeal.foods,
+          haveEaten: Lunch ? Lunch.haveEaten : false
         },
         {
           id: 3,
           name: "Dinner",
           foods: Dinner ? Dinner.content : defaultMeal.foods,
+          haveEaten: Dinner ? Dinner.haveEaten : false
         }
       ];
     res.status(200).json({
