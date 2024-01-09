@@ -43,3 +43,8 @@
   color: white;
   float: right;
 }
+
+.save-suggest:hover, .calculate:hover {
+  background-color: #8659AC;
+  transition: 0.25s;
+}

@@ -7,6 +7,12 @@
     border: none;
 }
 
+.button-color:hover{
+    background-color: #8659AC;
+    transition: 0.25s;
+}
+
+
 #change{
     display:inline-block;        
     margin-left: 20%;

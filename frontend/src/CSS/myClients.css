@@ -106,3 +106,9 @@
     margin: 10px;
     margin-bottom: 15px;
 }
+
+.button-list button:hover {
+    background-color: #8659AC;
+    transition: 0.25s;
+}
+  
