@@ -145,11 +145,12 @@ function DietDiary(props){
                         <p  class="textSuggest">Suggests</p>
                         {isDietitian ? (
                         <label className='suggest'>
-                        <input
+                        <div
                             type="text"
                             value={suggestion}
                             onChange={handleSuggestionChange}
                             className="scrollableInput"
+                            contentEditable="true"
                         />
                         </label>
                         ) : (
