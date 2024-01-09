@@ -242,4 +242,17 @@ router.post("/choosedietitian", async (req, res) => {
       }
 });
 
+router.post("/deletedietitian", async (req, res) => {
+    const {userEmail} = req.body
+    try {
+        const user = await userModel.findOne({email: userEmail});
+        user.dietitianEmail = null;
+        await user.save();
+        res.status(200).json({success: true, message: "Delete personal dietitian successfully"});
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
 export { router as userRouter };

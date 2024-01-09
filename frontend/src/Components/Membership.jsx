@@ -140,6 +140,20 @@ function Membership(){
         }
     }
 
+    const handleDelete = async () => {
+        var email = window.localStorage.getItem("email");
+        try {
+            const response = await axios.post("http://localhost:4000/auth/deletedietitian", {
+            userEmail: email});
+            if (response.data.success) {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error("Error updating membership:", error);
+            // Handle the error as needed
+        }
+    }
+
     function createDietitanCard(dietitianItem){
         return(
             <DietitianCard
@@ -193,7 +207,7 @@ function Membership(){
                         {currentDietitian.length === 0 ? 
                         <DietitianCard image_link={profile_pic} name='No dietitian yet' degree='Choose your favourable dietitian to start'/>
                         :
-                        <DietitianCard image_link={currentDietitian[0].imageLink} name={currentDietitian[0].name} degree={currentDietitian[0].degree}/>
+                        <DietitianCard image_link={currentDietitian[0].imageLink} name={currentDietitian[0].name} degree={currentDietitian[0].degree} onClick = {() => handleDelete()}/>
                         }
                     </div>
                 </div>
