@@ -17,13 +17,21 @@ function MealCard_2(props){
 
 function MealCard_3(props){
 
-
+    const update = () => {
+      if (props.eaten){
+      props.updateIntake(props.calories, false);
+    }
+    else{
+      props.updateIntake(props.calories, true);
+    }
+    props.updateEaten(0, 0, false);
+  }
 
     return (<div class="mealCard_3 p-2 mt-3">
         <p class="meal-name">{props.name}</p>
         <ul class="" >{props.foodList}</ul>
         <div class = "tg">
-            <input class="form-check-input target"  id ="tg1 flexCheckChecked" type="checkbox" propchecked checked={props.eaten} />
+            <input class="form-check-input target"  id ="tg1 flexCheckChecked" type="checkbox" propchecked checked={props.eaten} onClick={update}/>
             <p id="tg2" class="intake">{props.calories} Cal</p>
         </div>
     </div>);
