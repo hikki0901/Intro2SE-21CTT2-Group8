@@ -61,6 +61,7 @@ function ForgetPassWord() {
                   style={{paddingLeft : '20px'}}
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
+                  className='input-box'
                   onKeyPress={handleKeyPress} 
                 ></input>
               </div>

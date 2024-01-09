@@ -65,6 +65,7 @@ function ResetPassWord() {
                   style={{paddingLeft : '20px'}}
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
+                  className='input-box'
                 ></input>
               </div>
 
@@ -75,6 +76,7 @@ function ResetPassWord() {
                   style={{paddingLeft : '20px'}}
                   value={ConfirmPassword}
                   onChange={(event) => setConfirmPassword(event.target.value)}
+                  className='input-box'
                   onKeyPress={handleKeyPress} 
                 ></input>
               </div>
