@@ -5,7 +5,7 @@ import "../CSS/mealPlan.css"
 import "../CSS/dietDiary.css"
 import axios from 'axios';
 import {useLocation} from 'react-router-dom';
-import ClipLoader from "react-spinners/ClipLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 function createMealCard(mealItem, updateIntake, updateEaten){
     return(
@@ -136,7 +136,7 @@ function DietDiary(props){
               <SlideBar userType={props.userType} class="col-3" />
             </div>
             <div class ="loading col-10">
-              <ClipLoader
+              <RingLoader
               color= "#36d7b7"
               loading={loading}
               size={150}
