@@ -8,7 +8,7 @@ function Loading(props){
         <ClipLoader
           color= "#36d7b7"
           loading={props.loading}
-          size={150}
+          size={160}
           aria-label="Loading Spinner"
           data-testid="loader"/>
       </div>
