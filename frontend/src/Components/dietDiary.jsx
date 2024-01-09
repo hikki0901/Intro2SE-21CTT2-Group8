@@ -75,7 +75,7 @@ function DietDiary(props){
     let calcBmi = (e) => {
         e.preventDefault()
 
-        if(weight === 0 || height === 0) {
+        if(weight === 0 || height === 0 || weight <0 ) {
             alert('Hello please enter a valid number')
         }
         else {
