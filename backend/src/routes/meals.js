@@ -45,7 +45,9 @@ function calculateTotals(meals) {
   let target = 0;
 
   meals.forEach((meal) => {
-    totalIntake += meal.calories * (meal.target)/100;
+    if (meal.haveEaten) {
+      totalIntake += meal.calories
+    }
     target += meal.calories;
   });
 
