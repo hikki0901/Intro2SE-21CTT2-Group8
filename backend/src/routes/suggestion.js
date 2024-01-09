@@ -39,7 +39,7 @@ router.post("/save", async (req, res) => {
             suggestions.context = suggestion;
             await suggestions.save();
         } else {
-            const newSuggestion = new suggestionModel({ userEmail, date: today, context: suggestion});
+            const newSuggestion = new suggestionModel({ userEmail: email, date: today, context: suggestion});
             try {
                 await newSuggestion.save();
                 return res.json({ success: true, message: "Suggestion created successfully" });
