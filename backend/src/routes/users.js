@@ -221,8 +221,21 @@ router.post("/viewdietitian", async (req, res) => {
     const email = req.body
     try {
         const user = await userModel.findOne(email).select("dietitianEmail");
-        const dietitian = await dietitianModel.findOne({email : user.dietitianEmail}).select("firstName lastName degree _id")
+        const dietitian = await dietitianModel.findOne({email : user.dietitianEmail}).select("email firstName lastName degree _id")
         res.status(200).json({ dietitian: dietitian });
+      } catch (error) {
+        console.error('Error updating users:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+});
+
+router.post("/choosedietitian", async (req, res) => {
+    const {userEmail, dietitianEmail} = req.body
+    try {
+        const user = await userModel.findOne({email: userEmail});
+        user.dietitianEmail = dietitianEmail;
+        await user.save();
+        res.status(200).json({success: true, message: "Update personal dietitian successfully"});
       } catch (error) {
         console.error('Error updating users:', error);
         res.status(500).json({ error: 'Internal Server Error' });

@@ -9,16 +9,7 @@ import axios from 'axios';
 const Dietitians = []
 const currentDietitian = []
 
-function createDietitanCard(dietitianItem){
-    return(
-        <DietitianCard
-            key={dietitianItem.id}
-            name={dietitianItem.name}
-            image_link={dietitianItem.imageLink}
-            degree={dietitianItem.degree}
-        />
-    );
-}
+
 
 function getFirstDayOfNextMonth() {
     const today = new Date();
@@ -43,6 +34,7 @@ function addProfiles(dietitian) {
         imageLink: require("../image/profile_pic.png"), // You can set a default image link or leave it empty
         name: dietitian[i].firstName + " " + dietitian[i].lastName,
         degree: dietitian[i].degree,
+        email: dietitian[i].email,
       };
   
       Dietitians.push(newDietitian);
@@ -50,8 +42,8 @@ function addProfiles(dietitian) {
 
 }
 
-function addCurrentDietitian(personalDietitian) {
-    
+function addCurrentDietitian(personalDietitian) {   
+    if (!personalDietitian || personalDietitian.length === 0) {return}
     currentDietitian.length = 0;
     // Iterate through names and degrees to create and add profiles
     
@@ -97,8 +89,11 @@ function Membership(){
         }
         
         try {
-            const response = await axios.post("http://localhost:4000/auth/viewdietitian");
-            setPersonalDietitian(response.data.dietitian);
+            const response = await axios.post("http://localhost:4000/auth/viewdietitian", { email });
+            if (response.data.dietitian) {
+                setPersonalDietitian(response.data.dietitian);
+            }
+            
         } catch (error) {
             console.error("Error fetching dietitian data:", error);
             // Handle the error as needed
@@ -131,7 +126,31 @@ function Membership(){
         }
     };
 
-    
+    const handleChoose = async (diettitianEmail) => {
+        var email = window.localStorage.getItem("email");
+        try {
+            const response = await axios.post("http://localhost:4000/auth/choosedietitian", {
+            userEmail: email, dietitianEmail: diettitianEmail });
+            if (response.data.success) {
+                alert(response.data.message);
+            }
+        } catch (error) {
+            console.error("Error updating membership:", error);
+            // Handle the error as needed
+        }
+    }
+
+    function createDietitanCard(dietitianItem){
+        return(
+            <DietitianCard
+                key={dietitianItem.id}
+                name={dietitianItem.name}
+                image_link={dietitianItem.imageLink}
+                degree={dietitianItem.degree}
+                onClick={() => handleChoose(dietitianItem.email)}
+            />
+        );
+    }
 
     if (loading) {
         // Render loading state or placeholder

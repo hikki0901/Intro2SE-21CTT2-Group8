@@ -35,7 +35,7 @@ router.post("/add", async (req, res) => {
 
 router.post("/view", async (req, res) => {
     try {
-      const dietitians = await dietitianModel.find().select('firstName lastName degree');
+      const dietitians = await dietitianModel.find().select('firstName lastName degree email');
   
       res.status(200).json({dietitians});
     } catch (error) {

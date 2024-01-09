@@ -395,4 +395,14 @@ router.post("/save", async (req, res) => {
   }
 });
 
+router.post("/haveeaten", async (req, res) => {
+  const newMeal =  mealModel.updateMany({}, { $set: { haveEaten: false } })
+  .then((result) => {
+    console.log("Update result:", result);
+  })
+  .catch((error) => {
+    console.error("Error updating meals:", error);
+  });
+});
+
 export { router as mealRouter };
