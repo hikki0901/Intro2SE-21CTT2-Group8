@@ -131,13 +131,15 @@ ul > li{
   text-align: left;
   font-size: 24px;
   font-weight: 500;
+  margin-left: 15px;
 }
 
 .textSuggest{
   font-style:bold ;
   text-align: left;
-  font-size: 31px;
+  font-size: 24px;
   font-weight: 500;
+  margin-left: 15px;
 }
 
 .suggest{
@@ -157,4 +159,8 @@ ul > li{
   width: 100%; /* Set your desired width */
   height: 100%; /* Set your desired height */
   padding: 10px;
+}
+
+.scrollableInput:focus {
+  outline: none;
 }
