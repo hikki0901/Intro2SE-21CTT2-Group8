@@ -6,7 +6,7 @@ import UserCard from './UserCard';
 import search from '../image/search.png'
 import profile_pic from '../image/profile_pic.png';
 import axios from 'axios';
-import ClipLoader from "react-spinners/ClipLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 const usersData = [];
 
@@ -101,7 +101,7 @@ function MyClients(){
                 <SlideBar  userType="dietitian" class="col-3" />
               </div>
               <div class ="loading col-10">
-                <ClipLoader
+                <RingLoader
                 color= "#36d7b7"
                 loading={loading}
                 size={150}
