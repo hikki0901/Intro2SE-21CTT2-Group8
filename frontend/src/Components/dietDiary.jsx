@@ -10,9 +10,10 @@ function createMealCard(mealItem, updateIntake, updateEaten){
     return(
         <MealCard_3
             key={mealItem.id}
+            index = {mealItem.id - 1}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            eaten = {mealItem.eaten}
+            eaten = {mealItem.haveEaten}
             calories={mealItem.calories}
             updateIntake = {updateIntake}
             updateEaten = {updateEaten}
@@ -92,7 +93,6 @@ function DietDiary(props){
             setMeals(response.data.meals);
             setTotalIntake(response.data.totalIntake);
             setTarget(response.data.target);
-            console.log(Meals);
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
@@ -140,8 +140,9 @@ function DietDiary(props){
     }
 
     const updateEaten = (i, check) => {
-        console.log(Meals);
-        //Meals[i - 1]..eaten = check;
+        const updatedMeals = [...Meals];
+        updatedMeals[i].haveEaten = check;
+        setMeals(updatedMeals);
         updateToBackend(i, check);
     }
 

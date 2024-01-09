@@ -20,11 +20,12 @@ function MealCard_3(props){
     const update = () => {
       if (props.eaten){
       props.updateIntake(props.calories, false);
+      props.updateEaten(props.index, false);
     }
     else{
       props.updateIntake(props.calories, true);
+      props.updateEaten(props.index, true);
     }
-    props.updateEaten(0, 0, false);
   }
 
     return (<div class="mealCard_3 p-2 mt-3">
