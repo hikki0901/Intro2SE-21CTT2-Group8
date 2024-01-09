@@ -29,6 +29,10 @@ const mealSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  haveEaten: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 mealSchema.index({ email: 1, date: 1, mealType: 1 }, { unique: true });

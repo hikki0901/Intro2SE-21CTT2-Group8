@@ -362,7 +362,8 @@ router.post("/save", async (req, res) => {
         const filter = { email, date: thisWeekDates[i], mealType: s };
         const update = {
           content: Meals1[i].meal_info[j].foods,
-          target: Meals1[i].meal_info[j].target,
+          calories: Meals1[i].meal_info[j].totalCalories,
+          haveEaten: Meals1[i].meal_info[j].eaten,
         };
 
         const existingMeals = await mealModel.findOne(filter);
@@ -373,7 +374,8 @@ router.post("/save", async (req, res) => {
             updatedMeals = await mealModel.updateOne(filter,
               {
                 $push: { content: Meals1[i].meal_info[j].foods },
-                target: Meals1[i].meal_info[j].target,
+                calories: Meals1[i].meal_info[j].totalCalories,
+                haveEaten: Meals1[i].meal_info[j].eaten,
               });
           }
         } else {
