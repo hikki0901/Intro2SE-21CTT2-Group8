@@ -10,14 +10,14 @@ function Footer(){
     return (<div class="footer">
     <footer class="py-3 my-4">
         <div class="col-md-12 d-flex align-items-center justify-content-center">
-          <Link to="/#" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-            <img src = {logo} alt="logo image" class="bi me-2" width="40" height="50" role="img"/>
+          <Link to="/#" id="logo" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <img src = {logo} alt="logo image" class="bi me-2" width="22" height="32" role="img"/>
             <span class="text-body-secondary app-name">Dietarium</span>
           </Link>
         </div>
-        <ul class="nav justify-content-center pb-3 mb-3">
+        <ul class="nav justify-content-center">
             <li class="nav-item"><Link to="/video" class="nav-link px-2 text-body-secondary">VIDEOS</Link></li>
-            <li class="nav-item"><Link to="#" class="nav-link px-2 text-body-secondary">ABOUT</Link></li>
+            <li class="nav-item"><Link to="/about" class="nav-link px-2 text-body-secondary">ABOUT</Link></li>
             <li class="nav-item"><Link to="/contact" class="nav-link px-2 text-body-secondary">CONTACT</Link></li>
         </ul>
         <ul class="nav col-md-12 justify-content-center list-unstyled d-flex">

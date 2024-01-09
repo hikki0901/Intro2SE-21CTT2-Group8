@@ -29,9 +29,9 @@ function Heading(props){
         <div class="container">
           <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 ml-0 border-bottom">
             <div class="col-md-3 mb-2 mb-md-0">
-              <Link to="/about" class="d-inline-flex link-body-emphasis text-decoration-none">
-                <img src={logo} alt="logo image" class="bi me-2" width="40" height="32" role="img"/>
-                <span class="fs-4 app-name">DIETARIUM</span>
+              <Link to="/about" id="logo" class="link-body-emphasis text-decoration-none">
+                <img src={logo} alt="logo image" class="bi me-2" width="22" height="32" role="img"/>
+                <span class="app-name">Dietarium</span>
               </Link>
             </div>
 

@@ -2,10 +2,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.app-name{
-    font-weight: bold;
-}
-
 .nav-link:focus, .nav-link:hover {
     color: #F79D25;
     text-decoration: underline;
@@ -129,3 +125,16 @@
 .expand:hover .dropdown-toggle {
   mix-blend-mode: color-burn;
 }
+
+.app-name {
+    font-size: 32px;
+    font-weight: 1000;
+    margin-left: 5px;
+}
+
+#logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
