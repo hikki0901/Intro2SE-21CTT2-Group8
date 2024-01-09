@@ -5,7 +5,7 @@ import Calendar from './Calendar';
 import NutritionCard from './nutritionCard';
 import "../CSS/Home.css";
 import axios from 'axios';
-import ClipLoader from "react-spinners/ClipLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 
 function createMealCard(mealItem){
@@ -79,7 +79,7 @@ function Home(){
               <SlideBar  class="col-3" />
             </div>
             <div class ="loading col-10">
-              <ClipLoader
+              <RingLoader
               color= "#36d7b7"
               loading={loading}
               size={150}
