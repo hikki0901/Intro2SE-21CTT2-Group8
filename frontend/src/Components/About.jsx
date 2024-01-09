@@ -62,11 +62,11 @@ function About() {
                         <div />
                     </div>
                    <div className='our-team__content'>
-                        <Profile src={profile_pic} name='Jessica Page' role='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'/>
-                        <Profile src={profile_pic} name='Jessica Page' role='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'/>
-                        <Profile src={profile_pic} name='Jessica Page' role='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'/>
-                        <Profile src={profile_pic} name='Jessica Page' role='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'/>
-                        <Profile src={profile_pic} name='Jessica Page' role='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'/>
+                        <Profile src={profile_pic} name='Duong Phuc Nguyen' role='Project backend manager'/>
+                        <Profile src={profile_pic} name='Nguyen Huynh Viet Thong' role='Project manager'/>
+                        <Profile src={profile_pic} name='Nguyen Huu Hao' role='Project frontend manager'/>
+                        <Profile src={profile_pic} name='Nguyen Le Dang Khoa' role='Project UI design'/>
+                        <Profile src={profile_pic} name='Dinh Quang Hieu' role='Tester'/>
                     </div>
                 </div>
                </div>

@@ -40,14 +40,18 @@ function Contact() {
                     <input 
                       type="text" 
                       placeholder="Your name" 
+                      style={{paddingLeft : '10px'}}
                       onChange={(event) => setName(event.target.value)}
+                      className='input-box'
                     />
                   </div>
                   <div class="input-email">
                     <input 
                       type="email" 
                       placeholder="Your email"
+                      style={{paddingLeft : '10px'}}
                       onChange={(event) => setEmail(event.target.value)}
+                      className='input-box'
                     />
                   </div>
                 </div>
@@ -56,13 +60,17 @@ function Contact() {
                   <input 
                     type="text" 
                     placeholder="Subject"
+                    style={{paddingLeft : '10px'}}
                     onChange={(event) => setSubject(event.target.value)}
+                    className='input-box'
                   />
                 </div>
 
                 <textarea 
                   placeholder='Your message'
+                  style={{paddingLeft : '10px'}}
                   onChange={(event) => setMessage(event.target.value)}
+                  className='input-box'
                 />
 
                 <button onClick= {onSubmit} class="w-120 mb-2 contact-button" type="submit">Send us</button>
