@@ -17,14 +17,27 @@ function MealCard_2(props){
 
 function MealCard_3(props){
 
+
+
     return (<div class="mealCard_3 p-2 mt-3">
         <p class="meal-name">{props.name}</p>
         <ul class="" >{props.foodList}</ul>
         <div class = "tg">
-            <p id ="tg1"  class ="target">Target: {props.target}</p>
+            <input class="form-check-input target"  id ="tg1 flexCheckChecked" type="checkbox" propchecked checked={props.eaten} />
             <p id="tg2" class="intake">{props.calories} Cal</p>
         </div>
     </div>);
+}
+
+function MealCard_5(props){
+
+  return (<div class="mealCard_3 p-2 mt-3">
+      <p class="meal-name">{props.name}</p>
+      <ul class="" >{props.foodList}</ul>
+      <div class = "tg">
+          <p id="tg2" class="intake">{props.calories} Cal</p>
+      </div>
+  </div>);
 }
 
 function MealCard_4({ totalIntake, target }) {
@@ -61,4 +74,4 @@ function Suggestions({suggest, userType, handleSuggestionChange}) {
 
 
 export default MealCard
-export {MealCard_2, MealCard_3, MealCard_4,Suggestions}
+export {MealCard_2, MealCard_3, MealCard_4, MealCard_5, Suggestions}

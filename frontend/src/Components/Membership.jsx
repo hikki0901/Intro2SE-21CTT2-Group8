@@ -133,6 +133,7 @@ function Membership(){
             userEmail: email, dietitianEmail: diettitianEmail });
             if (response.data.success) {
                 alert(response.data.message);
+                window.location.reload();
             }
         } catch (error) {
             console.error("Error updating membership:", error);
@@ -147,6 +148,7 @@ function Membership(){
             userEmail: email});
             if (response.data.success) {
                 alert(response.data.message);
+                window.location.reload();
             }
         } catch (error) {
             console.error("Error updating membership:", error);
