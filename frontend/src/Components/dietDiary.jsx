@@ -140,11 +140,11 @@ function DietDiary(props){
         const meals = Meals[i]
         try {
             const response = await axios.post("http://localhost:4000/meals/haveeaten", { email, meals });
-            if (response.data.success) {
-                alert(response.data.message)
-            } else {
-                alert(response.data.message)
-            }
+            // if (response.data.success) {
+            //     alert(response.data.message)
+            // } else {
+            //     alert(response.data.message)
+            // }
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed

@@ -5,6 +5,7 @@ import Calendar from './Calendar';
 import NutritionCard from './nutritionCard';
 import "../CSS/Home.css";
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 function createMealCard(mealItem){
@@ -21,6 +22,7 @@ function Home(){
     const [Meals, setMeals] = useState([]);
     const [calories, setCalories] = useState();
     const [water, setWater] = useState();
+    const [loading, setLoading] = useState(true);
     const name = window.localStorage.getItem("username");
 
     useEffect(() => {
@@ -34,11 +36,12 @@ function Home(){
             const tmpCalories = parseInt(response.data.breakfastCalories, 10) + parseInt(response.data.lunchCalories, 10) + parseInt(response.data.dinnerCalories, 10);
             setCalories(tmpCalories);
             const tmpWater = parseInt(response.data.breakfastWater, 10) + parseInt(response.data.lunchWater, 10) + parseInt(response.data.dinnerWater, 10);
-            console.log(response.data.breakfastWater);
             setWater(tmpWater)
         } catch (error) {
             console.error("Error fetching meals:", error);
             // Handle the error as needed
+        } finally {
+            setLoading (false);
         }
         };
 
@@ -60,20 +63,32 @@ function Home(){
     ]
 
     const progress = () => {
-        const currentDayIndex = new Date().getDay();
-        const daysInWeek = 7;
-        
-        const dayProgress = Math.round((currentDayIndex / daysInWeek) * 100);
-        
-        return dayProgress + '%';
+        let count = 0
+        for (let i = 0; i < 3; i++) {
+            if (Meals[i].haveEaten) ++count;
+        }
+        return Math.round(count * 100 / 3) + "%"
     };
-      
-      // Example usage:
-      const result = progress();
-      console.log("Percentage of the day passed: " + result);
       
 
     const quotes = ""
+    if (loading) {
+        return (
+          <div class="home-style row">
+            <div class="col-2">
+              <SlideBar  class="col-3" />
+            </div>
+            <div class ="loading col-10">
+              <ClipLoader
+              color= "#36d7b7"
+              loading={loading}
+              size={150}
+              aria-label="Loading Spinner"
+              data-testid="loader"/>
+            </div>
+        </div>
+      );
+    }
 
     return(
     <div class="home-style row">
