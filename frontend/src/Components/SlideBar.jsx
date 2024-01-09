@@ -113,9 +113,7 @@ function SlideBar({ userType }){
               My chat
             </NavLink>
           </li> */}
-          <p class="bold">
-              FEATURES
-          </p>
+          
           {/* <li>
           <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
             <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
@@ -123,6 +121,11 @@ function SlideBar({ userType }){
             </NavLink>
           </li> */}
           <li>
+            <li class="nav-item" style={{ margin: '20px 0' }}>
+              <p class="bold">
+              FEATURES
+              </p>
+            </li>
           <NavLink to='/membership' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
             <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
               Membership
