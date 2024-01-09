@@ -4,7 +4,7 @@ import Graph from './graph.jsx';
 import {MealCard_2} from "./MealCard";
 import axios from 'axios';
 import "../CSS/Analytics.css";
-import ClipLoader from "react-spinners/ClipLoader";
+import RingLoader from "react-spinners/RingLoader";
 import {useLocation} from 'react-router-dom';
 
 
@@ -112,7 +112,7 @@ function Analytics(props){
                 <SlideBar userType={props.userType} class="col-3" />
               </div>
               <div class ="loading col-10">
-                <ClipLoader
+                <RingLoader
                 color= "#36d7b7"
                 loading={loading}
                 size={150}

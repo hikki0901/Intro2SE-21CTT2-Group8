@@ -5,6 +5,7 @@ import "../CSS/mealPlan.css"
 import "../CSS/dietDiary.css"
 import axios from 'axios';
 import {useLocation} from 'react-router-dom';
+import RingLoader from "react-spinners/RingLoader";
 
 function createMealCard(mealItem, updateIntake, updateEaten){
     return(
@@ -46,6 +47,7 @@ function DietDiary(props){
     const [totalIntake, setTotalIntake] = useState(0);
     const [target, setTarget] = useState(0); 
     const [suggestion, setSuggestion] = useState("");
+    const [loading, setLoading] = useState(true);
     const isDietitian = props.userType === "dietitian";
 
     const location = useLocation();
@@ -75,8 +77,11 @@ function DietDiary(props){
     let calcBmi = (e) => {
         e.preventDefault()
 
-        if(weight === 0 || height === 0) {
+        if(weight == 0 || height == 0 ) {
             alert('Hello please enter a valid number')
+        }
+        else if (weight <0 || height <0){
+            alert('Please enter correct information')
         }
         else {
             let bmiFormular = weight/((height/100) * (height/100))
@@ -105,6 +110,8 @@ function DietDiary(props){
         } catch (error) {
             console.error("Error fetching suggestion:", error);
             // Handle the error as needed
+        } finally {
+            setLoading(false); // Set loading to false whether the request is successful or not
         }
 
         };
@@ -125,6 +132,24 @@ function DietDiary(props){
 
     }, []);
 
+    if (loading) {
+        return (
+          <div class="home-style row">
+            <div class="col-2">
+              <SlideBar userType={props.userType} class="col-3" />
+            </div>
+            <div class ="loading col-10">
+              <RingLoader
+              color= "#36d7b7"
+              loading={loading}
+              size={150}
+              aria-label="Loading Spinner"
+              data-testid="loader"/>
+            </div>
+        </div>
+      );
+      }
+    
     const updateIntake = (intake, check) => {
         if (check) {
             setTotalIntake(totalIntake + intake);
@@ -207,7 +232,7 @@ function DietDiary(props){
                                             <input class ="bmiCard" type='number' placeholder='Height'value={height} onChange={(e)=> setHeight(e.target.value)} />
                                         </div>
                                     </div>
-                                    <div className='col-md-6'>
+                                    <div id="BMIResCard" className='col-md-6'>
                                         <p class = "bmiResult">{bmi}</p>
                                     </div>
                                 </div>

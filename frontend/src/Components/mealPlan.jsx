@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
 import axios from 'axios';
-import ClipLoader from "react-spinners/ClipLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 function getDayMeal(Meals1, i){
   return (Meals1[i].meal_info);
@@ -203,7 +203,7 @@ function MealPlan(props){
           <SlideBar userType={props.userType} class="col-3" />
         </div>
         <div class ="loading col-10">
-          <ClipLoader
+          <RingLoader
           color= "#36d7b7"
           loading={loading}
           size={150}
