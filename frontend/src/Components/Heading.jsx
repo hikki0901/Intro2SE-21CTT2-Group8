@@ -8,9 +8,9 @@ import "../CSS/Heading.css"
 
 
 const notificationData = [
-  { id: 1, message: 'Hello, See your meals plan for today' },
-  { id: 2, message: 'Check your analytics for this month' },
-  { id: 3, message: 'Your dietitian made a new suggestion for today' },
+  { id: 1, message: 'Hello, See your meals plan for today', nav: '/meal-plan' },
+  { id: 2, message: 'Check your analytics for this month', nav: '/analytics' },
+  { id: 3, message: 'Your dietitian made a new suggestion for today', nav: '/diet-diary' },
 ];
 
 
@@ -55,7 +55,7 @@ function Heading(props){
             <div className="noti-list">
               {notificationData.map(noti => (
                 <div key={noti.id} className="noti-content">
-                  <p>{noti.message}</p>
+                  <p onClick={() => navigate(noti.nav)}>{noti.message} </p>
                 </div>
               ))}
             </div>
