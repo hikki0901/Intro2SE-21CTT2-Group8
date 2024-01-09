@@ -8,7 +8,7 @@ import "../CSS/Footer.css"
 
 function Footer(){
     return (<div class="footer">
-    <footer class="py-3 my-4">
+    <footer class="py-3">
         <div class="col-md-12 d-flex align-items-center justify-content-center">
           <Link to="/#" id="logo" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
             <img src = {logo} alt="logo image" class="bi me-2" width="22" height="32" role="img"/>

@@ -234,7 +234,7 @@ function MealPlan(props){
                 <button type="button" class="button-color" onClick={handleEditClick} disabled={editing || day < currentDayIndex}>Edit</button>
                 <button type="button" class="button-color" onClick={removeFoodItem} disabled={!editing}>Delete</button>
             </div>
-            <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto">
+            <ul class="nav nav-pills flex-column align-items-center justify-content-between mb-auto mt-4">
             <li>
             <a type='button' onClick={() => handleClick(0)} className={`nav-link link-body-emphasis ${day === 0 ? 'active' : ''}`} aria-current="page">
                 Monday
