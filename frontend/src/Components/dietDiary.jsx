@@ -6,21 +6,22 @@ import "../CSS/dietDiary.css"
 import axios from 'axios';
 import {useLocation} from 'react-router-dom';
 
-function createMealCard(mealItem){
+function createMealCard(mealItem,addIntake){
     return(
         <MealCard_3
             key={mealItem.id}
             name={mealItem.name}
             foodList={mealItem.foods.map((food) => <li>{food}</li>)}
-            target={<p id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
+            eaten = {mealItem.eaten}
             calories={mealItem.calories}
+            addIntake = {addIntake}
         />
     );
 }
 
 
-function createProgressCal({ totalIntake, target }) {
-  return <MealCard_4 totalIntake={totalIntake} target={target} />;
+function createProgressCal({ totalIntake, target}) {
+  return <MealCard_4 totalIntake={totalIntake} target={target}/>;
 }
 
 function createSuggestions({suggestion, props, handleSuggestionChange}) {
@@ -29,6 +30,7 @@ function createSuggestions({suggestion, props, handleSuggestionChange}) {
           suggest={suggestion}
           userType={props.userType}
           onChange={handleSuggestionChange}
+
         />
       );
 }
@@ -122,6 +124,10 @@ function DietDiary(props){
 
     }, []);
 
+    const addIntake = (intake) => {
+        setTotalIntake(totalIntake + intake);
+    }
+
     return (
     <div class="home-style row">
         <div class="col-2">
@@ -134,11 +140,11 @@ function DietDiary(props){
                 </div>
                 <div class =" row">
                     <div class="col-5">
-                        {Meals.map(createMealCard)}
+                        {Meals.map((mealItem) => createMealCard(mealItem, addIntake))}
                     </div>
 
                     <div class="col-5 ">
-                       {createProgressCal({ totalIntake, target })}
+                       {createProgressCal({ totalIntake, target}, addIntake)}
 
 
                        <div class="suggestCard p-2 mt-3">

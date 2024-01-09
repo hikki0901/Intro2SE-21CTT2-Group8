@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import SlideBar from "./SlideBar";
-import {MealCard_3} from "./MealCard";
+import {MealCard_5} from "./MealCard";
 import {useNavigate} from 'react-router-dom';
 // import Meals1 from '../data/test';
 import "../CSS/mealPlan.css";
@@ -32,15 +32,15 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
     }
   };
 
-  const handleInputForTarget = (e, mealId, check) => {
-    handleTextChangeForTarget(e, mealId, editing, setMeals1, update_meals1_to_backend, check);
+  const handleInputForTarget = (e, mealId) => {
+    handleTextChangeForTarget(e, mealId, editing, setMeals1, update_meals1_to_backend);
     if (!editing && !saved) {
       setSaved(true);
     }
   };
 
   return (
-    <MealCard_3
+    <MealCard_5
       contentEditable = {true}
       key={mealItem.id}
       name={mealItem.name}
@@ -49,8 +49,7 @@ function createMealCard(update_meals1_to_backend, mealItem, TempMeal, setMeals1,
           {food}
         </li>
       ))}
-      target={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id, true)} id ="tg1"  class ="target">{mealItem.target + '%'}</p>}
-      calories={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id, false)} id ="tg1"  class ="target">{mealItem.totalCalories}</p>}
+      calories={<p contentEditable={editing || !saved} onInput={(e) => handleInputForTarget(e, mealItem.id)} onFocus={(e) => handleInputForTarget(e, mealItem.id)} id ="tg1"  class ="target">{mealItem.totalCalories}</p>}
     />
   );
 }
@@ -123,13 +122,7 @@ function MealPlan(props){
     setTempMeal((prevMeals) => {
       const updatedMeals = [...prevMeals];
       if (editing === false){
-        if (check){
-          const newText = e.target.innerText.slice(0, -1); 
-          updatedMeals[day].meal_info[mealId - 1].target = newText;
-        }
-        else {
-          updatedMeals[day].meal_info[mealId - 1].totalCalories = e.target.innerText;
-        }
+        updatedMeals[day].meal_info[mealId - 1].totalCalories = e.target.innerText;
         setMeals1(updatedMeals);
         update_meals1_to_backend()
       }
