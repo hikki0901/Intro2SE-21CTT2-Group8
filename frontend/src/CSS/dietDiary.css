@@ -22,9 +22,14 @@
     margin-top: 10px;
     border-radius: 10px;
     border: none;
+    padding-left: 10px;
     background: #F1E6DB
   }
   
+#BMIResCard {
+  padding: 10px;
+}
+
 .bmiCal{
   margin-left: 100px;
   margin-top: 20px;

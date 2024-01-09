@@ -207,7 +207,7 @@ function DietDiary(props){
                                             <input class ="bmiCard" type='number' placeholder='Height'value={height} onChange={(e)=> setHeight(e.target.value)} />
                                         </div>
                                     </div>
-                                    <div className='col-md-6'>
+                                    <div id="BMIResCard" className='col-md-6'>
                                         <p class = "bmiResult">{bmi}</p>
                                     </div>
                                 </div>
