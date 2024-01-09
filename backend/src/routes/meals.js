@@ -399,13 +399,16 @@ router.post("/save", async (req, res) => {
 });
 
 router.post("/haveeaten", async (req, res) => {
-  const newMeal =  mealModel.updateMany({}, { $set: { haveEaten: false } })
-  .then((result) => {
-    console.log("Update result:", result);
+  const {email, meals} =  req.body;
+  const updatedMeals = await mealModel.updateOne({email, date: today, mealType: meals.name}, {
+    haveEaten: meals.haveEaten
   })
-  .catch((error) => {
-    console.error("Error updating meals:", error);
-  });
+  if (updatedMeals.acknowledged) {
+    res.status(200).json({ success: true, message: "Successfully updated meal"})
+  } else {
+    res.status(200).json({ success: false, message: "Failed to update meal"})
+  }
+  
 });
 
 export { router as mealRouter };
