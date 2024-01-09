@@ -50,11 +50,11 @@ router.post("/viewclient", async (req, res) => {
   try {
     const users = await userModel.find({dietitianEmail: email}).select('firstName lastName DOB gender height weight email');
     for (const user of users) {
-      const userMeals = await mealModel.find({ email: user.email, date: today}).select('target');
+      const userMeals = await mealModel.find({ email: user.email, date: today}).select('haveEaten');
       if (userMeals) {
         let target = 0;
         for (let i = 0; i < userMeals.length; i++) {
-          target += (userMeals[i].target ? userMeals[i].target : 0) / userMeals.length;
+          target += ((userMeals[i].haveEaten == true ? 100 : 0) / 3);
         }
         progress.push({id: user._id, firstName: user.firstName, lastName: user.lastName, DOB: user.DOB, gender: user.gender, height: user.height, weight: user.weight,target: target, email: user.email});
       }
