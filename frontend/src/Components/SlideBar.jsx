@@ -52,26 +52,26 @@ function SlideBar({ userType }){
           </p>
         </li>
         <li>
-        <li>
+        {/* <li>
         <NavLink to='/dietitian/my-clients-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
             My chat
           </NavLink>
-        </li>
+        </li> */}
         <NavLink to='/dietitian/my-clients' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={Reserve} alt="App logo" width="16" height="16"/>
             My clients
           </NavLink>
         </li>
-        <p class="bold">
+        {/* <p class="bold">
             FEATURES
-        </p>
-        <li>
+        </p> */}
+        {/* <li>
         <NavLink to='/dietitian/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
           <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
             Support
           </NavLink>
-        </li>
+        </li> */}
       </ul>
     );
   
@@ -107,21 +107,21 @@ function SlideBar({ userType }){
               Analytics
             </NavLink>
           </li>
-          <li>
+          {/* <li>
           <NavLink to='/my-chat' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
             <img class="bi pe-none me-2" src={Message} alt="App logo" width="16" height="16"/>
               My chat
             </NavLink>
-          </li>
+          </li> */}
           <p class="bold">
               FEATURES
           </p>
-          <li>
+          {/* <li>
           <NavLink to='/support' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
             <img class="bi pe-none me-2" src={onlineSupport} alt="App logo" width="16" height="16"/>
               Support
             </NavLink>
-          </li>
+          </li> */}
           <li>
           <NavLink to='/membership' className="nav-link link-body-emphasis" activeClassName="active" aria-current="page">
             <img class="bi pe-none me-2" src={salesPerformance} alt="App logo" width="16" height="16"/>
