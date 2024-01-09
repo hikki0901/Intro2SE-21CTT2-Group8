@@ -157,8 +157,11 @@ ul > li{
 
 .scrollableInput {
   width: 100%; /* Set your desired width */
-  height: 100%; /* Set your desired height */
+  height: 300px; /* Set your desired height */
   padding: 10px;
+  background-color: transparent;
+  color: white;
+  border: none;
 }
 
 .scrollableInput:focus {
