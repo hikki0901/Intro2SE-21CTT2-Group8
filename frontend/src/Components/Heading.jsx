@@ -8,9 +8,9 @@ import "../CSS/Heading.css"
 
 
 const notificationData = [
-  { id: 1, message: 'Hello, it\'s time to record your day with us!' },
-  { id: 2, message: 'A week has passed, your average daily completion is 78%. Nice!' },
-  { id: 3, message: 'Your dietitian has replied your chat.' },
+  { id: 1, message: 'Hello, See your meals plan for today' },
+  { id: 2, message: 'Check your analytics for this month' },
+  { id: 3, message: 'Your dietitian made a new suggestion for today' },
 ];
 
 

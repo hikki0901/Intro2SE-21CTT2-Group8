@@ -313,6 +313,7 @@ router.post("/dietdiary", async (req, res) => {
           foods: Breakfast ? Breakfast.content : defaultMeal.foods,
           target: Breakfast ? Breakfast.target : defaultMeal.target,
           calories: Breakfast ? Breakfast.calories : defaultMeal.calories,
+          haveEaten: Breakfast ? Breakfast.haveEaten : false,
         },
         {
           id: 2,
@@ -320,6 +321,7 @@ router.post("/dietdiary", async (req, res) => {
           foods: Lunch ? Lunch.content : defaultMeal.foods,
           target: Lunch ? Lunch.target : defaultMeal.target,
           calories: Lunch ? Lunch.calories : defaultMeal.calories,
+          haveEaten: Lunch ? Lunch.haveEaten : false,
         },
         {
           id: 3,
@@ -327,6 +329,7 @@ router.post("/dietdiary", async (req, res) => {
           foods: Dinner ? Dinner.content : defaultMeal.foods,
           target: Dinner ? Dinner.target : defaultMeal.target,
           calories: Dinner ? Dinner.calories : defaultMeal.calories,
+          haveEaten: Dinner ? Dinner.haveEaten : false,
         }
       ];
     const { totalIntake, target } = calculateTotals(meals);
